@@ -1,0 +1,329 @@
+/*  Mixins  */
+
+//  leverage SCSS to write less code for styling by using these mixins.
+//  The provide functionality such as auto-prefixing CSS properties
+@mixin animation($anim) {
+  @include prefixed(animation, $anim);
+}
+
+@mixin animation-delay ($settings) {
+  @include prefixed(animation-delay, $settings);
+}
+
+@mixin animation-duration ($settings) {
+  @include prefixed(animation-duration, $settings);
+}
+
+@mixin appearance($option) {
+  @include prefixed(appearance, $option);
+}
+
+@mixin backface-visibility($visibility) {
+  @include prefixed(backface-visibility, $visibility);
+}
+
+@mixin border-radius($radius) {
+  @include prefixed(border-radius, $radius);
+}
+
+@mixin box-shadow($shadows...) {
+  @include prefixed(box-shadow, $shadows);
+}
+
+@mixin box-sizing($sizing) {
+  @include prefixed(box-sizing, $sizing);
+}
+
+@mixin btn-basic($color) {
+  @include border-radius(4px);
+  @include font-size(18px);
+  @include transition(all .2s ease);
+  @include user-select(none);
+
+  background: transparent;
+  border: solid 2px $color;
+  margin: 0 5px;
+  padding: 10px 20px;
+
+  &:not(:disabled) {
+    &.active {
+      background: $color;
+      border-color: $color;
+      color: $connect-off-white;
+    }
+
+    &.hvr-sweep-to-left,
+    &.hvr-sweep-to-right {
+      border-color: $color;
+
+      &::before {
+        @include border-radius(0);
+
+        background-color: $color;
+      }
+    }
+
+    &:not(.active) {
+      &:not(:hover) {
+        &:not(:focus) {
+          background-color: $white;
+          border-color: $color;
+          color: $color;
+        }
+
+        &:focus {
+          outline: 0;
+        }
+      }
+    }
+
+    &:hover {
+      &:not(.hvr-radial-out) {
+        &:not(.hvr-sweep-to-left) {
+          &:not(.hvr-sweep-to-right) {
+            background: $color;
+            border-color: $color;
+            color: $connect-off-white;
+          }
+        }
+
+        .hvr-sweep-to-left,
+        .hvr-sweep-to-right {
+          border: 2px solid $color;
+        }
+      }
+    }
+  }
+
+  &:disabled {
+    border-color: $connect-light-gray;
+    color: $connect-light-gray;
+
+    &:hover {
+      background: transparent;
+      border-color: $connect-light-gray;
+      color: $connect-light-gray;
+    }
+  }
+
+  &.hvr-sweep-to-left,
+  &.hvr-sweep-to-right {
+    &.active {
+      @include box-shadow(none);
+    }
+  }
+}
+
+@mixin display-flex {
+  @if $use-old-webkit == true {
+    display: #{$webkit}box !important;
+  }
+
+  @if $use-webkit == true {
+    display: #{$webkit}flex !important;
+  }
+
+  @if $use-ms == true {
+    display: #{$ms}flexbox !important;
+  }
+
+  display: flex !important;
+}
+
+@mixin display-inline-flex {
+  @if $use-old-webkit == true {
+    display: #{$webkit}inline-box;
+  }
+
+  @if $use-webkit == true {
+    display: #{$webkit}inline-flex;
+  }
+
+  @if $use-ms == true {
+    display: #{$ms}inline-flexbox;
+  }
+
+  display: inline-flex;
+}
+
+@mixin filter($filter) {
+  @include prefixed(filter, $filter);
+}
+
+@mixin flex($flex) {
+  @if $use-old-webkit == true {
+    #{$webkit}box-flex: $flex;
+  }
+
+  @if use-webkit == true {
+    #{$webkit}flex: $flex;
+  }
+
+  @if use-ms == true {
+    #{$ms}flex: $flex;
+  }
+
+  flex: $flex;
+}
+
+@mixin flex-direction($direction) {
+  @include prefixed(flex-direction, $direction);
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculate-rem($size);
+}
+
+//  prefix keyframes
+@mixin keyframes($name) {
+  @if $use-webkit == true {
+    @-webkit-keyframes #{$name} {
+      @content;
+    }
+  }
+
+  @if $use-moz == true {
+    @-moz-keyframes #{$name} {
+      @content;
+    }
+  }
+
+  @if $use-ms == true {
+    @-ms-keyframes #{$name} {
+      @content;
+    }
+  }
+
+  @if $use-o == true {
+    @-o-keyframes #{$name} {
+      @content;
+    }
+  }
+
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin linear-gradient-bkgrnd($props...) {
+  background-image: -webkit-linear-gradient($props);
+  background-image: -moz-linear-gradient($props);
+  background-image: -o-linear-gradient($props);
+  background-image: linear-gradient($props);
+}
+
+@mixin osx-font-smoothing($prop) {
+  #{$moz}osx-font-smoothing: $prop;
+}
+
+//  prefix declarations
+@mixin prefixed($property, $value) {
+  @if $use-webkit == true {
+    #{$webkit}#{$property}: #{$value};
+  }
+
+  @if $use-moz == true {
+    #{$moz}#{$property}: #{$value};
+  }
+
+  @if $use-ms == true {
+    #{$ms}#{$property}: #{$value};
+  }
+
+  @if $use-o == true {
+    #{$o}#{$property}: #{$value};
+  }
+
+  #{$property}: #{$value};
+}
+
+@mixin scrolling-shadows-horizontal {
+  /*  Opera doesn't support this in the shorthand  */
+  background-attachment: local, local, scroll, scroll;
+  background-color: #fff;
+  background-image:
+  /*  Shadows  */
+  linear-gradient(to right, #fff, #fff),
+  linear-gradient(to right, #fff, #fff),
+  /*  Shadow covers  */
+  linear-gradient(to right, rgba(0, 0, 0, .25), rgba(255, 255, 255, 0)),
+  linear-gradient(to left, rgba(0, 0, 0, .25), rgba(255, 255, 255, 0));
+
+  background-position: left center, right center, left center, right center;
+  background-repeat: no-repeat;
+  background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+}
+
+@mixin scrolling-shadows-vertical {
+  background:
+  /*  Shadow covers  */
+  linear-gradient(#fff 30%, rgba(255, 255, 255, 0)),
+  linear-gradient(rgba(255, 255, 255, 0), #fff 70%) 0 100%,
+  /*  Shadows  */
+  radial-gradient(50% 0, farthest-side, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
+  radial-gradient(50% 100%, farthest-side, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
+  background:
+  /*  Shadow covers  */
+  linear-gradient(#fff 30%, rgba(255, 255, 255, 0)),
+  linear-gradient(rgba(255, 255, 255, 0), #fff 70%) 0 100%,
+  /*  Shadows  */
+  radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
+  radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
+  background-attachment: local, local, scroll, scroll;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+}
+
+@mixin transform($transform) {
+  @include prefixed(transform, $transform);
+}
+
+@mixin transform-origin($origin) {
+  @include prefixed(transform-origin, $origin);
+}
+
+@mixin transition($transitions...) {
+  @include prefixed(transition, $transitions);
+}
+
+@mixin user-select($option) {
+  @if $option == none {
+    &:not(a) {
+      &:not(button) {
+        &:not(select) {
+          &:not(.clickable) {
+            cursor: default;
+          }
+        }
+      }
+    }
+
+    a,
+    button,
+    select,
+    .clickable {
+      cursor: pointer;
+    }
+  }
+
+  @include prefixed(touch-callout, $option);
+  @include prefixed(user-select, $option);
+}
+
+@mixin white-space {
+  @if $use-mox == true {
+    white-space: #{$moz}pre-wrap;
+  }
+
+  @if $use-old-o == true {
+    white-space: -pre-wrap;
+  }
+
+  @if $use-o == true {
+    white-space: -o-pre-wrap;
+  }
+
+  white-space: pre-wrap;
+}

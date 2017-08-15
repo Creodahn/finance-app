@@ -1,0 +1,31 @@
+a {
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+button {
+  &:focus {
+    outline: none;
+  }
+
+  @include user-select(none);
+}
+
+html {
+  background-color: $off-white-a;
+  font-size: $base-font-size;
+
+  body {
+    background-color: transparent;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: $base-font-size;
+    height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+  }
+}

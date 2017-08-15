@@ -1,0 +1,20 @@
+{{#modal-window
+  hasActions=true
+  id="login-modal"
+  ok-caption="Log In"
+  showOnTransition=true
+  title="Login"
+  cancelAction="cancel"
+  okAction="authenticate"
+}}
+  {{text-input
+    container-styles="bottom-spacer"
+    placeholder="Username"
+    type="text"
+    value=username
+  }}
+  {{text-input
+    type="password"
+    value=password
+  }}
+{{/modal-window}}

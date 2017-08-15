@@ -1,0 +1,17 @@
+<div class="ui {{if label 'labeled'}} {{if required 'required'}} input {{container-styles}}">
+  {{#if label}}
+    <label class="ui label {{label-styles}}" for={{id}}>
+      {{label}}
+    </label>
+  {{/if}}
+  {{input
+    class=input-styles
+    disabled=disabled
+    id=id
+    name=id
+    placeholder=placeholder
+    required=required
+    type=type
+    value=value
+  }}
+</div>

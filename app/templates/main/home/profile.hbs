@@ -1,0 +1,38 @@
+<section class="ui grid">
+  <div class="sixteen wide column">
+    <nav class="ui secondary pointing menu">
+      {{#link-to "main.home.profile.edit" class="item"}}
+        Edit Your Profile
+      {{/link-to}}
+      {{#link-to "main.home.profile.groups" class="item"}}
+        View Your Groups
+      {{/link-to}}
+      {{#link-to "main.home.profile.accounts" class="item"}}
+        View Your Accounts
+      {{/link-to}}
+    </nav>
+  </div>
+  <div class="four wide column">
+    <article class="ui card">
+      <div class="image">
+        {{#if model.profilePicture}}
+          <img src={{model.profilePicture.url}} alt={{model.profilePicture.fileName}}/>
+        {{/if}}
+      </div>
+      <div class="content">
+        <div class="header">
+          {{model.name}}
+        </div>
+        <div class="meta">
+          Joined in {{moment-format model.createdAt "YYYY"}}
+        </div>
+        <div class="description">
+          Some words go here
+        </div>
+      </div>
+    </article>
+  </div>
+  <div class="eight wide column">
+    {{outlet}}
+  </div>
+</section>

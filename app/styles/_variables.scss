@@ -1,0 +1,17 @@
+/* Variables */
+$base-font-size: 16px;
+$shadow: 0 5px 10px -5px rgba(0, 0, 0, .4);
+
+//  Browser Prefixes - Which CSS prefixes should be used?
+$use-webkit: true !default;
+$use-old-webkit: true !default;
+$use-moz: true !default;
+$use-ms: true !default;
+$use-old-o: true !default;
+$use-o: true !default;
+
+// Prefixes
+$webkit: -webkit-;
+$moz: -moz-;
+$ms: -ms-;
+$o: -o-;

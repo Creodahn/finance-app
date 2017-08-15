@@ -1,0 +1,6 @@
+{
+  "name": "finance-app",
+  "dependencies": {
+    "semantic-ui": "^2.2.11"
+  }
+}

@@ -1,9 +1,10 @@
 /* eslint-env node */
+'use strict';
 
 module.exports = function(environment) {
-  var ENV = {
+  const ENV = {
     modulePrefix: 'finance-app',
-    environment: environment,
+    environment,
     rootURL: '/',
     locationType: 'auto',
     EmberENV: {
@@ -20,18 +21,33 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      apiURL: 'http://localhost:3000'
     }
   };
 
-  if (environment === 'development') {
+  ENV['ember-simple-auth'] = {
+    routeAfterAuthentication: 'main.home',
+    routeIfAlreadyAuthenticated: 'main.home'
+  };
+
+  ENV.contentSecurityPolicy = {
+    'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
+    'font-src': "'self' https://fonts.gstatic.com", // Allow fonts to be loaded from http://fonts.gstatic.com
+    'connect-src': "'self' http://localhost:3000 https://personal-website-backend-api.herokuapp.com",
+    'img-src': "'self' data:",
+    'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com", // Allow inline styles and loaded CSS from http://fonts.googleapis.com
+    'media-src': "'self'"
+  };
+
+  if(environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
+    ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 
-  if (environment === 'test') {
+  if(environment === 'test') {
     // Testem prefers this...
     ENV.locationType = 'none';
 
@@ -42,9 +58,9 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-  if (environment === 'production') {
-
-  }
+  // if(environment === 'production') {
+  //
+  // }
 
   return ENV;
 };

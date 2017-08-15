@@ -1,0 +1,82 @@
+//  Create classes to easily setup flex grids
+$alignments: center, end, start;
+$directions: column, column-reverse, row, row-reverse;
+$spacer-sizes: ('', 1), ('-double', 2), ('-half', .5), ('triple', 3);
+
+.flex {
+  @each $direction in $directions {
+    &-#{$direction} {
+      @include flex-direction($direction);
+    }
+  }
+
+  @each $size-txt, $size in $spacer-sizes {
+    &#{$size-txt}-spacer {
+      @include flex($size);
+    }
+  }
+
+  &-align {
+    @each $alignment in $alignments {
+      &-#{$alignment} {
+        align-items: if($alignment == 'center', $alignment, flex-#{$alignment});
+      }
+    }
+
+    &-self {
+      @each $alignment in $alignments {
+        &-#{$alignment} {
+          align-self: if($alignment == 'center', $alignment, flex-#{$alignment});
+        }
+      }
+    }
+  }
+
+  &-center {
+    align-items: center;
+    justify-content: center;
+
+    & > * {
+      align-self: center;
+    }
+  }
+
+  &-display {
+    @include display-flex;
+  }
+
+  &-inline {
+    @include display-inline-flex;
+  }
+
+  &-justify {
+    @each $alignment in $alignments {
+      &-#{$alignment} {
+        justify-content: if($alignment == 'center', $alignment, flex-#{$alignment});
+      }
+    }
+  }
+
+  &-layout,
+  &-layout-row {
+    @extend .flex-display;
+  }
+
+  &-layout {
+    @extend .flex-column;
+  }
+
+  &-layout-row {
+    @extend .flex-row;
+
+    height: 100%;
+  }
+
+  &-space-between {
+    justify-content: space-between;
+  }
+
+  &-wrap {
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,42 @@
+{{#modal-window
+  hasActions=true
+  id="signup-modal"
+  ok-caption="Sign Up!"
+  showOnTransition=true
+  title="Sign Up!"
+  cancelAction="cancel"
+  okAction="signUp"
+}}
+  {{text-input
+    container-styles="bottom-spacer"
+    id="name"
+    label="Full Name"
+    required=true
+    type="text"
+    value=model.name
+  }}
+  {{text-input
+    container-styles="bottom-spacer"
+    id="email"
+    label="Email"
+    required=true
+    type="text"
+    value=model.email
+  }}
+
+  {{text-input
+    container-styles="bottom-spacer"
+    id="password"
+    label="Password"
+    required=true
+    type="password"
+    value=password
+  }}
+  {{text-input
+    id="password-confirm"
+    label="Confirm Password"
+    required=true
+    type="password"
+    value=passwordConfirm
+  }}
+{{/modal-window}}

@@ -1,0 +1,27 @@
+<form>
+  <h2>Profile Information</h2>
+  {{text-input
+    container-styles="bottom-spacer full-width"
+    label="Full Name"
+    placeholder="Full Name"
+    required=true
+    type="text"
+    value=model.name
+  }}
+  {{text-input
+    container-styles="bottom-spacer full-width"
+    label="Email"
+    placeholder="Email"
+    required=true
+    type="text"
+    value=model.email
+  }}
+  {{!-- {{text-input
+    container-styles="bottom-spacer full-width"
+    label="Phone Number"
+    placeholder="PhoneNumber"
+    required=true
+    type="text"
+    value=model.phoneNumber
+  }} --}}
+</form>

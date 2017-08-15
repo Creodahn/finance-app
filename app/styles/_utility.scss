@@ -1,0 +1,127 @@
+$alignments: center, left, right;
+$floats: left, right;
+$properties: margin, padding;
+
+$sides: 'bottom', 'horizontal', 'left', 'right', 'top', 'vertical';
+$spacings: ('-lg', 20px), ('-sm', 5px), ('-tiny', 1px), ('', 10px);
+
+@each $align in $alignments {
+  .align-#{$align} {
+    text-align: $align;
+  }
+}
+
+@each $float in $floats {
+  .float-#{$float} {
+    float: $float;
+  }
+}
+
+@each $property in $properties {
+  .no-#{$property} {
+    #{$property}: 0;
+  }
+}
+
+@each $side in $sides {
+  .#{$side} {
+    @each $size, $px in $spacings {
+      $interp: if($size == '', '', #{$size});
+
+      &#{$interp}-spacer {
+        @if $side == 'horizontal' {
+          margin: 0 $px;
+        } @else if $side == 'vertical' {
+          margin: $px 0;
+        } @else {
+          margin-#{$side}: $px;
+        }
+      }
+    }
+  }
+}
+
+* {
+  .auto {
+    &-center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    &-height {
+      height: auto;
+    }
+  }
+
+  &.hide {
+    &-horizontal,
+    &-horizontal-vertical,
+    &-vertical {
+      @include box-sizing(border-box);
+      @include transition(.3s);
+
+      border: 0;
+      margin: 0;
+      min-height: 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    &-horizontal,
+    &-horizontal-vertical {
+      height: 0;
+      padding-bottom: 0;
+      padding-top: 0;
+    }
+
+    &-horizontal-vertical,
+    &-vertical {
+      padding-left: 0;
+      padding-right: 0;
+      width: 0;
+    }
+  }
+}
+
+.bullet-title {
+  display: inline-block;
+}
+
+.center {
+  text-align: center;
+
+  &::after,
+  &::before {
+    text-align: center;
+  }
+}
+
+//  set which cursor the user sees
+.clickable {
+  & * {
+    cursor: pointer !important;
+  }
+}
+
+.full-width {
+  width: 100% !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.invisible {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+
+  & > * {
+    @include transition(.5s visibility);
+    visibility: hidden;
+  }
+}
+
+.no-bullets {
+  list-style-type: none;
+}
