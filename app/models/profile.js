@@ -30,6 +30,7 @@ export default BaseModel.extend(Auditable, Imageable, {
   addresses: DS.hasMany('address'),
   audits: DS.hasMany('audits'),
   groups: DS.hasMany('group'),
+  memberships: DS.hasMany('membership'),
   phoneNumbers: DS.hasMany('phone-number'),
   uploadedImages: DS.hasMany('image', { inverse: 'uploader' }),
   user: DS.belongsTo('user')

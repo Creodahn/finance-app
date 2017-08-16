@@ -5,33 +5,27 @@
         <i class="dollar icon text-green"></i>
         Finance Tracking
       {{/link-to}}
-      {{#if session.isAuthenticated}}
-      <div class="ui dropdown icon item">
-        <i class="sidebar icon"></i>
-        <div class="menu">
-          <div class="item">
-            {{#link-to "main.home.group" tagName="button" class="ui labeled icon button"}}
-              <i class="users icon"></i>
-              Manage Groups
-            {{/link-to}}
-          </div>
-        </div>
-      </div>
-
-      {{/if}}
       <div class="right menu">
         {{#if session.isAuthenticated}}
           <div class="item">
-            Hi, {{model.firstName}}!
-          </div>
-          <div class="item">
             {{profile-link model=model}}
           </div>
-          <div class="item">
-            <button {{action "logOut"}} class="ui labeled icon button">
-              <i class="sign out icon"></i>
-              Log Out
-            </button>
+          <div class="ui dropdown icon item">
+            <i class="sidebar icon"></i>
+            <div class="menu">
+              <div class="item">
+                {{#link-to "main.home.group" tagName="button" class="ui labeled icon button"}}
+                  <i class="users icon"></i>
+                  Manage Groups
+                {{/link-to}}
+              </div>
+              <div class="item">
+                <button {{action "logOut"}} class="ui labeled icon button">
+                  <i class="sign out icon"></i>
+                  Log Out
+                </button>
+              </div>
+            </div>
           </div>
         {{else}}
           {{#link-to "login" class="item"}}Log In{{/link-to}}

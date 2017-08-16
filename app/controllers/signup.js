@@ -17,8 +17,13 @@ export default Ember.Controller.extend({
         user.save().then((user) => {
           this.get('model').set('user', user);
 
-          this.get('model').save().then(() => {
-            log('account created!');
+          this.get('model').save().then((profile) => {
+            this.get('session').set('data.login', profile.get('email'));
+            this.get('session').authenticate('authenticator:oauth2', profile.get('email'), password).then(() => {
+              log('authenticated');
+            }).catch((reason) => {
+              error(reason);
+            });
           }).catch((reason) => {
             error(reason);
           });

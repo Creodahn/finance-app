@@ -20,6 +20,14 @@ div {
     &.dropdown {
       height: auto;
 
+      & > .menu {
+        & > .item {
+          & > button {
+            width: 100%;
+          }
+        }
+      }
+
       &.selection {
         line-height: .25em;
         min-height: 1em;
@@ -82,6 +90,22 @@ main {
     & .or {
       &::before {
         line-height: 1.7em;
+      }
+    }
+  }
+
+  &.icon {
+    &.blow-up {
+      @extend .flex-center;
+      @include display-flex;
+      @include flex-direction(column);
+
+      height: 100%;
+      min-height: 300px;
+      width: 100%;
+
+      &::before {
+        font-size: 5em;
       }
     }
   }

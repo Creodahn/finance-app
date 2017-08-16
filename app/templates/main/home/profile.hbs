@@ -17,6 +17,8 @@
       <div class="image">
         {{#if model.profilePicture}}
           <img src={{model.profilePicture.url}} alt={{model.profilePicture.fileName}}/>
+        {{else}}
+          <i class="ui user circle outline icon blow-up"></i>
         {{/if}}
       </div>
       <div class="content">

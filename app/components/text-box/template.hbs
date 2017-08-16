@@ -1,0 +1,16 @@
+<div class="ui {{if label 'labeled'}} {{if required 'required'}} input bottom-spacer {{container-styles}}">
+  {{#if label}}
+    <label class="ui label {{label-styles}}" for={{id}}>
+      {{label}}
+    </label>
+  {{/if}}
+  {{textarea
+    class=input-styles
+    disabled=disabled
+    id=id
+    name=id
+    required=required
+    rows="3"
+    value=value
+  }}
+</div>

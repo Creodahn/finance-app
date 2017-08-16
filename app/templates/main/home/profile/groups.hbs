@@ -1,1 +1,10 @@
-{{outlet}}
+{{#link-to "main.home.group.new" tagName="button" class="ui button"}}
+  Add a New Group
+{{/link-to}}
+
+{{#if model}}
+  {{#each model as |group|}}
+  {{/each}}
+{{else}}
+  <h4>No groups to display</h4>
+{{/if}}

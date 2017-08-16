@@ -51,6 +51,10 @@ $spacings: ('-lg', 20px), ('-sm', 5px), ('-tiny', 1px), ('', 10px);
     &-height {
       height: auto;
     }
+
+    &-width {
+      width: auto !important;
+    }
   }
 
   &.hide {

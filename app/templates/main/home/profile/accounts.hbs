@@ -1,4 +1,10 @@
 {{#link-to "main.home.account.new" tagName="button" class="ui button"}}
   Add a New Account
 {{/link-to}}
-{{outlet}}
+
+{{#if model}}
+  {{#each model as |account|}}
+  {{/each}}
+{{else}}
+  <h4>No accounts to display</h4>
+{{/if}}
