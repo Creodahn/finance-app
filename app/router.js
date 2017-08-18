@@ -13,15 +13,16 @@ Router.map(function() {
     this.route('home', function() {
       this.route('group', function() {
         this.route('new');
-        this.route('edit');
+        this.route('edit', { path: '/:id' });
       });
       this.route('profile', function() {
-        this.route('edit', { path: '/:group_id' });
+        this.route('edit');
         this.route('groups');
         this.route('accounts');
       });
       this.route('account', function() {
         this.route('new');
+        this.route('edit', { path: '/:id' });
       });
     });
   });

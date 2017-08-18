@@ -18,8 +18,6 @@ body {
 div {
   &.ui {
     &.dropdown {
-      height: auto;
-
       & > .menu {
         & > .item {
           & > button {
@@ -29,7 +27,6 @@ div {
       }
 
       &.selection {
-        line-height: .25em;
         min-height: 1em;
 
         &:not(.active) {
@@ -54,7 +51,6 @@ div {
           &.dropdown {
             &.icon {
               border-left: 1px solid rgba(34, 36, 38, .15);
-              line-height: .75em;
               max-height: 100%;
             }
           }
