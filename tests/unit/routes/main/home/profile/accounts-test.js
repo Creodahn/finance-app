@@ -6,6 +6,6 @@ moduleFor('route:main/home/profile/accounts', 'Unit | Route | main/home/profile/
 });
 
 test('it exists', function(assert) {
-  let route = this.subject();
+  const route = this.subject();
   assert.ok(route);
 });

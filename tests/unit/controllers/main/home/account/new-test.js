@@ -7,6 +7,6 @@ moduleFor('controller:main/home/account/new', 'Unit | Controller | main/home/acc
 
 // Replace this with your real tests.
 test('it exists', function(assert) {
-  let controller = this.subject();
+  const controller = this.subject();
   assert.ok(controller);
 });
