@@ -4,8 +4,13 @@ const { error, log } = Ember.Logger;
 export default Ember.Controller.extend({
   actions: {
     cancel() {
-      $('#signup-modal').remove();
-      this.get('model').rollbackAttributes();
+      $('#signup-modal').modal('hide');
+
+      // only rollback attributes on a record that was changed and not saved
+      if(Object.keys(this.get('model').changedAttributes()).length > 0) {
+        this.get('model').rollbackAttributes();
+      }
+
       this.transitionToRoute('main');
     },
     signUp() {

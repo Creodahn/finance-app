@@ -27,9 +27,22 @@ export default Ember.Component.extend({
       }
     });
   },
+  // actions
   actions: {
     cancelAction() {
       this.sendAction('cancelAction');
+    },
+    keyDown(event) {
+      switch(event.which) {
+        case 13:
+          this.actions.okAction.call(this);
+          break;
+        case 27:
+          this.actions.cancelAction.call(this);
+          break;
+        default:
+          // accept key press as normal
+      }
     },
     okAction() {
       this.sendAction('okAction');
