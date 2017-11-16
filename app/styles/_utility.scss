@@ -111,6 +111,10 @@ $spacings: ('-lg', 20px), ('-sm', 5px), ('-tiny', 1px), ('', 10px);
   width: 100% !important;
 }
 
+.half-width {
+  width: 50% !important;
+}
+
 .hidden {
   display: none;
 }

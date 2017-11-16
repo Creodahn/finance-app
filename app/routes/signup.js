@@ -5,5 +5,10 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, {
   routeIfAlreadyAuthenticated: 'main',
   model() {
     return this.store.createRecord('profile');
+  },
+  actions: {
+    willTransition() {
+      $('#signup-modal').remove();
+    }
   }
 });

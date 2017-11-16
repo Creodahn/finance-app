@@ -5,10 +5,23 @@
   <div class="menu {{menu-styles}}">
     {{#if model}}
       {{#each model as |item|}}
-        <div class="item {{item-styles}}" data-value={{item.id}}>{{item.name}}</div>
+        <div
+          class="item {{item-styles}}"
+          data-value={{item.id}}
+          data-description={{item.description}}
+          {{action "displayDescription" item on="mouseEnter"}}
+        >
+          {{item.name}}
+        </div>
       {{/each}}
     {{else}}
       <div class="item" data-value="0">No items</div>
     {{/if}}
   </div>
 </div>
+{{#if describeItems}}
+  <div class="descriptive-item">
+    <h4>{{descriptiveItem.name}}</h4>
+    {{descriptiveItem.description}}
+  </div>
+{{/if}}

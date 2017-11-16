@@ -3,7 +3,10 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   actions: {
     logOut() {
-      this.get('session').invalidate();
+      const session = this.get('session');
+
+      session.invalidate();
+      session.set('data.login', null);
     }
   }
 });

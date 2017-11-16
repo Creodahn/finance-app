@@ -1,13 +1,9 @@
 module.exports = {
-  "root": true,
-  "env": {
-    "browser": true,
-    "es6": true,
-    "jquery": true,
-    "node": true,
-    "phantomjs": true,
-    "qunit": true
-  },
+  root: true,
+  parserOptions: {
+    ecmaVersion: 2017,
+    sourceType: 'module'
+   },
   "extends": "eslint:recommended",
   "globals": {
     "-Promise": true,

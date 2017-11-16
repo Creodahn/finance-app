@@ -8,15 +8,22 @@
       <div class="description flex-column flex-display">
         <div class="bottom-spacer flex-display flex-row">
           {{text-input
+            container-styles="full-width"
             id="name"
             label="Name"
             required=true
             type="text"
             value=model.name
           }}
+        </div>
+        <div class="bottom-spacer flex-display flex-row">
           {{drop-down
+            container-styles="half-width"
+            describeItems=true
             id="account-type"
+            model=accountTypes
             placeholder="Select Account Type"
+            update=(action "updateType")
           }}
         </div>
         <div class="flex-display flex-row flex-space-between">

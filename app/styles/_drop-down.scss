@@ -1,0 +1,14 @@
+.descriptive-item {
+  @include border-radius(4px);
+  @include box-shadow($shadow);
+
+  background-color: $white;
+  border: 1px solid #dedede;
+  left: 50%;
+  margin-left: 1%;
+  min-height: 44px;
+  padding: 10px;
+  position: absolute;
+  width: 47%;
+  z-index: 5;
+}

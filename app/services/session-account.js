@@ -16,7 +16,9 @@ export default Ember.Service.extend({
         },
         include: 'addresses,phone-numbers'
       }).then(function(records) {
-        return records.toArray()[0];
+        const result = records.toArray()[0];
+
+        return result;
       });
     } else {
       return null;

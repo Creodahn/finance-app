@@ -13,6 +13,10 @@ export default Ember.Component.extend({
 
       $(id).modal({
         closable: this.get('closable') ? this.get('closable') : false,
+        onApprove() {
+          // prevent close on modal button
+          return false;
+        },
         onHidden: () => {
           this.sendAction('modalClosed');
         }
