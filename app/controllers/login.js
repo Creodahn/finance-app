@@ -1,5 +1,5 @@
 import Ember from 'ember';
-const { error, log } = Ember.Logger;
+const { error } = Ember.Logger;
 
 export default Ember.Controller.extend({
   actions: {
@@ -15,7 +15,6 @@ export default Ember.Controller.extend({
 
       session.authenticate('authenticator:oauth2', username, password).then(() => {
         $('#login-modal').modal('hide');
-        log('authenticated!');
       }).catch((reason) => {
         error(reason);
 
