@@ -35,25 +35,32 @@
     </nav>
   </section>
   <section class="sixteen wide column">
-    {{#if session.isAuthenticated}}
-      {{outlet}}
-    {{else}}
+    {{#unless session.isAuthenticated}}
       <article class="ui grid">
-        <div class="ui card">
-          <div class="content">
-            <div class="header">
-              Track Your Finances!
-            </div>
-          </div>
-          <div class="content">
-            <h4 class="ui sub header">IT'S AMAZING ZOMG</h4>
-            <p>
-              Track your finances like never, ever before with this
-              new, non-existent software!
-            </p>
-          </div>
+        <div class="five wide column">
+          {{testimonial-card
+            body="Track your finances like never, ever before with this new, non-existent software!"
+            header="Track Your Finances!"
+            subheader="IT'S AMAZING ZOMG"
+          }}
+        </div>
+        <div class="five wide column">
+          {{testimonial-card
+            body="'Wow, this is a finance tracking app!'-Some Guy'"
+            header="See what Users say!"
+            subheader="This guy is totally real!"
+          }}
+        </div>
+        <div class="five wide column">
+          {{testimonial-card
+            body="'It cured my cancer!!'-Anne Otherperson"
+            header="See what Users say!"
+            subheader="Holy crap!!!!"
+          }}
         </div>
       </article>
-    {{/if}}
+    {{else}}
+      {{outlet}}
+    {{/unless}}
   </section>
 </div>

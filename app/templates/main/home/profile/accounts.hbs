@@ -3,8 +3,15 @@
 {{/link-to}}
 
 {{#if model}}
-  {{#each model as |account|}}
-  {{/each}}
+  <ul>
+    {{#each model as |account|}}
+      <li>
+        {{#link-to "main.home.account.edit" account.id}}
+          {{account.name}} {{format-currency account.balance}}
+        {{/link-to}}
+      </li>
+    {{/each}}
+  </ul>
 {{else}}
   <h4>No accounts to display</h4>
 {{/if}}

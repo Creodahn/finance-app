@@ -3,8 +3,15 @@
 {{/link-to}}
 
 {{#if model}}
-  {{#each model as |group|}}
-  {{/each}}
+  <ul>
+    {{#each model as |group|}}
+      <li>
+        {{#link-to "main.home.group.edit" group.id}}
+          {{group.name}}
+        {{/link-to}}
+      </li>
+    {{/each}}
+  </ul>
 {{else}}
   <h4>No groups to display</h4>
 {{/if}}

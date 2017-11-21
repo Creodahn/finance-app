@@ -6,6 +6,7 @@ import Imageable from 'finance-app/mixins/imageable';
 export default BaseModel.extend(Auditable, Imageable, {
   // attributes
   description: DS.attr('string'),
+  membershipCount: DS.attr('number', { readOnly: true }),
   name: DS.attr('string'),
   // relationships
   profiles: DS.hasMany('profile')

@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   actions: {
     save() {
       this.get('model').save().then((account) => {
-        log(account);
+        this.transitionToRoute('main.home.account.edit', account.get('id'));
       }).catch((err) => {
         error(err);
       });

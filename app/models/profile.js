@@ -27,6 +27,7 @@ export default BaseModel.extend(Auditable, Imageable, {
     return this.get('images.firstObject');
   }),
   // relationships
+  accounts: DS.hasMany('account'),
   addresses: DS.hasMany('address'),
   audits: DS.hasMany('audits'),
   groups: DS.hasMany('group'),
