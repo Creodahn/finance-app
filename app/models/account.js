@@ -10,5 +10,6 @@ export default BaseModel.extend({
   routingNumber: DS.attr('string'),
   // relationships
   accountType: DS.belongsTo('account-type'),
+  group: DS.belongsTo('group'),
   profile: DS.belongsTo('profile')
 });

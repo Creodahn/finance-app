@@ -9,5 +9,6 @@ export default BaseModel.extend(Auditable, Imageable, {
   membershipCount: DS.attr('number', { readOnly: true }),
   name: DS.attr('string'),
   // relationships
+  accounts: DS.hasMany('account'),
   profiles: DS.hasMany('profile')
 });

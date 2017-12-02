@@ -7,6 +7,6 @@ moduleFor('service:format-message', 'Unit | Service | format message', {
 
 // Replace this with your real tests.
 test('it exists', function(assert) {
-  let service = this.subject();
+  const service = this.subject();
   assert.ok(service);
 });
