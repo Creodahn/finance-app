@@ -6,7 +6,7 @@
   <ul>
     {{#each model as |account|}}
       <li>
-        {{#link-to "main.home.account.edit" account.id}}
+        {{#link-to "main.home.account.edit" account.id class=(if account.isNegative "text-red" "")}}
           {{account.name}} {{format-currency account.balance}}
         {{/link-to}}
       </li>

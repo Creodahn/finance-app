@@ -5,7 +5,22 @@ export default Ember.Controller.extend({
   actions: {
     save() {
       this.get('model').save().then((account) => {
-        this.transitionToRoute('main.home.account.edit', account.get('id'));
+        if(this.get('balance')) {
+          this.get('sessionAccount.profile').then((profile) => {
+            const transactionType = this.get('transactionTypes').findBy('isDebit', Number(this.get('balance')) < 0);
+
+            this.store.createRecord('transaction', {
+              account,
+              amount: Math.abs(this.get('balance')),
+              profile,
+              transactionType
+            }).save().then(() => {
+              this.transitionToRoute('main.home.account.edit', account.get('id'));
+            });
+          });
+        } else {
+          this.transitionToRoute('main.home.account.edit', account.get('id'));
+        }
       }).catch((err) => {
         error(err);
       });

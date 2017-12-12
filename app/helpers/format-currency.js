@@ -1,7 +1,8 @@
 import { helper } from '@ember/component/helper';
 
 export function formatCurrency(params) {
-  const amount = (parseFloat(Math.round(params[0] * 100) / 100).toFixed(2)).toString();
+  const amount = parseFloat(Math.round(Math.abs(params[0]) * 100) / 100).toFixed(2).toString(),
+        negative = params[0] < 0;
   let amtString = '',
       counter = -3;
 
@@ -19,7 +20,7 @@ export function formatCurrency(params) {
   }
 
   // add dollar sign on returning value
-  return `$${amtString}`;
+  return `$${negative ? '-' : ''}${amtString}`;
 }
 
 export default helper(formatCurrency);
