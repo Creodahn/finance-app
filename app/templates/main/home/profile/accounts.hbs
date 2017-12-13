@@ -3,15 +3,30 @@
 {{/link-to}}
 
 {{#if model}}
-  <ul>
-    {{#each model as |account|}}
-      <li>
-        {{#link-to "main.home.account.edit" account.id class=(if account.isNegative "text-red" "")}}
-          {{account.name}} {{format-currency account.balance}}
-        {{/link-to}}
+  <section class="flex-display flex-spacer">
+    <ul class="flex-column flex-display flex-spacer">
+      <li class="flex-display flex-row text-bolder">
+        <div class="flex-display flex-spacer">
+          Name
+        </div>
+        <div class="flex-display flex-spacer">
+          Balance
+        </div>
       </li>
-    {{/each}}
-  </ul>
+      {{#each model as |account|}}
+        <li class="flex-display flex-row">
+          {{#link-to "main.home.account.edit" account.id class=(concat "flex-display flex-row flex-spacer vertical-sm-spacer " (if account.isNegative 'text-bold text-red' ''))}}
+            <div class="flex-display flex-spacer">
+              {{account.name}}
+            </div>
+            <div class="flex-display flex-spacer">
+              {{format-currency account.balance}}
+            </div>
+          {{/link-to}}
+        </li>
+      {{/each}}
+    </ul>
+  </section>
 {{else}}
   <h4>No accounts to display</h4>
 {{/if}}

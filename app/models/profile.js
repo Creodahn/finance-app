@@ -1,9 +1,8 @@
 import DS from 'ember-data';
-import Auditable from 'finance-app/mixins/auditable';
 import BaseModel from 'finance-app/models/base-model';
 import Imageable from 'finance-app/mixins/imageable';
 
-export default BaseModel.extend(Auditable, Imageable, {
+export default BaseModel.extend(Imageable, {
   // attributes
   email: DS.attr('string'),
   name: DS.attr('string'),

@@ -23,10 +23,17 @@ $font-colors: (dark,
               );
 
 $font-sizes: (large, 28px), (small, 14px), (x-large, 50px);
+$font-weights: (normal, bold, bolder, lighter);
 
 @each $size-txt, $size in $font-sizes {
   .font-#{$size-txt} {
     font-size: $size !important;
+  }
+}
+
+@each $weight-text in $font-weights {
+  .text-#{$weight-text} {
+    font-weight: $weight-text;
   }
 }
 

@@ -16,5 +16,6 @@ export default BaseModel.extend({
   // relationships
   accountType: DS.belongsTo('account-type'),
   group: DS.belongsTo('group'),
-  profile: DS.belongsTo('profile')
+  profile: DS.belongsTo('profile'),
+  transactions: DS.hasMany('transaction')
 });

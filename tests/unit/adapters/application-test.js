@@ -8,5 +8,6 @@ moduleFor('adapter:application', 'Unit | Adapter | application', {
 // Replace this with your real tests.
 test('it exists', function(assert) {
   const adapter = this.subject();
+
   assert.ok(adapter);
 });

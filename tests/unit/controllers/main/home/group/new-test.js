@@ -8,5 +8,6 @@ moduleFor('controller:main/home/group/new', 'Unit | Controller | main/home/group
 // Replace this with your real tests.
 test('it exists', function(assert) {
   const controller = this.subject();
+
   assert.ok(controller);
 });

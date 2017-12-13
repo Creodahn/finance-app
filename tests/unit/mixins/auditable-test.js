@@ -8,5 +8,6 @@ module('Unit | Mixin | auditable');
 test('it works', function(assert) {
   const AuditableObject = Ember.Object.extend(AuditableMixin),
         subject = AuditableObject.create();
+
   assert.ok(subject);
 });

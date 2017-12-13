@@ -8,5 +8,6 @@ module('Unit | Mixin | imageable');
 test('it works', function(assert) {
   const ImageableObject = Ember.Object.extend(ImageableMixin),
         subject = ImageableObject.create();
+
   assert.ok(subject);
 });
