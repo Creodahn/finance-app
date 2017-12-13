@@ -11,7 +11,8 @@ export default BaseModel.extend(Imageable, {
     return this.get('name').split(' ').slice(0, 1).join(' ');
   }),
   lastName: Ember.computed('name', function() {
-    return this.get('name').split(' ').slice(-1).join(' ');
+    const nameArray = this.get('name').split(' ');
+    return nameArray.length > 1 ? nameArray.slice(-1).join(' ') : '';
   }),
   middleName: Ember.computed('name', function() {
     return this.get('name').split(' ').slice(1, -1).join(' ');
@@ -28,10 +29,10 @@ export default BaseModel.extend(Imageable, {
   // relationships
   accounts: DS.hasMany('account'),
   addresses: DS.hasMany('address'),
-  audits: DS.hasMany('audits'),
   groups: DS.hasMany('group'),
   memberships: DS.hasMany('membership'),
   phoneNumbers: DS.hasMany('phone-number'),
+  roles: DS.hasMany('role'),
   uploadedImages: DS.hasMany('image', { inverse: 'uploader' }),
   user: DS.belongsTo('user')
 });
