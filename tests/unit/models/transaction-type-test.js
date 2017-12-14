@@ -4,7 +4,11 @@ import runRelationshipTest from 'finance-app/tests/helpers/relationship-test';
 
 moduleForModel('transaction-type', 'Unit | Model | transaction type', {
   // Specify the other units that are required for this test.
-  needs: []
+  needs: [
+    'model:audit',
+    'model:base-model',
+    'model:transaction'
+  ]
 });
 
 test('it exists', function(assert) {
