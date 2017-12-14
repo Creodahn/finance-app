@@ -39,6 +39,20 @@ $spacings: ('-lg', 20px), ('-sm', 5px), ('-tiny', 1px), ('', 10px);
       }
     }
   }
+
+  .#{$side} {
+    &-border {
+      @if $side == 'horizontal' {
+        border-bottom: 1px solid $black;
+        border-top: 1px solid $black;
+      } @else if $side == 'vertical' {
+        border-left: 1px solid $black;
+        border-right: 1px solid $black;
+      } @else {
+        border-#{$side}: 1px solid $black;
+      }
+    }
+  }
 }
 
 * {

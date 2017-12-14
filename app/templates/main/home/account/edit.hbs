@@ -1,3 +1,29 @@
-{{#each model.transactions as |transaction|}}
-  {{format-currency transaction.displayAmount}}
-{{/each}}
+<h3>Transactions</h3>
+{{#if model.transactions}}
+  <ul class="flex-display flex-column flex-spacer">
+    <li class="bottom-border bottom-sm-spacer flex-display flex-row flex-spacer text-bold">
+      <div class="flex-display flex-spacer">Date</div>
+      <div class="align-right left-border flex-display flex-spacer">Amount</div>
+    </li>
+    {{#each model.transactions as |transaction|}}
+      <li class="flex-display flex-row flex-spacer">
+        <div class="flex-display flex-spacer">
+          {{moment-format transaction.createdAt "MM/DD/YYYY hh:mm A"}}
+        </div>
+        <div class="align-right flex-display flex-spacer {{if transaction.transactionType.isDebit 'text-bolder text-red' ''}}">
+          {{format-currency transaction.displayAmount}}
+        </div>
+      </li>
+    {{/each}}
+    <li class="flex-display flex-row flex-spacer top-spacer">
+      <div class="flex-display flex-spacer text-bold">
+        Total Balance
+      </div>
+      <div class="align-right flex-display flex-spacer {{if model.isNegative 'text-bolder text-red'}} top-border">
+        {{format-currency model.balance}}
+      </div>
+    </li>
+  </ul>
+{{else}}
+  <h4>No transactions to display</h4>
+{{/if}}
