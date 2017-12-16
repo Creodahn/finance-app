@@ -25,11 +25,6 @@ module.exports = function(environment) {
     }
   };
 
-  ENV['ember-simple-auth'] = {
-    routeAfterAuthentication: 'main.home',
-    routeIfAlreadyAuthenticated: 'main.home'
-  };
-
   ENV.contentSecurityPolicy = {
     'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
     'font-src': "'self' https://fonts.gstatic.com", // Allow fonts to be loaded from http://fonts.gstatic.com

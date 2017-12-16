@@ -9,16 +9,9 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{testimonial-card}}`);
+  this.render(hbs`{{testimonial-card header="header" subheader="subheader" body="body"}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#testimonial-card}}
-      template block text
-    {{/testimonial-card}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('div.header').text().trim(), 'header');
+  assert.equal(this.$('h4.sub.header').text().trim(), 'subheader');
+  assert.equal(this.$('div.content > p').text().trim(), 'body');
 });

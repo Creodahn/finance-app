@@ -12,14 +12,5 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{drop-down}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#drop-down}}
-      template block text
-    {{/drop-down}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$().text().trim(), 'No items');
 });
