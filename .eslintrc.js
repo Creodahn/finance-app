@@ -35,7 +35,8 @@ module.exports = {
     "pauseTest": true,
     "resumeTest": true,
     "Chart": true,
-    "filestack": true
+    "filestack": true,
+    Mirage: true
   },
   "parserOptions": {
     "ecmaVersion": 2017,

@@ -3,10 +3,10 @@ import moduleForAcceptance from 'finance-app/tests/helpers/module-for-acceptance
 
 moduleForAcceptance('Acceptance | main/home/profile');
 
-test('visiting /home/profile', function(assert) {
+test('cannot visit /home/profile without authentication', function(assert) {
   visit('/home/profile');
 
   andThen(function() {
-    assert.equal(currentURL(), '/home/profile');
+    assert.equal(currentURL(), '/login');
   });
 });

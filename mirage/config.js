@@ -9,6 +9,15 @@ export default function() {
   */
 
   this.urlPrefix = 'http://localhost:3000';    // make this `http://localhost:8080`, for example, if your API is on a different server
+
+  this.post('login', function() {
+    return new Response(200, { auth_token: 'aju50fj9' });
+  });
+
+  this.del('logout', function() {
+    return new Response(204, {});
+  });
+
   this.namespace = '/api';    // make this `/api`, for example, if your API is namespaced
   // this.timing = 400;      // delay for each request, automatically set to 0 during testing
 
@@ -24,33 +33,33 @@ export default function() {
     http://www.ember-cli-mirage.com/docs/v0.3.x/shorthands/
   */
 
-  this.resource('/accounts');
+  this.resource('accounts');
 
-  this.resource('/account-types');
+  this.resource('account-types');
 
-  this.resource('/addresses');
+  this.resource('addresses');
 
-  this.resource('/audits');
+  this.resource('audits');
 
-  this.resource('/contact-info-types');
+  this.resource('contact-info-types');
 
-  this.resource('/groups');
+  this.resource('groups');
 
-  this.resource('/images');
+  this.resource('images');
 
-  this.resource('/memberships');
+  this.resource('memberships');
 
-  this.resource('/phone-numbers');
+  this.resource('phone-numbers');
 
-  this.resource('/profiles');
+  this.resource('profiles');
 
-  this.resource('/rights');
+  this.resource('rights');
 
-  this.resource('/roles');
+  this.resource('roles');
 
-  this.resource('/transactions');
+  this.resource('transactions');
 
-  this.resource('/transaction-types');
+  this.resource('transaction-types');
 
-  this.resource('/users');
+  this.resource('users');
 }

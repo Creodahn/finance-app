@@ -7,17 +7,15 @@
   cancelAction="cancel"
   okAction="authenticate"
 }}
-  <form>
-    {{text-input
-      container-styles="bottom-spacer"
-      placeholder="Username"
-      type="text"
-      value=username
-    }}
-    {{text-input
-      placeholder="Password"
-      type="password"
-      value=password
-    }}
-  </form>
+  {{text-input
+    container-styles="bottom-spacer"
+    placeholder="Username"
+    type="text"
+    value=username
+  }}
+  {{text-input
+    placeholder="Password"
+    type="password"
+    value=password
+  }}
 {{/modal-window}}

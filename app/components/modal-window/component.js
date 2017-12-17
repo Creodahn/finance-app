@@ -1,18 +1,16 @@
 import Ember from 'ember';
+import UiModal from 'semantic-ui-ember/components/ui-modal';
 // const log = Ember.Logger.log;
 
-export default Ember.Component.extend({
-  // attributes
-  tagName: '',
+export default UiModal.extend({
   // lifecycle
   didInsertElement() {
     this._super();
 
     Ember.run.scheduleOnce('afterRender', () => {
-      const id = `#${this.get('id')}`;
-
-      $(id).modal({
+      $(this.element).modal({
         closable: this.get('closable') ? this.get('closable') : false,
+        detachable: false,
         onApprove() {
           // prevent close on modal button
           return false;
@@ -23,7 +21,7 @@ export default Ember.Component.extend({
       });
 
       if(this.get('showOnTransition')) {
-        $(id).modal('show');
+        $(this.element).modal('show');
       }
     });
   },

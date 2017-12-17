@@ -2,13 +2,8 @@ import Ember from 'ember';
 import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
 
 export default Ember.Route.extend(UnauthenticatedRouteMixin, {
-  routeIfAlreadyAuthenticated: 'main',
+  routeIfAlreadyAuthenticated: 'main.home',
   model() {
     return this.store.createRecord('profile');
-  },
-  actions: {
-    willTransition() {
-      $('#signup-modal').remove();
-    }
   }
 });

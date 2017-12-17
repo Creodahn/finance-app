@@ -3,6 +3,7 @@ module.exports = {
     embertest: true
   },
   globals: {
+    Mirage: true,
     server: true
   }
 };
