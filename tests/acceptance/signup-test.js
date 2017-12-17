@@ -44,6 +44,23 @@ test('can signup', function(assert) {
 
   andThen(() => {
     assert.equal(currentURL(), '/');
+
+    click('#signup');
+
+    andThen(() => {
+      assert.equal(currentURL(), '/signup');
+
+      fillIn('input[type="text"][name="name"]', 'Justin Drew');
+      fillIn('input[type="text"][name="email"]', 'justin@test.com');
+      fillIn('input[type="password"][name="password"]', 'test');
+      fillIn('input[type="password"][name="password-confirm"]', 'test');
+
+      click('#signup-modal-ok');
+
+      andThen(() => {
+        assert.equal(currentURL(), '/home');
+      });
+    });
   });
 });
 
@@ -52,5 +69,28 @@ test('redirected to /home if already authenticated', function(assert) {
 
   andThen(() => {
     assert.equal(currentURL(), '/');
+
+    click('#signup');
+
+    andThen(() => {
+      assert.equal(currentURL(), '/signup');
+
+      fillIn('input[type="text"][name="name"]', 'Justin Drew');
+      fillIn('input[type="text"][name="email"]', 'justin@test.com');
+      fillIn('input[type="password"][name="password"]', 'test');
+      fillIn('input[type="password"][name="password-confirm"]', 'test');
+
+      click('#signup-modal-ok');
+
+      andThen(() => {
+        assert.equal(currentURL(), '/home');
+
+        visit('/signup');
+
+        andThen(() => {
+          assert.equal(currentURL(), '/home');
+        });
+      });
+    });
   });
 });
