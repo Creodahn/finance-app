@@ -1,5 +1,6 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'finance-app/tests/helpers/module-for-acceptance';
+import createUser from 'finance-app/tests/helpers/create-user';
 
 moduleForAcceptance('Acceptance | login');
 
@@ -18,8 +19,7 @@ test('visit login', async (assert) => {
 test('can login', async (assert) => {
   assert.expect(3);
 
-  server.create('profile', { name: 'Justin Drew' });
-  server.create('user', { username: 'justin@test.com', password: 'test', profileId: 1 });
+  createUser();
 
   await visit('/');
 
@@ -34,7 +34,6 @@ test('can login', async (assert) => {
 
   await click('#login-modal-ok');
 
-  // timing error occasionally pops up here
   assert.equal(currentURL(), '/home', `expected /home, got ${currentURL()}`);
 });
 
@@ -57,8 +56,8 @@ test('can cancel', async (assert) => {
 test('redirect to main/home if already authenticated', async (assert) => {
   assert.expect(4);
 
-  server.create('profile', { name: 'Justin Drew' });
-  server.create('user', { username: 'justin@test.com', password: 'test', profileId: 1 });
+  // server.create('profile', { name: 'Justin Drew' });
+  // server.create('user', { username: 'justin@test.com', password: 'test', profileId: 1 });
 
   await visit('/');
 

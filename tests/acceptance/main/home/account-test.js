@@ -1,12 +1,29 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'finance-app/tests/helpers/module-for-acceptance';
+import createUser from 'finance-app/tests/helpers/create-user';
 
 moduleForAcceptance('Acceptance | main/home/account');
 
-test('cannot visit /home/account without authentication', function(assert) {
-  visit('/home/account');
+test('cannot visit /home/account without authentication', async (assert) => {
+  await visit('/home/account');
 
-  andThen(function() {
-    assert.equal(currentURL(), '/login');
-  });
+  assert.equal(currentURL(), '/login');
+});
+
+
+test('can visit /home/account if authenticated', async (assert) => {
+  createUser();
+
+  await visit('/home/account');
+
+  assert.equal(currentURL(), '/login');
+
+  await fillIn('input[type="text"][placeholder="Username"]', 'justin@test.com');
+  await fillIn('input[type="password"][placeholder="Password"]', 'test');
+
+  await click('#login-modal-ok');
+
+  // Ember-Simple-Auth caches the attempted transition, so we end up right
+  // where we wanted to be after authentication
+  assert.equal(currentURL(), '/home/account');
 });
