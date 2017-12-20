@@ -7,7 +7,7 @@ export default OAuth2PasswordGrant.extend({
   refreshAccessTokens: true,
   serverTokenRevocationEndpoint: `${ENV.APP.apiURL}/logout`,
   authenticate(username, password) {
-    return new Ember.RSVP.Promise((function(resolve, reject) {
+    return new Ember.RSVP.Promise((resolve, reject) => {
       Ember.$.ajax({
         url: this.get('serverTokenEndpoint'),
         type: 'POST',
@@ -20,20 +20,20 @@ export default OAuth2PasswordGrant.extend({
           'Content-Type': 'application/vnd.api+json;charset=utf-8',
         },
         dataType: 'json'
-      }).then(function(response) {
+      }).done((response) => {
         Ember.run(function() {
           resolve({
             access_token: response.auth_token
           });
         });
-      }, function(xhr) {
+      }).fail((xhr) => {
         const response = xhr.responseText;
 
         Ember.run(function() {
           reject(response);
         });
       });
-    }).bind(this));
+    });
   },
   invalidate(session) {
     return Ember.$.ajax({
