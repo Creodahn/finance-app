@@ -3,4 +3,11 @@ import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-
 
 export default Ember.Route.extend(UnauthenticatedRouteMixin, {
   routeIfAlreadyAuthenticated: 'main.home',
+  actions: {
+    willTransition() {
+      this._super(...arguments);
+
+      $('#login-modal').modal('hide');
+    }
+  }
 });
