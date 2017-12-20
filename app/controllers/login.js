@@ -13,9 +13,7 @@ export default Ember.Controller.extend({
 
       session.set('data.login', username);
 
-      session.authenticate('authenticator:oauth2', username, password).then(() => {
-        $('#login-modal').modal('hide');
-      }).catch((reason) => {
+      session.authenticate('authenticator:oauth2', username, password).catch((reason) => {
         error(reason);
 
         this.send('setMessage', this.get('formatMessage').process('error', JSON.parse(reason).errors[0].detail));

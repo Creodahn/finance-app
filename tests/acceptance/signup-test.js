@@ -3,94 +3,70 @@ import moduleForAcceptance from 'finance-app/tests/helpers/module-for-acceptance
 
 moduleForAcceptance('Acceptance | signup');
 
-test('visiting /signup', function(assert) {
+test('visiting /signup', async function(assert) {
   assert.expect(2);
-  visit('/');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/');
+  await visit('/');
 
-    click('#signup');
+  assert.equal(currentURL(), '/');
 
-    andThen(function() {
-      assert.equal(currentURL(), '/signup');
-    });
-  });
+  await click('#signup');
+
+  assert.equal(currentURL(), '/signup');
 });
 
-test('can cancel', function(assert) {
+test('can cancel', async function(assert) {
   assert.expect(3);
-  visit('/');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/');
+  await visit('/');
 
-    click('#signup');
+  assert.equal(currentURL(), '/');
 
-    andThen(() => {
-      assert.equal(currentURL(), '/signup');
+  await click('#signup');
 
-      click('#signup-modal-cancel');
+  assert.equal(currentURL(), '/signup');
 
-      andThen(() => {
-        assert.equal(currentURL(), '/');
-      });
-    });
-  });
+  await click('#signup-modal-cancel');
+
+  assert.equal(currentURL(), '/');
 });
 
-test('can signup', function(assert) {
-  visit('/');
+test('can signup', async function(assert) {
+  await visit('/');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/');
+  assert.equal(currentURL(), '/');
 
-    click('#signup');
+  await click('#signup');
 
-    andThen(() => {
-      assert.equal(currentURL(), '/signup');
+  assert.equal(currentURL(), '/signup');
 
-      fillIn('input[type="text"][name="name"]', 'Justin Drew');
-      fillIn('input[type="text"][name="email"]', 'justin@test.com');
-      fillIn('input[type="password"][name="password"]', 'test');
-      fillIn('input[type="password"][name="password-confirm"]', 'test');
+  await fillIn('input[type="text"][name="name"]', 'Justin Drew');
+  await fillIn('input[type="text"][name="email"]', 'justin@test.com');
+  await fillIn('input[type="password"][name="password"]', 'test');
+  await fillIn('input[type="password"][name="password-confirm"]', 'test');
 
-      click('#signup-modal-ok');
+  await click('#signup-modal-ok');
 
-      andThen(() => {
-        assert.equal(currentURL(), '/home');
-      });
-    });
-  });
+  assert.equal(currentURL(), '/home');
 });
 
-test('redirected to /home if already authenticated', function(assert) {
-  visit('/');
+test('signup button is hidden after signing up', async function(assert) {
+  await visit('/');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/');
+  assert.equal(currentURL(), '/');
 
-    click('#signup');
+  await click('#signup');
 
-    andThen(() => {
-      assert.equal(currentURL(), '/signup');
+  assert.equal(currentURL(), '/signup');
 
-      fillIn('input[type="text"][name="name"]', 'Justin Drew');
-      fillIn('input[type="text"][name="email"]', 'justin@test.com');
-      fillIn('input[type="password"][name="password"]', 'test');
-      fillIn('input[type="password"][name="password-confirm"]', 'test');
+  await fillIn('input[type="text"][name="name"]', 'Justin Drew');
+  await fillIn('input[type="text"][name="email"]', 'justin@test.com');
+  await fillIn('input[type="password"][name="password"]', 'test');
+  await fillIn('input[type="password"][name="password-confirm"]', 'test');
 
-      click('#signup-modal-ok');
+  await click('#signup-modal-ok');
 
-      andThen(() => {
-        assert.equal(currentURL(), '/home');
+  assert.equal(currentURL(), '/home');
 
-        visit('/signup');
-
-        andThen(() => {
-          assert.equal(currentURL(), '/home');
-        });
-      });
-    });
-  });
+  assert.equal(find('#signup').length, 0);
 });

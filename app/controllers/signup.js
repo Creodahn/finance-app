@@ -1,5 +1,6 @@
 import Ember from 'ember';
-const { error, log } = Ember.Logger;
+import verifyEmail from 'finance-app/utils/verify-email';
+const { error } = Ember.Logger;
 
 export default Ember.Controller.extend({
   actions: {
@@ -15,7 +16,6 @@ export default Ember.Controller.extend({
     },
     signUp() {
       const email = this.get('model.email'),
-            emailRegex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i,
             password = this.get('password');
       let message = null;
 
@@ -37,7 +37,7 @@ export default Ember.Controller.extend({
             message = this.get('formatMessage').process('error', 'You must provide an email');
             error('email is not present');
             break;
-          case !email.match(emailRegex):
+          case !verifyEmail(email):
             message = this.get('formatMessage').process('error', 'The email you provided is not valid');
             error('email is not valid');
             break;
@@ -66,11 +66,7 @@ export default Ember.Controller.extend({
 
                 this.get('session').set('data.login', email);
 
-                $('#signup-modal').modal('hide');
-
-                this.get('session').authenticate('authenticator:oauth2', email, password).then(() => {
-                  log('authenticated');
-                }).catch((reason) => {
+                this.get('session').authenticate('authenticator:oauth2', email, password).catch((reason) => {
                   error(reason);
                 });
               }).catch((reason) => {
