@@ -8,9 +8,9 @@
   okAction="add"
 }}
   <form class="flex-column flex-display flex-spacer">
-    <div class="bottom-spacer flex-display flex-row flex-spacer">
+    <div class="flex-display flex-row flex-spacer">
       {{drop-down
-        container-styles="flex-display flex-double-spacer"
+        container-styles="bottom-spacer flex-display flex-double-spacer"
         model=contactInfoTypes
         placeholder="Select an address type"
         update=(action "updateType")

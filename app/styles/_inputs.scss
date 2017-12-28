@@ -1,0 +1,17 @@
+.phone-input {
+  @extend .flex-display;
+  @extend .flex-center;
+  @extend .flex-spacer;
+
+  & > span {
+    @extend .text-bolder;
+  }
+
+  & > .ui.input {
+    @extend .flex-display;
+    @extend .flex-spacer;
+    @extend .horizontal-spacer;
+
+    max-width: 100px;
+  }
+}

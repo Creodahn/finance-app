@@ -90,6 +90,14 @@ main {
     }
   }
 
+  &.card {
+    & .header {
+      h4 {
+        margin-bottom: 0;
+      }
+    }
+  }
+
   &.icon {
     &.blow-up {
       @extend .flex-center;

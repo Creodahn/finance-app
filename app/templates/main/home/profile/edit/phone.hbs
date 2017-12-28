@@ -3,49 +3,26 @@
   id="phone-modal"
   ok-caption="Add"
   showOnTransition=true
-  title="Add an Address"
+  title="Add a Phone Number"
   cancelAction="cancel"
   okAction="add"
 }}
-  <form>
-    {{drop-down
-      container-styles="bottom-spacer flex-display flex-double-spacer"
-      model=contactInfoTypes
-      placeholder="Select an address type"
-      update=(action "updateType")
-    }}
-    <div class="flex-align-center flex-display flex-spacer">
-      1(
-      <div class="flex-display flex-spacer ui input">
-        {{input
-          type="text"
-          value=model.areaCode
-        }}
-      </div>
-      )
-      <div class="flex-display flex-spacer ui input">
-        {{input
-          class="ui input"
-          type="text"
-          value=model.prefix
-        }}
-      </div>
-      -
-      <div class="flex-display flex-spacer ui input">
-        {{input
-          class="ui input"
-          type="text"
-          value=model.subscriberNumber
-        }}
-      </div>
-      , ext.
-      <div class="flex-display flex-spacer ui input">
-        {{input
-          class="ui input"
-          type="text"
-          value=model.extension
+  <form class="flex-column flex-display flex-spacer">
+    <div class="flex-display flex-row flex-spacer">
+      {{drop-down
+        container-styles="bottom-spacer flex-display flex-double-spacer"
+        model=contactInfoTypes
+        placeholder="Select an address type"
+        update=(action "updateType")
+      }}
+      <div class="flex-center flex-display flex-spacer">
+        {{ui-checkbox
+          label="Primary Phone"
+          checked=model.isPrimary
+          onChange=(action (mut model.isPrimary))
         }}
       </div>
     </div>
+    {{phone-input-block model=model}}
   </form>
 {{/modal-window}}

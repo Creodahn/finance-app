@@ -1,13 +1,17 @@
 <div class="ui card">
-  <div class="content">
-    <div class="header">
-      {{header}}
+  {{#if header}}
+    <div class="content">
+      <div class="header">
+        {{header}}
+      </div>
     </div>
-  </div>
+  {{/if}}
   <div class="content">
-    <h4 class="ui sub header">
-      {{subheader}}
-    </h4>
+    {{#if subheader}}
+      <h4 class="ui sub header">
+        {{subheader}}
+      </h4>
+    {{/if}}
     <p>
       {{body}}
     </p>

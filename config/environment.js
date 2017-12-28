@@ -24,7 +24,7 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      apiURL: 'http://192.168.1.238:3000' // 'http://localhost:3000'
+      apiURL: 'http://localhost:3000' // 'http://192.168.1.238:3000'
     }
   };
 

@@ -1,0 +1,36 @@
+<span class="text-bolder">1(</span>
+<div class="ui input">
+  {{input
+    id="areaCode"
+    type="text"
+    value=model.areaCode
+    keyUp=(action "change" "areaCode")
+  }}
+</div>
+<span>)</span>
+<div class="ui input">
+  {{input
+    id="prefix"
+    type="text"
+    value=model.prefix
+    keyUp=(action "change" "prefix")
+  }}
+</div>
+<span>-</span>
+<div class="ui input">
+  {{input
+    id="subscriberNumber"
+    type="text"
+    value=model.subscriberNumber
+    keyUp=(action "change" "subscriberNumber")
+  }}
+</div>
+<span>, ext.</span>
+<div class="ui input">
+  {{input
+    id="extension"
+    type="text"
+    value=model.extension
+  }}
+</div>
+{{areaCodeLength}}
