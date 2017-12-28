@@ -152,18 +152,18 @@
 
 @mixin flex($flex) {
   @if $use-old-webkit == true {
-    #{$webkit}box-flex: $flex;
+    #{$webkit}box-flex: $flex !important;
   }
 
   @if use-webkit == true {
-    #{$webkit}flex: $flex;
+    #{$webkit}flex: $flex !important;
   }
 
   @if use-ms == true {
-    #{$ms}flex: $flex;
+    #{$ms}flex: $flex !important;
   }
 
-  flex: $flex;
+  flex: $flex !important;
 }
 
 @mixin flex-direction($direction) {

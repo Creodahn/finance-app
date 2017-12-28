@@ -18,7 +18,7 @@ module.exports = function(deployTarget) {
   switch(true) {
     case ENV.build.environment === 'development':
       ENV.cp = {
-        destDir: '~/projects/finance-app-builds'
+        destDir: '/finance-app-builds'
       };
       break;
     case ENV.build.environment === 'test':

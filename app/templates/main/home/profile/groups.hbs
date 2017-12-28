@@ -1,17 +1,23 @@
-{{#link-to "main.home.group.new" tagName="button" class="ui button"}}
-  Add a New Group
-{{/link-to}}
-
-{{#if model}}
-  <ul>
-    {{#each model as |group|}}
-      <li>
-        {{#link-to "main.home.group.edit" group.id}}
-          {{group.name}}
-        {{/link-to}}
-      </li>
-    {{/each}}
-  </ul>
-{{else}}
-  <h4>No groups to display</h4>
-{{/if}}
+<section class="ui grid">
+  <div class="fourteen wide column">
+    <h2>Your Groups</h2>
+    {{#if model}}
+      <ul>
+        {{#each model as |group|}}
+          <li>
+            {{#link-to "main.home.group.edit" group.id}}
+              {{group.name}}
+            {{/link-to}}
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <h4>No groups to display</h4>
+    {{/if}}
+  </div>
+  <div class="two wide column">
+    {{#link-to "main.home.group.new" tagName="button" class="ui button positive"}}
+      Add
+    {{/link-to}}
+  </div>
+</section>

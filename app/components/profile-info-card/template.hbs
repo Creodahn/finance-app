@@ -1,0 +1,24 @@
+<article class="ui card">
+  <div class="image">
+    {{#if model.profilePicture}}
+      <img src={{model.profilePicture.url}} alt={{model.profilePicture.fileName}}/>
+    {{else}}
+      <i class="ui user circle outline icon blow-up"></i>
+    {{/if}}
+  </div>
+  <div class="content">
+    <div class="header">
+      {{model.name}}
+    </div>
+    <div class="meta">
+      Joined in {{moment-format model.createdAt "YYYY"}}
+    </div>
+    <div class="description">
+      {{#unless model.bio}}
+        Some words go here
+      {{else}}
+        {{model.bio}}
+      {{/unless}}
+    </div>
+  </div>
+</article>

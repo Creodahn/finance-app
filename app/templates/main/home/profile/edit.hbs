@@ -1,27 +1,86 @@
-<form>
-  <h2>Profile Information</h2>
-  {{text-input
-    container-styles="bottom-spacer full-width"
-    label="Full Name"
-    placeholder="Full Name"
-    required=true
-    type="text"
-    value=model.name
-  }}
-  {{text-input
-    container-styles="bottom-spacer full-width"
-    label="Email"
-    placeholder="Email"
-    required=true
-    type="text"
-    value=model.email
-  }}
-  {{!-- {{text-input
-    container-styles="bottom-spacer full-width"
-    label="Phone Number"
-    placeholder="PhoneNumber"
-    required=true
-    type="text"
-    value=model.phoneNumber
-  }} --}}
-</form>
+<div class="ui grid">
+  <div class="row">
+    <div class="twelve wide column">
+      <form class="flex-column flex-display flex-spacer">
+        <h2>Profile Information</h2>
+        {{text-input
+          container-styles="bottom-spacer flex-display flex-row flex-spacer"
+          input-styles="flex-display flex-triple-spacer"
+          label="Full Name"
+          label-styles="flex-display flex-spacer"
+          placeholder="Full Name"
+          required=true
+          type="text"
+          value=model.name
+        }}
+        {{text-input
+          container-styles="bottom-spacer flex-display flex-row flex-spacer"
+          input-styles="flex-display flex-triple-spacer"
+          label="Email"
+          label-styles="flex-display flex-spacer"
+          placeholder="Email"
+          required=true
+          type="text"
+          value=model.email
+        }}
+      </form>
+    </div>
+    <div class="four wide column"></div>
+  </div>
+  <div class="ui divider"></div>
+  <div class="row">
+    <div class="fourteen wide column">
+      <h3>Registered Addresses</h3>
+      {{#if model.addresses}}
+        <ul class="flex-display flex-row flex-space-between flex-wrap no-bullets">
+          {{#each model.addresses as |address|}}
+            {{#if address.id}}
+              <li>
+                {{address-block
+                  model=address
+                  remove=(action "removeAddress")
+                }}
+              </li>
+            {{/if}}
+          {{/each}}
+        </ul>
+      {{else}}
+        <h4 class="center">No addresses added</h4>
+      {{/if}}
+    </div>
+    <div class="two wide column">
+      {{#link-to "main.home.profile.edit.address" class="ui positive button" tagName="button"}}
+        Add
+      {{/link-to}}
+    </div>
+  </div>
+  <div class="ui divider"></div>
+  <div class="row">
+    <div class="fourteen wide column">
+      <h3>Registered Phone Numbers</h3>
+      {{#if model.phoneNumbers}}
+        <ul class="no-bullets">
+          {{#each model.phoneNumbers as |phone|}}
+            {{#if phone.id}}
+              <li>
+                <span class="text-bold">
+                  {{phone.contactInfoType.name}} {{if phone.isPrimary "(Primary)"}}
+                </span>:
+                {{phone.assembledNumber}}
+                <i class="clickable remove circle outline icon" {{action "removePhone" phone}}></i>
+              </li>
+            {{/if}}
+          {{/each}}
+        </ul>
+      {{else}}
+        <h4 class="center">No phone numbers added</h4>
+      {{/if}}
+    </div>
+    <div class="two wide column">
+      {{#link-to "main.home.profile.edit.phone" class="ui positive button" tagName="button"}}
+        Add
+      {{/link-to}}
+    </div>
+  </div>
+</div>
+{{outlet}}

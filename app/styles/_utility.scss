@@ -116,6 +116,7 @@ $spacings: ('-lg', 20px), ('-sm', 5px), ('-tiny', 1px), ('', 10px);
 
 //  set which cursor the user sees
 .clickable {
+  &,
   & * {
     cursor: pointer !important;
   }
@@ -141,6 +142,16 @@ $spacings: ('-lg', 20px), ('-sm', 5px), ('-tiny', 1px), ('', 10px);
   & > * {
     @include transition(.5s visibility);
     visibility: hidden;
+  }
+}
+
+.max {
+  &-75px {
+    max-width: 75px !important;
+  }
+
+  &-200px {
+    max-width: 200px !important;
   }
 }
 

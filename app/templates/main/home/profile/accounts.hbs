@@ -1,32 +1,37 @@
-{{#link-to "main.home.account.new" tagName="button" class="ui button"}}
-  Add a New Account
-{{/link-to}}
-
-{{#if model}}
-  <section class="flex-display flex-spacer">
-    <ul class="flex-column flex-display flex-spacer">
-      <li class="flex-display flex-row text-bolder">
-        <div class="flex-display flex-spacer">
-          Name
-        </div>
-        <div class="flex-display flex-spacer">
-          Balance
-        </div>
-      </li>
-      {{#each model as |account|}}
-        <li class="flex-display flex-row">
-          {{#link-to "main.home.account.edit" account.id class=(concat "flex-display flex-row flex-spacer vertical-sm-spacer " (if account.isNegative 'text-bold text-red' ''))}}
+<section class="ui grid">
+  <div class="fourteen wide column">
+    {{#if model}}
+      <section class="flex-display flex-spacer">
+        <ul class="flex-column flex-display flex-spacer">
+          <li class="flex-display flex-row text-bolder">
             <div class="flex-display flex-spacer">
-              {{account.name}}
+              Name
             </div>
             <div class="flex-display flex-spacer">
-              {{format-currency account.balance}}
+              Balance
             </div>
-          {{/link-to}}
-        </li>
-      {{/each}}
-    </ul>
-  </section>
-{{else}}
-  <h4>No accounts to display</h4>
-{{/if}}
+          </li>
+          {{#each model as |account|}}
+            <li class="flex-display flex-row">
+              {{#link-to "main.home.account.edit" account.id class=(concat "flex-display flex-row flex-spacer vertical-sm-spacer " (if account.isNegative 'text-bold text-red' ''))}}
+                <div class="flex-display flex-spacer">
+                  {{account.name}}
+                </div>
+                <div class="flex-display flex-spacer">
+                  {{format-currency account.balance}}
+                </div>
+              {{/link-to}}
+            </li>
+          {{/each}}
+        </ul>
+      </section>
+    {{else}}
+      <h4>No accounts to display</h4>
+    {{/if}}
+  </div>
+  <div class="two wide column">
+    {{#link-to "main.home.account.new" tagName="button" class="ui button positive"}}
+      Add
+    {{/link-to}}
+  </div>
+</section>

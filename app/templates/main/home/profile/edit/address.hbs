@@ -1,0 +1,64 @@
+{{#modal-window
+  hasActions=true
+  id="address-modal"
+  ok-caption="Add"
+  showOnTransition=true
+  title="Add an Address"
+  cancelAction="cancel"
+  okAction="add"
+}}
+  <form class="flex-column flex-display flex-spacer">
+    <div class="bottom-spacer flex-display flex-row flex-spacer">
+      {{drop-down
+        container-styles="flex-display flex-double-spacer"
+        model=contactInfoTypes
+        placeholder="Select an address type"
+        update=(action "updateType")
+      }}
+      <div class="flex-center flex-display flex-spacer">
+        {{ui-checkbox
+          label="Primary Address"
+          checked=model.isPrimary
+          onChange=(action (mut model.isPrimary))
+        }}
+      </div>
+    </div>
+    {{text-input
+      container-styles="bottom-spacer"
+      label="Street Address"
+      required=true
+      value=model.address
+    }}
+    {{text-input
+      container-styles="bottom-spacer"
+      label="Apartment Number"
+      value=model.apartmentNumber
+    }}
+    <div class="flex-display flex-row flex-space-between flex-spacer">
+      {{text-input
+        container-styles="flex-display"
+        input-styles="flex-display flex-spacer max-200px"
+        label="City"
+        label-styles="flex-display"
+        required=true
+        value=model.city
+      }}
+      {{text-input
+        container-styles="flex-display"
+        input-styles="flex-display flex-spacer max-75px"
+        label="State"
+        label-styles="flex-display"
+        required=true
+        value=model.state
+      }}
+      {{text-input
+        container-styles="flex-display"
+        input-styles="flex-display flex-spacer"
+        label="Zip code"
+        label-styles="flex-display"
+        required=true
+        value=model.zipCode
+      }}
+    </div>
+  </form>
+{{/modal-window}}

@@ -16,7 +16,10 @@ Router.map(function() {
         this.route('edit', { path: '/:id' });
       });
       this.route('profile', function() {
-        this.route('edit');
+        this.route('edit', function() {
+          this.route('address');
+          this.route('phone');
+        });
         this.route('groups');
         this.route('accounts');
       });

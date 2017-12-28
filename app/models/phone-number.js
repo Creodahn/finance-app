@@ -6,6 +6,7 @@ export default BaseModel.extend({
   areaCode: DS.attr('string'),
   countryCode: DS.attr('string'),
   extension: DS.attr('string'),
+  isPrimary: DS.attr('boolean'),
   prefix: DS.attr('string'),
   subscriberNumber: DS.attr('string'),
   // computed properties

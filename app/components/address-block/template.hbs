@@ -1,0 +1,25 @@
+<section class="ui card">
+  <div class="content">
+    <div class="header">
+      <div class="flex-display flex-row flex-space-between flex-spacer">
+        <h4>
+          {{model.contactInfoType.name}} address {{if model.isPrimary "(Primary)"}}
+        </h4>
+        <i class="clickable remove circle outline icon" {{action "remove"}}></i>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div>
+      {{model.address}}
+    </div>
+    {{#if model.apartmentNumber}}
+      <div>
+        Unit # {{model.apartmentNumber}}
+      </div>
+    {{/if}}
+    <div>
+      {{model.city}}, {{model.state}} {{model.zipCode}}
+    </div>
+  </div>
+</section>
