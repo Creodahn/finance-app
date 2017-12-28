@@ -1,7 +1,7 @@
 <div class="ui grid">
-  <div class="row">
-    <div class="twelve wide column">
-      <form class="flex-column flex-display flex-spacer">
+  <form class="row" {{action "save" on="submit"}}>
+    <div class="fourteen wide column">
+      <div class="flex-column flex-display flex-spacer">
         <h2>Profile Information</h2>
         {{text-input
           container-styles="bottom-spacer flex-display flex-row flex-spacer"
@@ -27,10 +27,14 @@
           label="Bio"
           value=model.bio
         }}
-      </form>
+      </div>
     </div>
-    <div class="four wide column"></div>
-  </div>
+    <div class="two wide column">
+      <button id="save" type="submit" class="ui button positive">
+        Save
+      </button>
+    </div>
+  </form>
   <div class="ui divider"></div>
   <div class="row">
     <div class="fourteen wide column">

@@ -27,6 +27,7 @@ Router.map(function() {
         this.route('new');
         this.route('edit', { path: '/:id' });
       });
+      this.route('dashboard');
     });
   });
 });

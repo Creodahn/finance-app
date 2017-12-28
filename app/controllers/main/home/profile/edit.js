@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import { run } from '@ember/runloop';
 
 export default Controller.extend({
   actions: {
@@ -9,6 +10,14 @@ export default Controller.extend({
     },
     removePhone(phone) {
       phone.destroyRecord();
+    },
+    save() {
+      $('#save').addClass('loading');
+      this.get('model').save().then(() => {
+        run.later(() => {
+          $('#save').removeClass('loading');
+        }, 2000);
+      });
     }
   }
 });
