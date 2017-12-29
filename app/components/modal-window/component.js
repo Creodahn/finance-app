@@ -1,5 +1,5 @@
-import Ember from 'ember';
 import UiModal from 'semantic-ui-ember/components/ui-modal';
+import { run } from '@ember/runloop';
 // const log = Ember.Logger.log;
 
 export default UiModal.extend({
@@ -7,7 +7,7 @@ export default UiModal.extend({
   didInsertElement() {
     this._super();
 
-    Ember.run.scheduleOnce('afterRender', () => {
+    run.scheduleOnce('afterRender', () => {
       $(this.element).modal({
         closable: this.get('closable') ? this.get('closable') : false,
         detachable: false,

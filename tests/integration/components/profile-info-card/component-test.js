@@ -6,19 +6,17 @@ moduleForComponent('profile-info-card', 'Integration | Component | profile info 
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  const year = new Date().getFullYear();
 
-  this.render(hbs`{{profile-info-card}}`);
+  this.set('profile', {
+    bio: 'test bio',
+    createdAt: new Date(),
+    name: 'John Doe',
+  });
 
-  assert.equal(this.$().text().trim(), '');
+  this.render(hbs`{{profile-info-card model=profile}}`);
 
-  // Template block usage:
-  this.render(hbs`
-    {{#profile-info-card}}
-      template block text
-    {{/profile-info-card}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('.header').text().trim(), 'John Doe');
+  assert.equal(this.$('.meta').text().trim(), `Joined in ${year}`);
+  assert.equal(this.$('.description').text().trim(), 'test bio');
 });

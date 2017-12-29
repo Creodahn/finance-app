@@ -47,7 +47,7 @@ test('can signup', async function(assert) {
 
   await click('#signup-modal-ok');
 
-  assert.equal(currentURL(), '/home');
+  assert.equal(currentURL(), '/home/dashboard');
 });
 
 test('signup button is hidden after signing up', async function(assert) {
@@ -66,7 +66,7 @@ test('signup button is hidden after signing up', async function(assert) {
 
   await click('#signup-modal-ok');
 
-  assert.equal(currentURL(), '/home');
+  assert.equal(currentURL(), '/home/dashboard');
 
   assert.equal(find('#signup').length, 0);
 });

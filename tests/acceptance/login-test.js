@@ -34,7 +34,7 @@ test('can login', async (assert) => {
 
   await click('#login-modal-ok');
 
-  assert.equal(currentURL(), '/home', `expected /home, got ${currentURL()}`);
+  assert.equal(currentURL(), '/home/dashboard', `expected /home/dashboard, got ${currentURL()}`);
 });
 
 test('can cancel', async (assert) => {
@@ -72,9 +72,9 @@ test('redirect to main/home if already authenticated', async (assert) => {
 
   await click('#login-modal-ok');
 
-  assert.equal(currentURL(), '/home', `expected /home, got ${currentURL()}`);
+  assert.equal(currentURL(), '/home/dashboard', `expected /home/dashboard, got ${currentURL()}`);
 
   await visit('/login');
 
-  assert.equal(currentURL(), '/home');
+  assert.equal(currentURL(), '/home/dashboard');
 });

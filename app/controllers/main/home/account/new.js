@@ -1,7 +1,8 @@
 import Ember from 'ember';
+import Controller from '@ember/controller';
 const { error, log } = Ember.Logger;
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   actions: {
     save() {
       this.get('model').save().then((account) => {

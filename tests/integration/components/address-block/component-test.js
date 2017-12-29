@@ -6,19 +6,19 @@ moduleForComponent('address-block', 'Integration | Component | address block', {
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  this.set('address', {
+    address: '1 Main St',
+    city: 'Denver',
+    state: 'CO',
+    zipCode: '00000',
+    contactInfoType: {
+      name: 'Home'
+    }
+  });
 
-  this.render(hbs`{{address-block}}`);
+  this.render(hbs`{{address-block model=address}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#address-block}}
-      template block text
-    {{/address-block}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.ok(this.$().text().indexOf('Home address') > -1);
+  assert.ok(this.$().text().indexOf('1 Main St') > -1);
+  assert.ok(this.$().text().indexOf('Denver, CO 00000') > -1);
 });

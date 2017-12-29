@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import verifyEmail from 'finance-app/utils/verify-email';
+import Controller from '@ember/controller';
 const { error } = Ember.Logger;
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   actions: {
     cancel() {
       $('#signup-modal').modal('hide');

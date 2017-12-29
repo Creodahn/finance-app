@@ -1,7 +1,8 @@
 import Ember from 'ember';
+import Controller from '@ember/controller';
 const { error } = Ember.Logger;
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   actions: {
     save() {
       Ember.RSVP.Promise.resolve(this.get('sessionAccount.profile')).then((profile) => {
