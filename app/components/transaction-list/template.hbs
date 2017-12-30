@@ -1,0 +1,41 @@
+<div class="content">
+  <div class="header">
+    <h3>Transactions</h3>
+  </div>
+</div>
+<div class="content">
+  <ul class="flex-display flex-column flex-spacer">
+    <li class="bottom-border bottom-sm-spacer flex-display flex-row flex-spacer horizontal-padding text-bolder">
+      <div class="flex-display flex-spacer">
+        Date
+      </div>
+      <div class="align-right left-border flex-display flex-spacer horizontal-padding">
+        Amount
+      </div>
+    </li>
+    {{#if model}}
+      {{#each model as |transaction|}}
+        <li class="bottom-sm-spacer flex-display flex-row flex-spacer horizontal-padding">
+          <div class="flex-display flex-spacer">
+            {{moment-format transaction.transactionDate "MM/DD/YYYY"}}
+          </div>
+          <div class="align-right flex-display flex-spacer horizontal-padding {{if transaction.isDebit 'text-bolder text-red' ''}}">
+            {{format-currency transaction.displayAmount}}
+          </div>
+        </li>
+      {{/each}}
+    {{else}}
+      <li class="vertical-lg-spacer flex-center flex-display flex-row flex-spacer">
+        <h4>No transactions to display</h4>
+      </li>
+    {{/if}}
+    <li class="flex-display flex-row flex-spacer top-spacer">
+      <div class="flex-display flex-spacer text-bold">
+        Total Balance
+      </div>
+      <div class="align-right flex-display flex-spacer horizontal-padding {{if isNegative 'text-bolder text-red'}} top-border top-padding">
+        {{format-currency (if model balance 0)}}
+      </div>
+    </li>
+  </ul>
+</div>

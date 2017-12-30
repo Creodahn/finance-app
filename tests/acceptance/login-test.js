@@ -56,9 +56,6 @@ test('can cancel', async (assert) => {
 test('redirect to main/home if already authenticated', async (assert) => {
   assert.expect(4);
 
-  // server.create('profile', { name: 'Justin Drew' });
-  // server.create('user', { username: 'justin@test.com', password: 'test', profileId: 1 });
-
   await visit('/');
 
   assert.equal(currentURL(), '/');

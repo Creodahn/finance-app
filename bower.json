@@ -1,6 +1,9 @@
 {
   "name": "finance-app",
   "dependencies": {
-    "semantic-ui": "^2.2.11"
+    "semantic-ui": "^2.2.11",
+    "pikaday": "^1.6.1",
+    "moment": "^2.20.1",
+    "jquery-maskmoney": "~3.0.2"
   }
 }

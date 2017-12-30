@@ -1,0 +1,35 @@
+<div class="content">
+  <div class="header">
+    Groups
+  </div>
+</div>
+<div class="content">
+  <ul class="flex-column flex-display flex-spacer">
+    <li class="bottom-border bottom-sm-spacer flex-display flex-row text-bolder">
+      <div class="flex-display flex-spacer">
+        Name
+      </div>
+      <div class="align-right left-border flex-display flex-spacer horizontal-padding">
+        Members
+      </div>
+    </li>
+    {{#if model}}
+      {{#each model as |group|}}
+        <li class="flex-display flex-row flex-spacer">
+          {{#link-to "main.home.group.edit" group.id class="flex-display flex-row flex-spacer vertical-sm-spacer"}}
+            <div class="flex-display flex-spacer">
+              {{group.name}}
+            </div>
+            <div class="flex-display flex-spacer">
+              {{group.membershipCount}}
+            </div>
+          {{/link-to}}
+        </li>
+      {{/each}}
+    {{else}}
+      <li class="flex-center flex-display flex-row vertical-spacer">
+        <h4>No groups to display</h4>
+      </li>
+    {{/if}}
+  </ul>
+</div>

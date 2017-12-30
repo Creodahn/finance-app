@@ -1,29 +1,59 @@
-<h3>Transactions</h3>
-{{#if model.transactions}}
-  <ul class="flex-display flex-column flex-spacer">
-    <li class="bottom-border bottom-sm-spacer flex-display flex-row flex-spacer text-bold">
-      <div class="flex-display flex-spacer">Date</div>
-      <div class="align-right left-border flex-display flex-spacer">Amount</div>
-    </li>
-    {{#each model.transactions as |transaction|}}
-      <li class="flex-display flex-row flex-spacer">
-        <div class="flex-display flex-spacer">
-          {{moment-format transaction.createdAt "MM/DD/YYYY hh:mm A"}}
-        </div>
-        <div class="align-right flex-display flex-spacer {{if transaction.transactionType.isDebit 'text-bolder text-red' ''}}">
-          {{format-currency transaction.displayAmount}}
-        </div>
-      </li>
-    {{/each}}
-    <li class="flex-display flex-row flex-spacer top-spacer">
-      <div class="flex-display flex-spacer text-bold">
-        Total Balance
+<section class="ui grid">
+  <div class="row">
+    <div class="fourteen wide column">
+      <h2>{{model.name}}</h2>
+      <p>{{model.description}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="fourteen wide column">
+      {{transaction-list model=model.transactions}}
+    </div>
+    <div class="two wide column">
+      <button class="ui button positive" {{action "addTransaction"}}>
+        Add
+      </button>
+    </div>
+  </div>
+</section>
+
+{{#modal-window
+  hasActions=true
+  id="transaction-modal"
+  ok-caption="Add"
+  title="Add a Transaction"
+  cancelAction=(action "cancelAdd")
+  okAction=(action "completeAdd")
+}}
+  <form class="flex-column flex-display flex-spacer">
+    {{drop-down
+      container-styles="bottom-spacer"
+      id="transaction-type"
+      model=transactionTypes
+      placeholder="Select Transaction Type"
+      update=(action "updateTransactionType")
+    }}
+    {{#if newTransaction}}
+      <div class="bottom-spacer ui labeled input">
+        <label class="ui label" for="transaction-date">
+          Transaction Date
+        </label>
+        {{pikaday-input
+          value=newTransaction.transactionDate
+          id="transaction-date"
+          format="MM/DD/YYYY"
+          onSelection=(action "setTransactionDate")
+        }}
       </div>
-      <div class="align-right flex-display flex-spacer {{if model.isNegative 'text-bolder text-red'}} top-border">
-        {{format-currency model.balance}}
+      <div class="ui labeled input">
+        <label class="ui label" for="amount">
+          Amount
+        </label>
+        {{input-money
+          id="amount"
+          number=newTransaction.amount
+        }}
       </div>
-    </li>
-  </ul>
-{{else}}
-  <h4>No transactions to display</h4>
-{{/if}}
+    {{/if}}
+  </form>
+{{/modal-window}}

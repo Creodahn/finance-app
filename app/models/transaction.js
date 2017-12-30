@@ -5,9 +5,11 @@ import { computed } from '@ember/object';
 export default BaseModel.extend({
   // attributes
   amount: DS.attr('number'),
+  isDebit: DS.attr('boolean', { readOnly: true }),
+  transactionDate: DS.attr('date'),
   // computed properties
   displayAmount: computed('amount', 'transactionType', function() {
-    return this.get('amount') * (this.get('transactionType.isDebit') ? -1 : 1);
+    return this.get('amount') * (this.get('isDebit') ? -1 : 1);
   }),
   // relationships
   account: DS.belongsTo('account'),

@@ -37,6 +37,16 @@ $spacings: ('-lg', 20px), ('-sm', 5px), ('-tiny', 1px), ('', 10px);
           margin-#{$side}: $px;
         }
       }
+
+      &#{$interp}-padding {
+        @if $side == 'horizontal' {
+          padding: 0 $px;
+        } @else if $side == 'vertical' {
+          padding: $px 0;
+        } @else {
+          padding-#{$side}: $px;
+        }
+      }
     }
   }
 

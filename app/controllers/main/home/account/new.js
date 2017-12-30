@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import Controller from '@ember/controller';
-const { error, log } = Ember.Logger;
+const { error } = Ember.Logger;
 
 export default Controller.extend({
   actions: {
@@ -27,9 +27,7 @@ export default Controller.extend({
       });
     },
     updateType(id) {
-      const type = this.get('accountTypes').findBy('id', id);
-      log(type);
-      this.get('model').set('accountType', type);
+      this.get('model').set('accountType', this.get('accountTypes').findBy('id', id));
     }
   }
 });

@@ -1,0 +1,35 @@
+<div class="content">
+  <div class="header">
+    Accounts
+  </div>
+</div>
+<div class="content">
+  <ul class="flex-column flex-display flex-spacer">
+    <li class="bottom-border bottom-sm-spacer flex-display flex-row text-bolder">
+      <div class="flex-display flex-spacer">
+        Name
+      </div>
+      <div class="align-right left-border flex-display flex-spacer horizontal-padding">
+        Balance
+      </div>
+    </li>
+    {{#if model}}
+      {{#each model as |account|}}
+        <li class="flex-display flex-row">
+          {{#link-to "main.home.account.edit" account.id class=(concat "flex-display flex-row flex-spacer vertical-sm-spacer " (if account.isNegative "text-bold text-red"))}}
+            <div class="flex-display flex-spacer">
+              {{account.name}}
+            </div>
+            <div class="flex-display flex-spacer">
+              {{format-currency account.balance}}
+            </div>
+          {{/link-to}}
+        </li>
+      {{/each}}
+    {{else}}
+      <li class="flex-display flex-row">
+        <h4>No accounts to display</h4>
+      </li>
+    {{/if}}
+  </ul>
+</div>

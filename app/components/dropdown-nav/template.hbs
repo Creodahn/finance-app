@@ -2,10 +2,34 @@
   <i class="sidebar icon"></i>
   <div class="menu">
     <div class="item">
-      {{#link-to "main.home.group" tagName="button" class="ui labeled icon button"}}
+      {{#link-to "main.home.dashboard" tagName="button" class="ui labeled icon button"}}
+        <i class="bar chart icon"></i>
+        Dashboard
+      {{/link-to}}
+    </div>
+    <div class="item">
+      {{#link-to "main.home.profile.groups" tagName="button" class="ui labeled icon button"}}
         <i class="users icon"></i>
         Manage Groups
       {{/link-to}}
+    </div>
+    <div class="item">
+      {{#link-to "main.home.profile.accounts" tagName="button" class="ui labeled icon button"}}
+        <i class="book icon"></i>
+        Manage Accounts
+      {{/link-to}}
+    </div>
+    <div class="item">
+      {{#link-to "main.home.profile" tagName="button" class="ui labeled icon button"}}
+        <i class="user icon"></i>
+        Profile
+      {{/link-to}}
+    </div>
+    <div class="item">
+      <button id="log-out" {{action "logOut"}} class="ui labeled icon button">
+        <i class="sign out icon"></i>
+        Log Out
+      </button>
     </div>
   </div>
 </div>
