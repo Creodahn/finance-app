@@ -1,31 +1,14 @@
-import { moduleFor, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 
-moduleFor('serializer:application', 'Unit | Serializer | application', {
-  // Specify the other units that are required for this test.
-  needs: [
-    'model:account-type',
-    'model:account',
-    'model:address',
-    'model:audit',
-    'model:base-model',
-    'model:contact-info-type',
-    'model:group',
-    'model:image',
-    'model:membership',
-    'model:phone-number',
-    'model:profile',
-    'model:right',
-    'model:role',
-    'model:transaction-type',
-    'model:transaction',
-    'serializer:application'
-  ]
-});
+module('Unit | Serializer | application', function(hooks) {
+  setupTest(hooks);
 
-// Replace this with your real tests.
-test('it serializes records', function(assert) {
-  // const record = this.subject(),
-  //       serializedRecord = record.serialize();
+  // Replace this with your real tests.
+  test('it serializes records', function(assert) {
+    // const record = this.subject(),
+    //       serializedRecord = record.serialize();
 
-  assert.ok(true);
+    assert.ok(true);
+  });
 });

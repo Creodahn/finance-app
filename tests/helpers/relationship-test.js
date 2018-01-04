@@ -1,7 +1,8 @@
 import { get } from '@ember/object';
 
 export default function runRelationshipTest(assert, modelName, relName, relType, relModelName, inverse, readOnly, polymorphic) {
-  const record = this.store().modelFor(modelName),
+  const store = this.owner.lookup('service:store'),
+        record = store.modelFor(modelName),
         relationship = get(record, 'relationshipsByName').get(relName);
 
   assert.equal(relationship.key, relName, `expected has relationship named ${relName}`);

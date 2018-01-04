@@ -1,24 +1,26 @@
-import { moduleForModel, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 import runAttrTest from 'finance-app/tests/helpers/attribute-test';
 import runRelationshipTest from 'finance-app/tests/helpers/relationship-test';
 
-moduleForModel('right', 'Unit | Model | right', {
-  // Specify the other units that are required for this test.
-  needs: []
-});
+import { run } from '@ember/runloop';
 
-test('it exists', function(assert) {
-  const model = this.subject();
-  // let store = this.store();
-  assert.ok(!!model);
-});
+module('Unit | Model | right', function(hooks) {
+  setupTest(hooks);
 
-// attribute tests
-test('name is a string attribute', function(assert) {
-  runAttrTest.call(this, assert, 'right', 'name', 'string', false, 'test');
-});
+  test('it exists', function(assert) {
+    const model = run(() => this.owner.lookup('service:store').createRecord('right'));
+    // let store = this.store();
+    assert.ok(!!model);
+  });
 
-// relationship tests
-test('should have many roles', function(assert) {
-  runRelationshipTest.call(this, assert, 'right', 'roles', 'hasMany', 'role', null, false, false);
+  // attribute tests
+  test('name is a string attribute', function(assert) {
+    runAttrTest.call(this, assert, 'right', 'name', 'string', false, 'test');
+  });
+
+  // relationship tests
+  test('should have many roles', function(assert) {
+    runRelationshipTest.call(this, assert, 'right', 'roles', 'hasMany', 'role', null, false, false);
+  });
 });

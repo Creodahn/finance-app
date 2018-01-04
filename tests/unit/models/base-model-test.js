@@ -1,28 +1,30 @@
-import { moduleForModel, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 import runAttrTest from 'finance-app/tests/helpers/attribute-test';
 import runRelationshipTest from 'finance-app/tests/helpers/relationship-test';
 
-moduleForModel('base-model', 'Unit | Model | base model', {
-  // Specify the other units that are required for this test.
-  needs: ['mixin:auditable']
-});
+import { run } from '@ember/runloop';
 
-test('it exists', function(assert) {
-  const model = this.subject();
-  // let store = this.store();
-  assert.ok(!!model);
-});
+module('Unit | Model | base model', function(hooks) {
+  setupTest(hooks);
 
-// attribute tests
-test('createdAt is a date attribute', function(assert) {
-  runAttrTest.call(this, assert, 'base-model', 'createdAt', 'date', true, new Date());
-});
+  test('it exists', function(assert) {
+    const model = run(() => this.owner.lookup('service:store').createRecord('base-model'));
+    // let store = this.store();
+    assert.ok(!!model);
+  });
 
-test('updatedAt is a date attribute', function(assert) {
-  runAttrTest.call(this, assert, 'base-model', 'updatedAt', 'date', true, new Date());
-});
+  // attribute tests
+  test('createdAt is a date attribute', function(assert) {
+    runAttrTest.call(this, assert, 'base-model', 'createdAt', 'date', true, new Date());
+  });
 
-// relationship tests
-test('should have many audits', function(assert) {
-  runRelationshipTest.call(this, assert, 'base-model', 'audits', 'hasMany', 'audit', 'auditable', false, false);
+  test('updatedAt is a date attribute', function(assert) {
+    runAttrTest.call(this, assert, 'base-model', 'updatedAt', 'date', true, new Date());
+  });
+
+  // relationship tests
+  test('should have many audits', function(assert) {
+    runRelationshipTest.call(this, assert, 'base-model', 'audits', 'hasMany', 'audit', 'auditable', false, false);
+  });
 });

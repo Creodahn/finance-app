@@ -2,8 +2,9 @@ import { get } from '@ember/object';
 import { run } from '@ember/runloop';
 
 export default function runAttrTest(assert, modelName, attr, type, readOnly, value) {
-  const record = this.subject(),
-        model = this.store().modelFor(modelName),
+  const store = this.owner.lookup('service:store'),
+        record = run(() => store.createRecord('user')),
+        model = store.modelFor(modelName),
         attribute = get(model, 'attributes').get(attr);
 
   run(function() {

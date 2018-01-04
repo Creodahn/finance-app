@@ -1,44 +1,42 @@
-import { moduleForModel, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 import runAttrTest from 'finance-app/tests/helpers/attribute-test';
 import runRelationshipTest from 'finance-app/tests/helpers/relationship-test';
 
-moduleForModel('transaction-type', 'Unit | Model | transaction type', {
-  // Specify the other units that are required for this test.
-  needs: [
-    'model:audit',
-    'model:base-model',
-    'model:transaction'
-  ]
-});
+import { run } from '@ember/runloop';
 
-test('it exists', function(assert) {
-  const model = this.subject();
-  // let store = this.store();
-  assert.ok(!!model);
-});
+module('Unit | Model | transaction type', function(hooks) {
+  setupTest(hooks);
 
-// attribute tests
-test('createdAt is a date attribute', function(assert) {
-  runAttrTest.call(this, assert, 'transaction-type', 'createdAt', 'date', true, new Date());
-});
+  test('it exists', function(assert) {
+    const model = run(() => this.owner.lookup('service:store').createRecord('transaction-type'));
+    // let store = this.store();
+    assert.ok(!!model);
+  });
 
-test('isDebit is a boolean attribute', function(assert) {
-  runAttrTest.call(this, assert, 'transaction-type', 'isDebit', 'boolean', false, true);
-});
+  // attribute tests
+  test('createdAt is a date attribute', function(assert) {
+    runAttrTest.call(this, assert, 'transaction-type', 'createdAt', 'date', true, new Date());
+  });
 
-test('name is a string attribute', function(assert) {
-  runAttrTest.call(this, assert, 'transaction-type', 'name', 'string', false, 'test');
-});
+  test('isDebit is a boolean attribute', function(assert) {
+    runAttrTest.call(this, assert, 'transaction-type', 'isDebit', 'boolean', false, true);
+  });
 
-test('updatedAt is a date attribute', function(assert) {
-  runAttrTest.call(this, assert, 'transaction-type', 'updatedAt', 'date', true, new Date());
-});
+  test('name is a string attribute', function(assert) {
+    runAttrTest.call(this, assert, 'transaction-type', 'name', 'string', false, 'test');
+  });
 
-// relationship tests
-test('should have many audits', function(assert) {
-  runRelationshipTest.call(this, assert, 'transaction-type', 'audits', 'hasMany', 'audit', 'auditable', false, false);
-});
+  test('updatedAt is a date attribute', function(assert) {
+    runAttrTest.call(this, assert, 'transaction-type', 'updatedAt', 'date', true, new Date());
+  });
 
-test('should have many transactions', function(assert) {
-  runRelationshipTest.call(this, assert, 'transaction-type', 'transactions', 'hasMany', 'transaction', null, false, false);
+  // relationship tests
+  test('should have many audits', function(assert) {
+    runRelationshipTest.call(this, assert, 'transaction-type', 'audits', 'hasMany', 'audit', 'auditable', false, false);
+  });
+
+  test('should have many transactions', function(assert) {
+    runRelationshipTest.call(this, assert, 'transaction-type', 'transactions', 'hasMany', 'transaction', null, false, false);
+  });
 });

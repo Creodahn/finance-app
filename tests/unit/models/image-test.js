@@ -1,48 +1,50 @@
-import { moduleForModel, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 import runAttrTest from 'finance-app/tests/helpers/attribute-test';
 import runRelationshipTest from 'finance-app/tests/helpers/relationship-test';
 
-moduleForModel('image', 'Unit | Model | image', {
-  // Specify the other units that are required for this test.
-  needs: []
-});
+import { run } from '@ember/runloop';
 
-test('it exists', function(assert) {
-  const model = this.subject();
-  // let store = this.store();
-  assert.ok(!!model);
-});
+module('Unit | Model | image', function(hooks) {
+  setupTest(hooks);
 
-// attribute tests
-test('createdAt is a date attribute', function(assert) {
-  runAttrTest.call(this, assert, 'image', 'createdAt', 'date', true, new Date());
-});
+  test('it exists', function(assert) {
+    const model = run(() => this.owner.lookup('service:store').createRecord('image'));
+    // let store = this.store();
+    assert.ok(!!model);
+  });
 
-test('description is a string attribute', function(assert) {
-  runAttrTest.call(this, assert, 'image', 'description', 'string', false, 'test');
-});
+  // attribute tests
+  test('createdAt is a date attribute', function(assert) {
+    runAttrTest.call(this, assert, 'image', 'createdAt', 'date', true, new Date());
+  });
 
-test('fileName is a string attribute', function(assert) {
-  runAttrTest.call(this, assert, 'image', 'fileName', 'string', false, 'test');
-});
+  test('description is a string attribute', function(assert) {
+    runAttrTest.call(this, assert, 'image', 'description', 'string', false, 'test');
+  });
 
-test('updatedAt is a date attribute', function(assert) {
-  runAttrTest.call(this, assert, 'image', 'updatedAt', 'date', true, new Date());
-});
+  test('fileName is a string attribute', function(assert) {
+    runAttrTest.call(this, assert, 'image', 'fileName', 'string', false, 'test');
+  });
 
-test('url is a string attribute', function(assert) {
-  runAttrTest.call(this, assert, 'image', 'url', 'string', false, 'test');
-});
+  test('updatedAt is a date attribute', function(assert) {
+    runAttrTest.call(this, assert, 'image', 'updatedAt', 'date', true, new Date());
+  });
 
-// relationship tests
-test('should have many audits', function(assert) {
-  runRelationshipTest.call(this, assert, 'image', 'audits', 'hasMany', 'audit', 'auditable', false, false);
-});
+  test('url is a string attribute', function(assert) {
+    runAttrTest.call(this, assert, 'image', 'url', 'string', false, 'test');
+  });
 
-test('should have an imageable', function(assert) {
-  runRelationshipTest.call(this, assert, 'image', 'imageable', 'belongsTo', 'imageable', null, false, true);
-});
+  // relationship tests
+  test('should have many audits', function(assert) {
+    runRelationshipTest.call(this, assert, 'image', 'audits', 'hasMany', 'audit', 'auditable', false, false);
+  });
 
-test('should have an uploader', function(assert) {
-  runRelationshipTest.call(this, assert, 'image', 'uploader', 'belongsTo', 'profile', null, false, false);
+  test('should have an imageable', function(assert) {
+    runRelationshipTest.call(this, assert, 'image', 'imageable', 'belongsTo', 'imageable', null, false, true);
+  });
+
+  test('should have an uploader', function(assert) {
+    runRelationshipTest.call(this, assert, 'image', 'uploader', 'belongsTo', 'profile', null, false, false);
+  });
 });

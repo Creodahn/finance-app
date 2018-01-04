@@ -1,60 +1,58 @@
-import { moduleForModel, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 import runAttrTest from 'finance-app/tests/helpers/attribute-test';
 import runRelationshipTest from 'finance-app/tests/helpers/relationship-test';
 
-moduleForModel('phone-number', 'Unit | Model | phone number', {
-  // Specify the other units that are required for this test.
-  needs: [
-    'model:base-model',
-    'model:contact-info-type',
-    'model:profile'
-  ]
-});
+import { run } from '@ember/runloop';
 
-test('it exists', function(assert) {
-  const model = this.subject();
-  // let store = this.store();
-  assert.ok(!!model);
-});
+module('Unit | Model | phone number', function(hooks) {
+  setupTest(hooks);
 
-// attribute tests
-test('areaCode is a string attribute', function(assert) {
-  runAttrTest.call(this, assert, 'phone-number', 'areaCode', 'string', false, 'test');
-});
+  test('it exists', function(assert) {
+    const model = run(() => this.owner.lookup('service:store').createRecord('phone-number'));
+    // let store = this.store();
+    assert.ok(!!model);
+  });
 
-test('countryCode is a string attribute', function(assert) {
-  runAttrTest.call(this, assert, 'phone-number', 'countryCode', 'string', false, 'test');
-});
+  // attribute tests
+  test('areaCode is a string attribute', function(assert) {
+    runAttrTest.call(this, assert, 'phone-number', 'areaCode', 'string', false, 'test');
+  });
 
-test('createdAt is a date attribute', function(assert) {
-  runAttrTest.call(this, assert, 'phone-number', 'createdAt', 'date', true, new Date());
-});
+  test('countryCode is a string attribute', function(assert) {
+    runAttrTest.call(this, assert, 'phone-number', 'countryCode', 'string', false, 'test');
+  });
 
-test('extension is a string attribute', function(assert) {
-  runAttrTest.call(this, assert, 'phone-number', 'extension', 'string', false, 'test');
-});
+  test('createdAt is a date attribute', function(assert) {
+    runAttrTest.call(this, assert, 'phone-number', 'createdAt', 'date', true, new Date());
+  });
 
-test('prefix is a string attribute', function(assert) {
-  runAttrTest.call(this, assert, 'phone-number', 'prefix', 'string', false, 'test');
-});
+  test('extension is a string attribute', function(assert) {
+    runAttrTest.call(this, assert, 'phone-number', 'extension', 'string', false, 'test');
+  });
 
-test('subscriberNumber is a string attribute', function(assert) {
-  runAttrTest.call(this, assert, 'phone-number', 'subscriberNumber', 'string', false, 'test');
-});
+  test('prefix is a string attribute', function(assert) {
+    runAttrTest.call(this, assert, 'phone-number', 'prefix', 'string', false, 'test');
+  });
 
-test('updatedAt is a date attribute', function(assert) {
-  runAttrTest.call(this, assert, 'phone-number', 'updatedAt', 'date', true, new Date());
-});
+  test('subscriberNumber is a string attribute', function(assert) {
+    runAttrTest.call(this, assert, 'phone-number', 'subscriberNumber', 'string', false, 'test');
+  });
 
-// relationship tests
-test('should have many audits', function(assert) {
-  runRelationshipTest.call(this, assert, 'phone-number', 'audits', 'hasMany', 'audit', 'auditable', false, false);
-});
+  test('updatedAt is a date attribute', function(assert) {
+    runAttrTest.call(this, assert, 'phone-number', 'updatedAt', 'date', true, new Date());
+  });
 
-test('should have a contact-info-type', function(assert) {
-  runRelationshipTest.call(this, assert, 'phone-number', 'contactInfoType', 'belongsTo', 'contact-info-type', null, false, false);
-});
+  // relationship tests
+  test('should have many audits', function(assert) {
+    runRelationshipTest.call(this, assert, 'phone-number', 'audits', 'hasMany', 'audit', 'auditable', false, false);
+  });
 
-test('should have a profile', function(assert) {
-  runRelationshipTest.call(this, assert, 'phone-number', 'profile', 'belongsTo', 'profile', null, false, false);
+  test('should have a contact-info-type', function(assert) {
+    runRelationshipTest.call(this, assert, 'phone-number', 'contactInfoType', 'belongsTo', 'contact-info-type', null, false, false);
+  });
+
+  test('should have a profile', function(assert) {
+    runRelationshipTest.call(this, assert, 'phone-number', 'profile', 'belongsTo', 'profile', null, false, false);
+  });
 });

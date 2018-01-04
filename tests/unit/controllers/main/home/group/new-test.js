@@ -1,13 +1,13 @@
-import { moduleFor, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 
-moduleFor('controller:main/home/group/new', 'Unit | Controller | main/home/group/new', {
-  // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
-});
+module('Unit | Controller | main/home/group/new', function(hooks) {
+  setupTest(hooks);
 
-// Replace this with your real tests.
-test('it exists', function(assert) {
-  const controller = this.subject();
+  // Replace this with your real tests.
+  test('it exists', function(assert) {
+    const controller = this.owner.lookup('controller:main/home/group/new');
 
-  assert.ok(controller);
+    assert.ok(controller);
+  });
 });

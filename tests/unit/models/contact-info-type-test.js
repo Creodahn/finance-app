@@ -1,48 +1,46 @@
-import { moduleForModel, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 import runAttrTest from 'finance-app/tests/helpers/attribute-test';
 import runRelationshipTest from 'finance-app/tests/helpers/relationship-test';
 
-moduleForModel('contact-info-type', 'Unit | Model | contact info type', {
-  // Specify the other units that are required for this test.
-  needs: [
-    'model:address',
-    'model:base-model',
-    'model:phone-number'
-  ]
-});
+import { run } from '@ember/runloop';
 
-test('it exists', function(assert) {
-  const model = this.subject();
-  // let store = this.store();
-  assert.ok(!!model);
-});
+module('Unit | Model | contact info type', function(hooks) {
+  setupTest(hooks);
 
-// attribute tests
-test('createdAt is a date attribute', function(assert) {
-  runAttrTest.call(this, assert, 'contact-info-type', 'createdAt', 'date', true, new Date());
-});
+  test('it exists', function(assert) {
+    const model = run(() => this.owner.lookup('service:store').createRecord('contact-info-type'));
+    // let store = this.store();
+    assert.ok(!!model);
+  });
 
-test('description is a string attribute', function(assert) {
-  runAttrTest.call(this, assert, 'contact-info-type', 'description', 'string', false, 'test');
-});
+  // attribute tests
+  test('createdAt is a date attribute', function(assert) {
+    runAttrTest.call(this, assert, 'contact-info-type', 'createdAt', 'date', true, new Date());
+  });
 
-test('name is a string attribute', function(assert) {
-  runAttrTest.call(this, assert, 'contact-info-type', 'name', 'string', false, 'test');
-});
+  test('description is a string attribute', function(assert) {
+    runAttrTest.call(this, assert, 'contact-info-type', 'description', 'string', false, 'test');
+  });
 
-test('updatedAt is a date attribute', function(assert) {
-  runAttrTest.call(this, assert, 'contact-info-type', 'updatedAt', 'date', true, new Date());
-});
+  test('name is a string attribute', function(assert) {
+    runAttrTest.call(this, assert, 'contact-info-type', 'name', 'string', false, 'test');
+  });
 
-// relationship tests
-test('should have many addresses', function(assert) {
-  runRelationshipTest.call(this, assert, 'contact-info-type', 'addresses', 'hasMany', 'address', null, false, false);
-});
+  test('updatedAt is a date attribute', function(assert) {
+    runAttrTest.call(this, assert, 'contact-info-type', 'updatedAt', 'date', true, new Date());
+  });
 
-test('should have many audits', function(assert) {
-  runRelationshipTest.call(this, assert, 'contact-info-type', 'audits', 'hasMany', 'audit', 'auditable', false, false);
-});
+  // relationship tests
+  test('should have many addresses', function(assert) {
+    runRelationshipTest.call(this, assert, 'contact-info-type', 'addresses', 'hasMany', 'address', null, false, false);
+  });
 
-test('should have many phone-numbers', function(assert) {
-  runRelationshipTest.call(this, assert, 'contact-info-type', 'phoneNumbers', 'hasMany', 'phone-number', null, false, false);
+  test('should have many audits', function(assert) {
+    runRelationshipTest.call(this, assert, 'contact-info-type', 'audits', 'hasMany', 'audit', 'auditable', false, false);
+  });
+
+  test('should have many phone-numbers', function(assert) {
+    runRelationshipTest.call(this, assert, 'contact-info-type', 'phoneNumbers', 'hasMany', 'phone-number', null, false, false);
+  });
 });
