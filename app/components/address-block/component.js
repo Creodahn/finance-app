@@ -4,7 +4,7 @@ export default Component.extend({
   tagName: '',
   actions: {
     remove() {
-      this.sendAction('remove', this.get('model.id'));
+      this.sendAction('remove', this.get('model'));
     }
   }
 });

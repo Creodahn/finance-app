@@ -5,7 +5,9 @@
         <h4>
           {{model.contactInfoType.name}} address {{if model.isPrimary "(Primary)"}}
         </h4>
-        <i class="clickable remove circle outline icon" {{action "remove"}}></i>
+        {{#if removable}}
+          <i class="clickable remove circle outline icon" {{action "remove"}}></i>
+        {{/if}}
       </div>
     </div>
   </div>
