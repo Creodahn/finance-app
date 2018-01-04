@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import Ember from 'ember';
 import Controller from '@ember/controller';
 const { error } = Ember.Logger;

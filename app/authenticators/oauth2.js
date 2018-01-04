@@ -1,5 +1,7 @@
-import Ember from 'ember';
+import $ from 'jquery';
 import ENV from 'finance-app/config/environment';
+import { Promise } from 'rsvp';
+import { run } from '@ember/runloop';
 import OAuth2PasswordGrant from 'ember-simple-auth/authenticators/oauth2-password-grant';
 
 export default OAuth2PasswordGrant.extend({
@@ -7,8 +9,8 @@ export default OAuth2PasswordGrant.extend({
   refreshAccessTokens: true,
   serverTokenRevocationEndpoint: `${ENV.APP.apiURL}/logout`,
   authenticate(username, password) {
-    return new Ember.RSVP.Promise((resolve, reject) => {
-      Ember.$.ajax({
+    return new Promise((resolve, reject) => {
+      $.ajax({
         url: this.get('serverTokenEndpoint'),
         type: 'POST',
         data: JSON.stringify({
@@ -21,7 +23,7 @@ export default OAuth2PasswordGrant.extend({
         },
         dataType: 'json'
       }).done((response) => {
-        Ember.run(function() {
+        run(function() {
           resolve({
             access_token: response.auth_token
           });
@@ -29,14 +31,14 @@ export default OAuth2PasswordGrant.extend({
       }).fail((xhr) => {
         const response = xhr.responseText;
 
-        Ember.run(function() {
+        run(function() {
           reject(response);
         });
       });
     });
   },
   invalidate(session) {
-    return Ember.$.ajax({
+    return $.ajax({
       url: this.get('serverTokenRevocationEndpoint'),
       type: 'DELETE',
       headers: {

@@ -1,4 +1,5 @@
 import { moduleForModel, test } from 'ember-qunit';
+import { run } from '@ember/runloop';
 import runAttrTest from 'finance-app/tests/helpers/attribute-test';
 import runRelationshipTest from 'finance-app/tests/helpers/relationship-test';
 
@@ -34,7 +35,7 @@ test('updatedAt is a date attribute', function(assert) {
 
 // computed property tests
 test('displayAmount is negative if transactionType.isDebit is true', function(assert) {
-  Ember.run(() => {
+  run(() => {
     const transaction = this.subject({
       amount: 5,
       transactionType: this.store().createRecord('transactionType', {
@@ -48,7 +49,7 @@ test('displayAmount is negative if transactionType.isDebit is true', function(as
 });
 
 test('displayAmount is positive if transactionType.isDebit is false', function(assert) {
-  Ember.run(() => {
+  run(() => {
     const transaction = this.subject({
       amount: 5,
       transactionType: this.store().createRecord('transactionType', {

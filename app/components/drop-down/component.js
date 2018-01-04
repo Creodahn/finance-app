@@ -9,9 +9,8 @@ export default Component.extend({
     displayDescription(item) {
       this.set('descriptiveItem', item);
     },
-    update(value) {
+    update() {
       this.set('descriptiveItem', null);
-      this.sendAction('update', value);
     }
   }
 });

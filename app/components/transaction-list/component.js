@@ -6,7 +6,7 @@ export default Component.extend({
   tagName: 'section',
   classNames: ['ui', 'card', 'full-width'],
   // computed properties
-  balance: computed('model.@each.amount', 'model.@each.isDebit', function() {
+  balance: computed('model.@each.{amount,isDebit}', function() {
     const transactions = this.get('model').map((transaction) => {
       return transaction.get('amount') * (transaction.get('isDebit') ? -1 : 1);
     });

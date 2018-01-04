@@ -1,11 +1,12 @@
 import Ember from 'ember';
 import Controller from '@ember/controller';
+import { Promise } from 'rsvp';
 const { error } = Ember.Logger;
 
 export default Controller.extend({
   actions: {
     save() {
-      Ember.RSVP.Promise.resolve(this.get('sessionAccount.profile')).then((profile) => {
+      Promise.resolve(this.get('sessionAccount.profile')).then((profile) => {
         this.get('model').save().then((group) => {
           const membership = this.store.createRecord('membership', {
             group,

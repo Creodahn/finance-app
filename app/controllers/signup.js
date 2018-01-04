@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import Ember from 'ember';
 import verifyEmail from 'finance-app/utils/verify-email';
 import Controller from '@ember/controller';

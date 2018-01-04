@@ -1,6 +1,8 @@
+import { get } from '@ember/object';
+
 export default function runRelationshipTest(assert, modelName, relName, relType, relModelName, inverse, readOnly, polymorphic) {
   const record = this.store().modelFor(modelName),
-        relationship = Ember.get(record, 'relationshipsByName').get(relName);
+        relationship = get(record, 'relationshipsByName').get(relName);
 
   assert.equal(relationship.key, relName, `expected has relationship named ${relName}`);
   assert.equal(relationship.kind, relType, `expected kind of relationship is ${relType}`);

@@ -1,12 +1,13 @@
-import Ember from 'ember';
+import Application from '@ember/application';
 import { initialize } from 'finance-app/initializers/session-account';
 import { module, test } from 'qunit';
+import { run } from '@ember/runloop';
 import destroyApp from '../../helpers/destroy-app';
 
 module('Unit | Initializer | session account', {
   beforeEach() {
-    Ember.run(() => {
-      this.application = Ember.Application.create();
+    run(() => {
+      this.application = Application.create();
       this.application.deferReadiness();
     });
   },

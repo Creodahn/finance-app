@@ -1,12 +1,12 @@
-import Ember from 'ember';
-const { isEmpty } = Ember,
-      { service } = Ember.inject;
+import { isEmpty } from '@ember/utils';
+import Service, { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 
-export default Ember.Service.extend({
+export default Service.extend({
   session: service(),
   store: service(),
   // computed properties
-  profile: Ember.computed('session.data.login', function() {
+  profile: computed('session.data.login', function() {
     const email = this.get('session.data.login');
 
     if(!isEmpty(email)) {
@@ -24,7 +24,7 @@ export default Ember.Service.extend({
       return null;
     }
   }),
-  user: Ember.computed('session.data.login', function() {
+  user: computed('session.data.login', function() {
     const username = this.get('session.data.login');
 
     if(!isEmpty(username)) {

@@ -1,23 +1,10 @@
+import $ from 'jquery';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
   // attributes
   classNames: ['phone-input'],
-  maxLengths: {
-    areaCode: {
-      length: 3,
-      next: 'prefix'
-    },
-    prefix: {
-      length: 3,
-      next: 'subscriberNumber'
-    },
-    subscriberNumber: {
-      length: 4,
-      next: 'extension'
-    }
-  },
   // computed properties
   areaCodeLength: computed('model.areaCode.length', function() {
     return this.get('model.areaCode.length') || 0;
@@ -32,6 +19,22 @@ export default Component.extend({
     return this.get('model.subscriberNumber.length') || 0;
   }),
   // lifecycle
+  didInsertElement() {
+    this.set('maxLengths', {
+      areaCode: {
+        length: 3,
+        next: 'prefix'
+      },
+      prefix: {
+        length: 3,
+        next: 'subscriberNumber'
+      },
+      subscriberNumber: {
+        length: 4,
+        next: 'extension'
+      }
+    });
+  },
   didReceiveAttrs() {
     this._super(...arguments);
 

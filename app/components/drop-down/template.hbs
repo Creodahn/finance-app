@@ -1,5 +1,5 @@
 <div id={{id}} class="ui selection dropdown {{container-styles}}">
-  <input type="hidden" name={{id}} value={{value}} onchange={{action "update" value="target.value"}}/>
+  <input type="hidden" name={{id}} value={{value}} onchange={{action (mut value) value="target.value"}}/>
   <div class="default text">{{placeholder}}</div>
   <i class="dropdown icon"></i>
   <div class="menu {{menu-styles}}">

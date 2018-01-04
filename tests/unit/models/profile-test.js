@@ -1,4 +1,5 @@
 import { moduleForModel, test } from 'ember-qunit';
+import { run } from '@ember/runloop';
 import runAttrTest from 'finance-app/tests/helpers/attribute-test';
 import runRelationshipTest from 'finance-app/tests/helpers/relationship-test';
 
@@ -43,7 +44,7 @@ test('updatedAt is a date attribute', function(assert) {
 test('firsName is set properly based on name', function(assert) {
   assert.expect(3);
 
-  Ember.run(() => {
+  run(() => {
     const profile = this.subject({
       name: 'Justin'
     });
@@ -63,7 +64,7 @@ test('firsName is set properly based on name', function(assert) {
 test('lastName is set properly based on name', function(assert) {
   assert.expect(3);
 
-  Ember.run(() => {
+  run(() => {
     const profile = this.subject({
       name: 'Justin'
     });
@@ -83,7 +84,7 @@ test('lastName is set properly based on name', function(assert) {
 test('middleName is set properly based on name', function(assert) {
   assert.expect(3);
 
-  Ember.run(() => {
+  run(() => {
     const profile = this.subject({
       name: 'Justin'
     });

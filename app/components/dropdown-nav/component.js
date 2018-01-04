@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import Component from '@ember/component';
 import { run } from '@ember/runloop';
 
@@ -9,10 +10,5 @@ export default Component.extend({
     run.scheduleOnce('afterRender', () => {
       $('#dropdown-nav').dropdown();
     });
-  },
-  actions: {
-    logOut() {
-      this.sendAction('logOut');
-    }
   }
 });

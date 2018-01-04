@@ -1,3 +1,4 @@
+import { computed } from '@ember/object';
 import DS from 'ember-data';
 import BaseModel from 'finance-app/models/base-model';
 import Imageable from 'finance-app/mixins/imageable';
@@ -8,24 +9,24 @@ export default BaseModel.extend(Imageable, {
   email: DS.attr('string'),
   name: DS.attr('string'),
   // computed properties
-  firstName: Ember.computed('name', function() {
+  firstName: computed('name', function() {
     return this.get('name').split(' ').slice(0, 1).join(' ');
   }),
-  lastName: Ember.computed('name', function() {
+  lastName: computed('name', function() {
     const nameArray = this.get('name').split(' ');
 
     return nameArray.length > 1 ? nameArray.slice(-1).join(' ') : '';
   }),
-  middleName: Ember.computed('name', function() {
+  middleName: computed('name', function() {
     return this.get('name').split(' ').slice(1, -1).join(' ');
   }),
-  primaryAddress: Ember.computed('addresses', function() {
+  primaryAddress: computed('addresses', function() {
     return this.get('addresses').findBy('isPrimary', true);
   }),
-  primaryPhoneNumber: Ember.computed('phoneNumbers', function() {
+  primaryPhoneNumber: computed('phoneNumbers', function() {
     return this.get('phoneNumbers').findBy('isPrimary', true);
   }),
-  profilePicture: Ember.computed('images', function() {
+  profilePicture: computed('images', function() {
     return this.get('images.firstObject');
   }),
   // relationships

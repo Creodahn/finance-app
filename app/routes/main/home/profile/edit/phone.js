@@ -1,9 +1,10 @@
+import { hash } from 'rsvp';
 import Route from '@ember/routing/route';
 
 export default Route.extend({
   model() {
     return this.get('sessionAccount.profile').then((profile) => {
-      return Ember.RSVP.hash({
+      return hash({
         contactInfoTypes: this.store.findAll('contact-info-type'),
         phone: this.store.createRecord('phone-number', {
           profile

@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import UiModal from 'semantic-ui-ember/components/ui-modal';
 import { run } from '@ember/runloop';
 // const log = Ember.Logger.log;
@@ -16,7 +17,7 @@ export default UiModal.extend({
           return false;
         },
         onHidden: () => {
-          this.sendAction('modalClosed');
+          $(this.element).find('.ui.deny.button').click();
         }
       });
 
@@ -27,23 +28,17 @@ export default UiModal.extend({
   },
   // actions
   actions: {
-    cancelAction() {
-      this.sendAction('cancelAction');
-    },
     keyDown(event) {
       switch(event.which) {
         case 13:
-          this.actions.okAction.call(this);
+          this.okAction();
           break;
         case 27:
-          this.actions.cancelAction.call(this);
+          this.cancelAction();
           break;
         default:
           // accept key press as normal
       }
-    },
-    okAction() {
-      this.sendAction('okAction');
     }
   }
 });

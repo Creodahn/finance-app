@@ -1,9 +1,12 @@
+import { get } from '@ember/object';
+import { run } from '@ember/runloop';
+
 export default function runAttrTest(assert, modelName, attr, type, readOnly, value) {
   const record = this.subject(),
         model = this.store().modelFor(modelName),
-        attribute = Ember.get(model, 'attributes').get(attr);
+        attribute = get(model, 'attributes').get(attr);
 
-  Ember.run(function() {
+  run(function() {
     record.set(attr, value);
   });
 

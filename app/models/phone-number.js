@@ -1,3 +1,4 @@
+import { computed } from '@ember/object';
 import DS from 'ember-data';
 import BaseModel from 'finance-app/models/base-model';
 
@@ -10,7 +11,7 @@ export default BaseModel.extend({
   prefix: DS.attr('string'),
   subscriberNumber: DS.attr('string'),
   // computed properties
-  assembledNumber: Ember.computed('countryCode', 'areaCode', 'prefix', 'subscriberNumber', 'extension', function() {
+  assembledNumber: computed('countryCode', 'areaCode', 'prefix', 'subscriberNumber', 'extension', function() {
     return `${this.get('countryCode')}(${this.get('areaCode')})${this.get('prefix')}-${this.get('subscriberNumber')}${this.get('extension') ? `, ext. ${this.get('extension')}` : ''}`;
   }),
   // relationships
