@@ -12,6 +12,9 @@
       <div class="align-right left-border flex-display flex-spacer horizontal-padding">
         Members
       </div>
+      <div class="align-right left-border flex-display flex-spacer horizontal-padding">
+        Current Balance
+      </div>
     </li>
     {{#if model}}
       {{#each model as |group|}}
@@ -21,7 +24,10 @@
               {{group.name}}
             </div>
             <div class="flex-display flex-spacer">
-              {{group.membershipCount}}
+              {{group.memberships.length}}
+            </div>
+            <div class="flex-display flex-spacer {{if group.isNegative 'text-bolder text-red'}}">
+              {{format-currency group.balance}}
             </div>
           {{/link-to}}
         </li>

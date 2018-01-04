@@ -13,7 +13,9 @@ export default Controller.extend({
           });
 
           membership.save().then(() => {
-            this.transitionToRoute('main.home.group.edit', group.get('id'));
+            profile.save().then(() => {
+              this.transitionToRoute('main.home.group.edit', group.get('id'));
+            });
           }).catch((reason) => {
             error(reason);
           });

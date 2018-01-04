@@ -1,5 +1,5 @@
 <div class="ui grid">
-  <form class="row" {{action "save" on="submit"}}>
+  <form class="row" onSubmit={{perform save}}>
     <div class="fourteen wide column">
       <div class="flex-column flex-display flex-spacer">
         <h2>Profile Information</h2>
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="two wide column">
-      <button id="save" type="submit" class="ui button positive">
+      <button id="save" type="submit" class="ui button positive {{if save.isRunning 'loading'}}">
         Save
       </button>
     </div>

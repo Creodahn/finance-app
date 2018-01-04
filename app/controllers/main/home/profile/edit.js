@@ -1,7 +1,11 @@
 import Controller from '@ember/controller';
-import { run } from '@ember/runloop';
+import { task } from 'ember-concurrency';
 
 export default Controller.extend({
+  save: task(function * (e) {
+    e.preventDefault();
+    yield this.get('model').save();
+  }),
   actions: {
     removeAddress(id) {
       const addr = this.get('model.addresses').findBy('id', id);
@@ -11,13 +15,5 @@ export default Controller.extend({
     removePhone(phone) {
       phone.destroyRecord();
     },
-    save() {
-      $('#save').addClass('loading');
-      this.get('model').save().then(() => {
-        run.later(() => {
-          $('#save').removeClass('loading');
-        }, 2000);
-      });
-    }
   }
 });
