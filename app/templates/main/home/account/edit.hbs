@@ -7,7 +7,7 @@
   </div>
   <div class="row">
     <div class="fourteen wide column">
-      {{transaction-list model=model.transactions}}
+      {{transaction-list model=model}}
     </div>
     <div class="two wide column">
       <button class="ui button positive" {{action "addTransaction"}}>
@@ -38,20 +38,25 @@
         <label class="ui label" for="transaction-date">
           Transaction Date
         </label>
-        {{pikaday-input
-          value=newTransaction.transactionDate
-          id="transaction-date"
-          format="MM/DD/YYYY"
-          onSelection=(action "setTransactionDate")
+        {{#power-calendar
+          center=center
+          selected=newTransaction.transactionDate
+          onCenterChange=(action (mut center) value="date")
+          onSelect=(action (mut newTransaction.transactionDate) value="date")
+          as |calendar|
         }}
+          {{calendar.nav}}
+          {{calendar.days}}
+        {{/power-calendar}}
       </div>
       <div class="ui labeled input">
         <label class="ui label" for="amount">
           Amount
         </label>
-        {{input-money
+        {{one-way-currency-mask
           id="amount"
-          number=newTransaction.amount
+          value=newTransaction.amount
+          update=(action (mut newTransaction.amount))
         }}
       </div>
     {{/if}}

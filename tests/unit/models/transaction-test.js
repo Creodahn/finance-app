@@ -29,19 +29,20 @@ test('createdAt is a date attribute', function(assert) {
   runAttrTest.call(this, assert, 'transaction', 'createdAt', 'date', true, new Date());
 });
 
+test('isDebit is a boolean attribute', function(assert) {
+  runAttrTest.call(this, assert, 'transaction', 'isDebit', 'boolean', true, true);
+});
+
 test('updatedAt is a date attribute', function(assert) {
   runAttrTest.call(this, assert, 'transaction', 'updatedAt', 'date', true, new Date());
 });
 
 // computed property tests
-test('displayAmount is negative if transactionType.isDebit is true', function(assert) {
+test('displayAmount is negative if isDebit is true', function(assert) {
   run(() => {
     const transaction = this.subject({
       amount: 5,
-      transactionType: this.store().createRecord('transactionType', {
-        name: 'Debit',
-        isDebit: true
-      })
+      isDebit: true
     });
 
     assert.ok(transaction.get('displayAmount') < 0);
@@ -52,10 +53,7 @@ test('displayAmount is positive if transactionType.isDebit is false', function(a
   run(() => {
     const transaction = this.subject({
       amount: 5,
-      transactionType: this.store().createRecord('transactionType', {
-        name: 'Credit',
-        isDebit: false
-      })
+      isDebit: false
     });
 
     assert.ok(transaction.get('displayAmount') > 0);

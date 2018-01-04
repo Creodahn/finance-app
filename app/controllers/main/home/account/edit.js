@@ -11,7 +11,7 @@ export default Controller.extend({
       $('#transaction-modal').modal('show');
     },
     cancelAdd() {
-      this.set('newTransaction', null);
+      this.get('newTransaction').deleteRecord();
     },
     completeAdd() {
       const transaction = this.get('newTransaction');

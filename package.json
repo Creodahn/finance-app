@@ -26,7 +26,6 @@
     "ember-cli-dependency-checker": "^2.0.0",
     "ember-cli-deploy": "^1.0.2",
     "ember-cli-deploy-build": "^1.1.1",
-    "ember-cli-deploy-cp": "^0.3.1",
     "ember-cli-deploy-display-revisions": "^1.0.0",
     "ember-cli-deploy-redis": "^1.0.2",
     "ember-cli-deploy-revision-data": "^1.0.0",
@@ -45,9 +44,8 @@
     "ember-data": "~2.18.0",
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.0.0",
-    "ember-maskmoney": "^0.3.5",
     "ember-moment": "^7.4.1",
-    "ember-pikaday": "^2.2.3",
+    "ember-power-calendar": "^0.7.1",
     "ember-resolver": "^4.0.0",
     "ember-simple-auth": "^1.4.0",
     "ember-source": "~2.18.0",
@@ -61,6 +59,8 @@
   },
   "dependencies": {
     "bower": "^1.8.2",
-    "global": "^4.3.2"
+    "ember-inputmask": "^0.6.1",
+    "global": "^4.3.2",
+    "jscodeshift": "^0.4.0"
   }
 }

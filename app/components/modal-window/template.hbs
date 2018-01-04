@@ -9,10 +9,10 @@
 </div>
 {{#if hasActions}}
   <div class="actions">
-    <button id="{{id}}-cancel" class="ui deny button" {{action "cancelAction"}} type="button">
+    <button id="{{id}}-cancel" class="ui deny button" {{action cancelAction}} type="button">
       {{if cancel-caption cancel-caption "Cancel"}}
     </button>
-    <button id="{{id}}-ok" class="ui positive button" {{action "okAction"}} type="button">
+    <button id="{{id}}-ok" class="ui positive button" {{action okAction}} type="button">
       {{if ok-caption ok-caption "Ok"}}
     </button>
   </div>

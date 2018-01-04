@@ -26,10 +26,6 @@ test('description is a string attribute', function(assert) {
   runAttrTest.call(this, assert, 'group', 'description', 'string', false, 'test');
 });
 
-test('membershipCount is a number attribute', function(assert) {
-  runAttrTest.call(this, assert, 'group', 'membershipCount', 'number', true, 5);
-});
-
 test('name is a string attribute', function(assert) {
   runAttrTest.call(this, assert, 'group', 'name', 'string', false, 'test');
 });

@@ -17,7 +17,7 @@ export default UiModal.extend({
           return false;
         },
         onHidden: () => {
-          $(this.element).find('.ui.deny.button').click();
+          this.cancelAction();
         }
       });
 

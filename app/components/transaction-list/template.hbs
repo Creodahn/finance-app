@@ -13,11 +13,11 @@
         Amount
       </div>
     </li>
-    {{#if model}}
-      {{#each model as |transaction|}}
+    {{#if savedTransactions}}
+      {{#each savedTransactions as |transaction|}}
         <li class="bottom-sm-spacer flex-display flex-row flex-spacer horizontal-padding">
           <div class="flex-display flex-spacer">
-            {{moment-format transaction.transactionDate "MM/DD/YYYY"}}
+            {{moment-format transaction.transactionDate "M/D/YYYY"}}
           </div>
           <div class="align-right flex-display flex-spacer horizontal-padding {{if transaction.isDebit 'text-bolder text-red' ''}}">
             {{format-currency transaction.displayAmount}}
@@ -33,8 +33,8 @@
       <div class="flex-display flex-spacer text-bold">
         Total Balance
       </div>
-      <div class="align-right flex-display flex-spacer horizontal-padding {{if isNegative 'text-bolder text-red'}} top-border top-padding">
-        {{format-currency (if model balance 0)}}
+      <div class="align-right flex-display flex-spacer horizontal-padding {{if model.isNegative 'text-bolder text-red'}} top-border top-padding">
+        {{format-currency (if model model.balance 0)}}
       </div>
     </li>
   </ul>
