@@ -15,16 +15,19 @@
     </li>
     {{#if model}}
       {{#each model as |account|}}
-        <li class="record-row">
-          {{#link-to "main.home.account.edit" account.id class=(concat "flex-display flex-row flex-spacer vertical-sm-spacer " (if account.isNegative "text-bold text-red"))}}
-            <div>
-              {{account.name}}
-            </div>
-            <div class="{{if account.isNegative 'text-bolder text-red'}}">
-              {{format-currency account.balance}}
-            </div>
-          {{/link-to}}
-        </li>
+        {{#link-to
+          "main.home.account.edit"
+          account.id
+          class="clickable link record-row"
+          tagName="li"
+        }}
+          <div>
+            {{account.name}}
+          </div>
+          <div class="{{if account.isNegative 'text-bolder text-red'}}">
+            {{format-currency account.balance}}
+          </div>
+        {{/link-to}}
       {{/each}}
     {{else}}
       <li class="footer-row">

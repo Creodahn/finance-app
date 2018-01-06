@@ -19,7 +19,7 @@
           <div>
             {{moment-format transaction.transactionDate "M/D/YYYY"}}
           </div>
-          <div class="{{if transaction.isDebit 'text-bolder text-red' ''}}">
+          <div class="{{if transaction.isDebit 'text-bolder text-red'}}">
             {{format-currency transaction.displayAmount}}
           </div>
         </li>

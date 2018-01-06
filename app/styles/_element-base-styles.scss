@@ -6,6 +6,12 @@ a {
   &:hover {
     text-decoration: none;
   }
+
+  &:visited {
+    color: $dark-blue;
+  }
+
+  color: $bright-blue;
 }
 
 button {

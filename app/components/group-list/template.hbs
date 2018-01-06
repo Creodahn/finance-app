@@ -18,19 +18,17 @@
     </li>
     {{#if model}}
       {{#each model as |group|}}
-        <li class="record-row">
-          {{#link-to "main.home.group.edit" group.id class="flex-display flex-row flex-spacer vertical-sm-spacer"}}
-            <div>
-              {{group.name}}
-            </div>
-            <div>
-              {{group.memberships.length}}
-            </div>
-            <div class="{{if group.isNegative 'text-bolder text-red'}}">
-              {{format-currency group.balance}}
-            </div>
-          {{/link-to}}
-        </li>
+        {{#link-to "main.home.group.edit" group.id class="clickable link record-row" tagName="li"}}
+          <div>
+            {{group.name}}
+          </div>
+          <div>
+            {{group.memberships.length}}
+          </div>
+          <div class="{{if group.isNegative 'text-bolder text-red'}}">
+            {{format-currency group.balance}}
+          </div>
+        {{/link-to}}
       {{/each}}
     {{else}}
       <li class="no-data">

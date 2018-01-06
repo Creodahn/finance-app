@@ -277,6 +277,18 @@
   & > .no-data {
     @extend .vertical-lg-spacer;
   }
+
+  & > .record-row {
+    &.clickable {
+      &:hover {
+        background-color: $light-gray;
+      }
+    }
+
+    &.link {
+      color: $bright-blue;
+    }
+  }
 }
 
 @mixin osx-font-smoothing($prop) {
