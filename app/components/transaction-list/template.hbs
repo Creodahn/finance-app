@@ -4,36 +4,36 @@
   </div>
 </div>
 <div class="content">
-  <ul class="flex-display flex-column flex-spacer">
-    <li class="bottom-border bottom-sm-spacer flex-display flex-row flex-spacer horizontal-padding text-bolder">
-      <div class="flex-display flex-spacer">
+  <ul class="transaction-list">
+    <li class="header-row">
+      <div>
         Date
       </div>
-      <div class="align-right left-border flex-display flex-spacer horizontal-padding">
+      <div>
         Amount
       </div>
     </li>
     {{#if savedTransactions}}
       {{#each savedTransactions as |transaction|}}
-        <li class="bottom-sm-spacer flex-display flex-row flex-spacer horizontal-padding">
-          <div class="flex-display flex-spacer">
+        <li class="record-row">
+          <div>
             {{moment-format transaction.transactionDate "M/D/YYYY"}}
           </div>
-          <div class="align-right flex-display flex-spacer horizontal-padding {{if transaction.isDebit 'text-bolder text-red' ''}}">
+          <div class="{{if transaction.isDebit 'text-bolder text-red' ''}}">
             {{format-currency transaction.displayAmount}}
           </div>
         </li>
       {{/each}}
     {{else}}
-      <li class="vertical-lg-spacer flex-center flex-display flex-row flex-spacer">
+      <li class="no-data">
         <h4>No transactions to display</h4>
       </li>
     {{/if}}
-    <li class="flex-display flex-row flex-spacer top-spacer">
-      <div class="flex-display flex-spacer text-bold">
+    <li class="footer-row">
+      <div>
         Total Balance
       </div>
-      <div class="align-right flex-display flex-spacer horizontal-padding {{if model.isNegative 'text-bolder text-red'}} top-border top-padding">
+      <div class="{{if model.isNegative 'text-bolder text-red'}}">
         {{format-currency (if model model.balance 0)}}
       </div>
     </li>

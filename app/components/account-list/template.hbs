@@ -4,30 +4,30 @@
   </div>
 </div>
 <div class="content">
-  <ul class="flex-column flex-display flex-spacer">
-    <li class="bottom-border bottom-sm-spacer flex-display flex-row text-bolder">
-      <div class="flex-display flex-spacer">
+  <ul class="account-list">
+    <li class="header-row">
+      <div>
         Name
       </div>
-      <div class="align-right left-border flex-display flex-spacer horizontal-padding">
+      <div>
         Balance
       </div>
     </li>
     {{#if model}}
       {{#each model as |account|}}
-        <li class="flex-display flex-row">
+        <li class="record-row">
           {{#link-to "main.home.account.edit" account.id class=(concat "flex-display flex-row flex-spacer vertical-sm-spacer " (if account.isNegative "text-bold text-red"))}}
-            <div class="flex-display flex-spacer">
+            <div>
               {{account.name}}
             </div>
-            <div class="flex-display flex-spacer">
+            <div class="{{if account.isNegative 'text-bolder text-red'}}">
               {{format-currency account.balance}}
             </div>
           {{/link-to}}
         </li>
       {{/each}}
     {{else}}
-      <li class="flex-display flex-row">
+      <li class="footer-row">
         <h4>No accounts to display</h4>
       </li>
     {{/if}}

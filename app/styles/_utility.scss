@@ -3,7 +3,7 @@ $floats: left, right;
 $properties: margin, padding;
 
 $sides: 'bottom', 'horizontal', 'left', 'right', 'top', 'vertical';
-$spacings: ('-lg', 20px), ('-sm', 5px), ('-tiny', 1px), ('', 10px);
+$spacings: ('lg', 20px), ('sm', 5px), ('tiny', 1px), ('', 10px);
 
 @each $align in $alignments {
   .align-#{$align} {
@@ -26,7 +26,7 @@ $spacings: ('-lg', 20px), ('-sm', 5px), ('-tiny', 1px), ('', 10px);
 @each $side in $sides {
   .#{$side} {
     @each $size, $px in $spacings {
-      $interp: if($size == '', '', #{$size});
+      $interp: if($size == '', '', '-#{$size}');
 
       &#{$interp}-spacer {
         @if $side == 'horizontal' {
@@ -61,6 +61,19 @@ $spacings: ('-lg', 20px), ('-sm', 5px), ('-tiny', 1px), ('', 10px);
       } @else {
         border-#{$side}: 1px solid $black;
       }
+    }
+  }
+}
+
+@each $size, $px in $spacings {
+  $interp: if($size == '', '', '#{$size}-');
+  .#{$interp} {
+    &padding {
+      padding: $px;
+    }
+
+    &spacer {
+      margin: $px;
     }
   }
 }

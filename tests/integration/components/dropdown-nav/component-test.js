@@ -11,8 +11,12 @@ module('Integration | Component | dropdown nav', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.on('myAction', function(val) { ... });
 
-    await render(hbs`{{dropdown-nav}}`);
+    this.set('logOut', function() {
+      return true;
+    });
 
-    assert.equal(this.$().text().trim(), 'Manage Groups');
+    await render(hbs`{{dropdown-nav logOut=(action logOut)}}`);
+
+    assert.ok(this.$('#dropdown-nav'));
   });
 });

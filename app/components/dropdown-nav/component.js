@@ -8,7 +8,11 @@ export default Component.extend({
   // lifecycle
   didInsertElement() {
     run.scheduleOnce('afterRender', () => {
-      $('#dropdown-nav').dropdown();
+      const drop = $('#dropdown-nav');
+
+      if(drop.length > 0) {
+        $(drop).dropdown();
+      }
     });
   }
 });

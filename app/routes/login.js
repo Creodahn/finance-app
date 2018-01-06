@@ -3,12 +3,12 @@ import Route from '@ember/routing/route';
 import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
 
 export default Route.extend(UnauthenticatedRouteMixin, {
-  routeIfAlreadyAuthenticated: 'main.home',
+  routeIfAlreadyAuthenticated: 'main.home.dashboard',
   actions: {
     willTransition() {
-      this._super(...arguments);
-
       $('#login-modal').modal('hide');
+
+      this._super(...arguments);
     }
   }
 });

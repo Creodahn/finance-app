@@ -1,17 +1,15 @@
 import Route from '@ember/routing/route';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
-import RunMixin from 'ember-lifeline/mixins/run';
 
-export default Route.extend(ApplicationRouteMixin, RunMixin, {
-  routeAfterAuthentication: 'main.home',
+export default Route.extend(ApplicationRouteMixin, {
+  routeAfterAuthentication: 'main.home.dashboard',
   actions: {
     setMessage(message) {
-      this.runTask(() => {
-        this.controller.set('message', message);
-      }, 1);
+      this.controller.set('message', message);
     },
     willTransition() {
       this.actions.setMessage.call(this, null);
+      this._super(...arguments);
     }
   }
 });

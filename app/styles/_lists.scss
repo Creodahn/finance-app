@@ -1,0 +1,11 @@
+.account-list {
+  @include list;
+}
+
+.group-list {
+  @include list;
+}
+
+.transaction-list {
+  @include list;
+}

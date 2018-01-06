@@ -213,6 +213,72 @@
   background-image: linear-gradient($props);
 }
 
+@mixin list {
+  @extend .flex-display;
+  @extend .flex-column;
+  @extend .flex-spacer;
+  @extend .no-bullets;
+
+  & > .footer-row {
+    @extend .top-spacer;
+
+    & > div {
+      @extend .text-bold;
+      @extend .top-sm-padding;
+
+      &:not(:nth-child(1)) {
+        @extend .sm-padding;
+        @extend .top-border;
+      }
+    }
+  }
+
+  & > .footer-row,
+  & > .header-row,
+  & > .no-data,
+  & > .record-row {
+    @extend .flex-display;
+    @extend .flex-row;
+    @extend .flex-spacer;
+
+    & > div {
+      @extend .flex-display;
+      @extend .flex-spacer;
+
+      &:not(:nth-child(1)) {
+        @extend .align-right;
+      }
+    }
+  }
+
+  & > .header-row {
+    @extend .bottom-border;
+    @extend .text-bolder;
+
+    & > div {
+      &:not(:nth-child(1)) {
+        @extend .left-border;
+      }
+    }
+  }
+
+  & > .header-row,
+  & > .record-row {
+    @extend .bottom-sm-spacer;
+    @extend .horizontal-padding;
+
+    & > div {
+      &:not(:nth-child(1)) {
+        @extend .horizontal-padding;
+      }
+    }
+  }
+
+  & > .no-data {
+    @extend .vertical-lg-spacer;
+  }
+}
+
 @mixin osx-font-smoothing($prop) {
   #{$moz}osx-font-smoothing: $prop;
 }

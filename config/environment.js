@@ -20,12 +20,10 @@ module.exports = function(environment) {
         Date: false
       }
     },
-
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
       apiURL: 'http://localhost:3000', // 'http://192.168.1.238:3000',
-      // autoboot: false,
     }
   };
 
@@ -55,6 +53,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+    ENV.APP.autoboot = false;
 
     ENV['ember-cli-mirage'] = {
       enabled: true
