@@ -1,8 +1,9 @@
 import $ from 'jquery';
 import Component from '@ember/component';
 import { run } from '@ember/runloop';
+import RunMixin from 'ember-lifeline/mixins/run';
 
-export default Component.extend({
+export default Component.extend(RunMixin, {
   // attributes
   description: null,
   tagName: '',
@@ -16,10 +17,14 @@ export default Component.extend({
   },
   actions: {
     displayDescription(item) {
-      this.set('descriptiveItem', item);
+      this.runTask(() => {
+        this.set('descriptiveItem', item);
+      }, 1);
     },
     update() {
-      this.set('descriptiveItem', null);
+      this.runTask(() => {
+        this.set('descriptiveItem', null);
+      }, 1);
     }
   }
 });

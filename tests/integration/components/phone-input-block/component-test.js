@@ -18,13 +18,13 @@ module('Integration | Component | phone input block', function(hooks) {
 
     await this.render(hbs`{{phone-input-block model=phone}}`);
 
-    assert.ok(this.$('#areaCode'), 'did not find areaCode input');
-    assert.equal(this.$('#areaCode').val(), '555', `expected areaCode = '555', got ${this.$('#areaCode').val()}`);
-    assert.ok(this.$('#prefix'), 'did not find prefix input');
-    assert.equal(this.$('#prefix').val(), '555', `expected prefix = '555', got ${this.$('#prefix').val()}`);
-    assert.ok(this.$('#subscriberNumber'), 'did not find subscriberNumber input');
-    assert.equal(this.$('#subscriberNumber').val(), '5555', `expected subscriberNumber = '5555', got ${this.$('#subscriberNumber').val()}`);
-    assert.ok(this.$('#extension'), 'did not find extension input');
-    assert.equal(this.$('#extension').val(), '', `expected extension = '', got ${this.$('#extension').val()}`);
+    assert.ok(this.element.querySelector('#areaCode'), 'did not find areaCode input');
+    assert.equal(this.element.querySelector('#areaCode').value, '555', `expected areaCode = '555', got ${this.element.querySelector('#areaCode').value}`);
+    assert.ok(this.element.querySelector('#prefix'), 'did not find prefix input');
+    assert.equal(this.element.querySelector('#prefix').value, '555', `expected prefix = '555', got ${this.element.querySelector('#prefix').value}`);
+    assert.ok(this.element.querySelector('#subscriberNumber'), 'did not find subscriberNumber input');
+    assert.equal(this.element.querySelector('#subscriberNumber').value, '5555', `expected subscriberNumber = '5555', got ${this.element.querySelector('#subscriberNumber').value}`);
+    assert.ok(this.element.querySelector('#extension'), 'did not find extension input');
+    assert.equal(this.element.querySelector('#extension').value, '', `expected extension = '', got ${this.element.querySelector('#extension').value}`);
   });
 });

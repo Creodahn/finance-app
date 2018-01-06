@@ -1,8 +1,9 @@
 import $ from 'jquery';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import RunMixin from 'ember-lifeline/mixins/run';
 
-export default Component.extend({
+export default Component.extend(RunMixin, {
   // attributes
   classNames: ['phone-input'],
   // computed properties
@@ -20,26 +21,30 @@ export default Component.extend({
   }),
   // lifecycle
   didInsertElement() {
-    this.set('maxLengths', {
-      areaCode: {
-        length: 3,
-        next: 'prefix'
-      },
-      prefix: {
-        length: 3,
-        next: 'subscriberNumber'
-      },
-      subscriberNumber: {
-        length: 4,
-        next: 'extension'
-      }
-    });
+    this.runTask(() => {
+      this.set('maxLengths', {
+        areaCode: {
+          length: 3,
+          next: 'prefix'
+        },
+        prefix: {
+          length: 3,
+          next: 'subscriberNumber'
+        },
+        subscriberNumber: {
+          length: 4,
+          next: 'extension'
+        }
+      });
+    }, 1);
   },
   didReceiveAttrs() {
     this._super(...arguments);
 
     if(!this.get('model.countryCode')) {
-      this.set('model.countryCode', '1');
+      this.runTask(() => {
+        this.set('model.countryCode', '1');
+      }, 1);
     }
   },
   actions: {
