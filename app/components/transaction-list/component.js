@@ -12,5 +12,9 @@ export default Component.extend({
     }).filter((item) => {
       return item !== null;
     });
-  })
+  }),
+  // hooks
+  didInsertElement() {
+    this.set('now', new Date());
+  }
 });

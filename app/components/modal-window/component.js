@@ -1,30 +1,26 @@
 import $ from 'jquery';
 import UiModal from 'semantic-ui-ember/components/ui-modal';
-import { run } from '@ember/runloop';
-// const log = Ember.Logger.log;
+import RunMixin from 'ember-lifeline/mixins/run';
 
-export default UiModal.extend({
+export default UiModal.extend(RunMixin, {
+  // attributes
+  closable: false,
+  detachable: false,
+  // methods
+  onApprove() {
+    // prevent close on modal button
+    return false;
+  },
+  onHidden() {
+    this.cancelAction();
+  },
   // lifecycle
-  didInsertElement() {
-    this._super();
+  didRender() {
+    this._super(...arguments);
 
-    run.scheduleOnce('afterRender', () => {
-      $(this.element).modal({
-        closable: this.get('closable') ? this.get('closable') : false,
-        detachable: false,
-        onApprove() {
-          // prevent close on modal button
-          return false;
-        },
-        onHidden: () => {
-          this.cancelAction();
-        }
-      });
-
-      if(this.get('showOnTransition')) {
-        $(this.element).modal('show');
-      }
-    });
+    if(this.get('showOnTransition')) {
+      $(this.element).modal('show');
+    }
   },
   // actions
   actions: {

@@ -9,13 +9,11 @@ module('Acceptance | main/home/dashboard', function(hooks) {
   test('cannot visit /home/dashboard without authentication', async (assert) => {
     await visit('/home/dashboard');
 
-    andThen(function() {
-      assert.equal(currentURL(), '/login');
-    });
+    assert.equal(currentURL(), '/login');
   });
 
   test('can visit /home/dashboard if authenticated', async (assert) => {
-    
+
 
     await visit('/home/dashboard');
 

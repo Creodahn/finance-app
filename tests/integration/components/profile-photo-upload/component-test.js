@@ -11,14 +11,5 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{profile-photo-upload}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#profile-photo-upload}}
-      template block text
-    {{/profile-photo-upload}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$().text().trim(), 'Update Profile Picture');
 });

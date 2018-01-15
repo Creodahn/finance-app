@@ -50,25 +50,6 @@ module('Acceptance | signup', function(hooks) {
     await click('#signup-modal-ok');
 
     assert.equal(currentURL(), '/home/dashboard');
-  });
-
-  test('signup button is hidden after signing up', async function(assert) {
-    await visit('/');
-
-    assert.equal(currentURL(), '/');
-
-    await click('#signup');
-
-    assert.equal(currentURL(), '/signup');
-
-    await fillIn('input[type="text"][name="name"]', 'Justin Drew');
-    await fillIn('input[type="text"][name="email"]', 'justin@test.com');
-    await fillIn('input[type="password"][name="password"]', 'test');
-    await fillIn('input[type="password"][name="password-confirm"]', 'test');
-
-    await click('#signup-modal-ok');
-
-    assert.equal(currentURL(), '/home/dashboard');
 
     assert.equal(this.element.querySelectorAll('#signup').length, 0);
   });

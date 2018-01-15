@@ -17,7 +17,7 @@
       {{#each savedTransactions as |transaction|}}
         <li class="record-row">
           <div>
-            {{moment-format transaction.transactionDate "M/D/YYYY"}}
+            {{moment-format (if transaction.transactionDate transaction.transactionDate now) "M/D/YYYY"}}
           </div>
           <div class="{{if transaction.isDebit 'text-bolder text-red'}}">
             {{format-currency transaction.displayAmount}}

@@ -9,12 +9,12 @@ export default Component.extend(RunMixin, {
     displayDescription(item) {
       this.runTask(() => {
         this.set('descriptiveItem', item);
-      }, 1);
+      });
     },
     update() {
       this.runTask(() => {
         this.set('descriptiveItem', null);
-      }, 1);
+      });
     }
   }
 });

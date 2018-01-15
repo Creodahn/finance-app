@@ -1,7 +1,6 @@
 <article class="ui card">
   <div class="image">
     {{#if model.profilePicture}}
-      {{!-- <img src={{model.profilePicture.url}} alt={{model.profilePicture.fileName}}/> --}}
       {{profile-photo-upload model=model}}
     {{else}}
       <i class="ui user circle outline icon blow-up"></i>
@@ -12,7 +11,7 @@
       {{model.name}}
     </div>
     <div class="meta">
-      Joined in {{moment-format model.createdAt "YYYY"}}
+      Joined in {{moment-format joined "YYYY"}}
     </div>
     <div class="description">
       {{#unless model.bio}}

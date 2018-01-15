@@ -10,9 +10,9 @@
           <div class="item profile-link">
             {{profile-link model=model}}
           </div>
-          {{dropdown-nav
+          {{!-- {{dropdown-nav
             logOut=(action "logOut")
-          }}
+          }} --}}
         {{else}}
           <div class="item">
             {{#link-to "login" id="log-in" tagName="button" class="ui labeled icon button"}}
