@@ -4,11 +4,9 @@ import { computed } from '@ember/object';
 
 export default BaseModel.extend({
   // attributes
-  accountNumber: DS.attr('string'),
   balance: DS.attr('number', { readOnly: true }),
   description: DS.attr('string'),
   name: DS.attr('string'),
-  routingNumber: DS.attr('string'),
   // computed properties
   isNegative: computed('balance', function() {
     return Number(this.get('balance')) < 0;

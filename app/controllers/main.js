@@ -5,8 +5,10 @@ export default Controller.extend({
     logOut() {
       const session = this.get('session');
 
-      session.invalidate();
-      session.set('data.login', null);
+      if(session) {
+        session.invalidate();
+        session.set('data.login', null);
+      }
     }
   }
 });

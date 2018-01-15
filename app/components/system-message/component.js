@@ -21,14 +21,14 @@ export default Component.extend(RunMixin, {
           this.set('color', 'yellow');
           break;
       }
-    }, 1);
+    });
   },
   // actions
   actions: {
     collapse() {
       this.runTask(() => {
         this.set('message', null);
-      }, 1);
+      });
     }
   }
 });

@@ -1,12 +1,13 @@
-import { test } from 'qunit';
-import moduleForAcceptance from 'finance-app/tests/helpers/module-for-acceptance';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+import { visit, currentURL } from '@ember/test-helpers';
 
-moduleForAcceptance('Acceptance | application');
+module('Acceptance | application', function(hooks) {
+  setupApplicationTest(hooks);
 
-test('visiting /application', function(assert) {
-  visit('/');
+  test('visiting /application', async function(assert) {
+    await visit('/');
 
-  andThen(function() {
     assert.equal(currentURL(), '/');
   });
 });

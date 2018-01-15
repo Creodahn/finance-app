@@ -1,0 +1,36 @@
+.image {
+  &:hover {
+    & > img {
+      @include filter(blur(4px));
+      opacity: .3;
+    }
+
+    & > .overlay {
+      opacity: 1;
+
+      & > div {
+        margin: 0 auto;
+
+        & > .button {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  & > .overlay {
+    @include display-flex;
+    @include transition(opacity .7s ease);
+    align-items: center;
+    bottom: 0;
+    height: auto;
+    justify-content: center;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+    z-index: 50;
+  }
+}

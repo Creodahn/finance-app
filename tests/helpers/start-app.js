@@ -1,5 +1,6 @@
 import Application from '../../app';
 import config from '../../config/environment';
+import createUser from 'finance-app/tests/helpers/create-user';
 import { merge } from '@ember/polyfills';
 import { run } from '@ember/runloop';
 
@@ -12,6 +13,9 @@ export default function startApp(attrs) {
     const application = Application.create(attributes);
     application.setupForTesting();
     application.injectTestHelpers();
+
+    createUser();
+
     return application;
   });
 }

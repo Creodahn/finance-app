@@ -1,7 +1,8 @@
 <article class="ui card">
   <div class="image">
     {{#if model.profilePicture}}
-      <img src={{model.profilePicture.url}} alt={{model.profilePicture.fileName}}/>
+      {{!-- <img src={{model.profilePicture.url}} alt={{model.profilePicture.fileName}}/> --}}
+      {{profile-photo-upload model=model}}
     {{else}}
       <i class="ui user circle outline icon blow-up"></i>
     {{/if}}

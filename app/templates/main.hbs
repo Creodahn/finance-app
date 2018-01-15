@@ -7,7 +7,7 @@
       {{/link-to}}
       <div class="right menu">
         {{#if session.isAuthenticated}}
-          <div class="item">
+          <div class="item profile-link">
             {{profile-link model=model}}
           </div>
           {{dropdown-nav
@@ -33,7 +33,7 @@
   <section class="sixteen wide column">
     {{#unless session.isAuthenticated}}
       <article class="ui grid">
-        <div class="five wide column">
+        {{!-- <div class="five wide column">
           {{testimonial-card
             body="Track your finances like never, ever before with this new, non-existent software!"
             header="Track Your Finances!"
@@ -53,7 +53,7 @@
             header="See what Users say!"
             subheader="Holy crap!!!!"
           }}
-        </div>
+        </div> --}}
       </article>
     {{else}}
       {{outlet}}

@@ -23,17 +23,20 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      apiURL: 'http://localhost:3000', // 'http://192.168.1.238:3000',
+      apiURL: 'http://localhost:3000',
+      filestackKey: 'AGfPm0pN1Q3SY6LVzGqvKz'
     }
   };
 
   ENV.contentSecurityPolicy = {
-    'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
-    'font-src': "'self' https://fonts.gstatic.com", // Allow fonts to be loaded from http://fonts.gstatic.com
-    'connect-src': "'self' http://localhost:3000 https://personal-website-backend-api.herokuapp.com",
-    'img-src': "'self' data:",
-    'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com", // Allow inline styles and loaded CSS from http://fonts.googleapis.com
-    'media-src': "'self'"
+    'script-src': '\'self\' \'unsafe-inline\' \'unsafe-eval\'',
+    // Allow fonts to be loaded from http://fonts.gstatic.com
+    'font-src': '\'self\' https://fonts.gstatic.com',
+    'connect-src': '\'self\' http://localhost:3000 https://finance-app-api.herokuapp.com',
+    'img-src': '\'self\' data:',
+    // Allow inline styles and loaded CSS from http://fonts.googleapis.com
+    'style-src': '\'self\' \'unsafe-inline\' https://fonts.googleapis.com',
+    'media-src': '\'self\''
   };
 
   if(environment === 'development') {
@@ -60,9 +63,9 @@ module.exports = function(environment) {
     };
   }
 
-  // if(environment === 'production') {
-  //
-  // }
+  if(environment === 'production') {
+    ENV.APP.apiURL = 'https://finance-app-api.herokuapp.com';
+  }
 
   return ENV;
 };

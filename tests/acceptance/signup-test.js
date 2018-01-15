@@ -1,72 +1,75 @@
-import { test } from 'qunit';
-import moduleForAcceptance from 'finance-app/tests/helpers/module-for-acceptance';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+import { visit, fillIn, click, currentURL } from '@ember/test-helpers';
 
-moduleForAcceptance('Acceptance | signup');
+module('Acceptance | signup', function(hooks) {
+  setupApplicationTest(hooks);
 
-test('visiting /signup', async function(assert) {
-  assert.expect(2);
+  test('visiting /signup', async function(assert) {
+    assert.expect(2);
 
-  await visit('/');
+    await visit('/');
 
-  assert.equal(currentURL(), '/');
+    assert.equal(currentURL(), '/');
 
-  await click('#signup');
+    await click('#signup');
 
-  assert.equal(currentURL(), '/signup');
-});
+    assert.equal(currentURL(), '/signup');
+  });
 
-test('can cancel', async function(assert) {
-  assert.expect(3);
+  test('can cancel', async function(assert) {
+    assert.expect(3);
 
-  await visit('/');
+    await visit('/');
 
-  assert.equal(currentURL(), '/');
+    assert.equal(currentURL(), '/');
 
-  await click('#signup');
+    await click('#signup');
 
-  assert.equal(currentURL(), '/signup');
+    assert.equal(currentURL(), '/signup');
 
-  await click('#signup-modal-cancel');
+    await click('#signup-modal-cancel');
 
-  assert.equal(currentURL(), '/');
-});
+    assert.equal(currentURL(), '/');
+  });
 
-test('can signup', async function(assert) {
-  await visit('/');
+  test('can signup', async function(assert) {
+    await visit('/');
 
-  assert.equal(currentURL(), '/');
+    assert.equal(currentURL(), '/');
 
-  await click('#signup');
+    await click('#signup');
 
-  assert.equal(currentURL(), '/signup');
+    assert.equal(currentURL(), '/signup');
 
-  await fillIn('input[type="text"][name="name"]', 'Justin Drew');
-  await fillIn('input[type="text"][name="email"]', 'justin@test.com');
-  await fillIn('input[type="password"][name="password"]', 'test');
-  await fillIn('input[type="password"][name="password-confirm"]', 'test');
+    await fillIn('input[type="text"][name="name"]', 'Justin Drew');
+    await fillIn('input[type="text"][name="email"]', 'justin@test.com');
+    await fillIn('input[type="password"][name="password"]', 'test');
+    await fillIn('input[type="password"][name="password-confirm"]', 'test');
 
-  await click('#signup-modal-ok');
+    await click('#signup-modal-ok');
 
-  assert.equal(currentURL(), '/home/dashboard');
-});
+    assert.equal(currentURL(), '/home/dashboard');
+  });
 
-test('signup button is hidden after signing up', async function(assert) {
-  await visit('/');
+  test('signup button is hidden after signing up', async function(assert) {
+    await visit('/');
 
-  assert.equal(currentURL(), '/');
+    assert.equal(currentURL(), '/');
 
-  await click('#signup');
+    await click('#signup');
 
-  assert.equal(currentURL(), '/signup');
+    assert.equal(currentURL(), '/signup');
 
-  await fillIn('input[type="text"][name="name"]', 'Justin Drew');
-  await fillIn('input[type="text"][name="email"]', 'justin@test.com');
-  await fillIn('input[type="password"][name="password"]', 'test');
-  await fillIn('input[type="password"][name="password-confirm"]', 'test');
+    await fillIn('input[type="text"][name="name"]', 'Justin Drew');
+    await fillIn('input[type="text"][name="email"]', 'justin@test.com');
+    await fillIn('input[type="password"][name="password"]', 'test');
+    await fillIn('input[type="password"][name="password-confirm"]', 'test');
 
-  await click('#signup-modal-ok');
+    await click('#signup-modal-ok');
 
-  assert.equal(currentURL(), '/home/dashboard');
+    assert.equal(currentURL(), '/home/dashboard');
 
-  assert.equal(find('#signup').length, 0);
+    assert.equal(this.element.querySelectorAll('#signup').length, 0);
+  });
 });

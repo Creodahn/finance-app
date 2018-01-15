@@ -1,29 +1,32 @@
-import { test } from 'qunit';
-import moduleForAcceptance from 'finance-app/tests/helpers/module-for-acceptance';
-import createUser from 'finance-app/tests/helpers/create-user';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+import { visit, fillIn, click, currentURL } from '@ember/test-helpers';
 
-moduleForAcceptance('Acceptance | main/home/group/edit');
 
-test('cannot visit /home/group/edit without authentication', async (assert) => {
-  await visit('/home/group/edit');
+module('Acceptance | main/home/group/edit', function(hooks) {
+  setupApplicationTest(hooks);
 
-  assert.equal(currentURL(), '/login');
-});
+  test('cannot visit /home/group/edit without authentication', async (assert) => {
+    await visit('/home/group/edit');
 
-test('can visit /home/group/edit if authenticated', async (assert) => {
-  const group = server.create('group', { name: 'test group' });
-  createUser();
+    assert.equal(currentURL(), '/login');
+  });
 
-  await visit(`/home/group/${group.id}`);
+  test('can visit /home/group/edit if authenticated', async (assert) => {
+    const group = server.create('group', { name: 'test group' });
+    
 
-  assert.equal(currentURL(), '/login');
+    await visit(`/home/group/${group.id}`);
 
-  await fillIn('input[type="text"][placeholder="Username"]', 'justin@test.com');
-  await fillIn('input[type="password"][placeholder="Password"]', 'test');
+    assert.equal(currentURL(), '/login');
 
-  await click('#login-modal-ok');
+    await fillIn('input[type="text"][placeholder="Username"]', 'justin@test.com');
+    await fillIn('input[type="password"][placeholder="Password"]', 'test');
 
-  // Ember-Simple-Auth caches the attempted transition, so we end up right
-  // where we wanted to be after authentication
-  assert.equal(currentURL(), `/home/group/${group.id}`);
+    await click('#login-modal-ok');
+
+    // Ember-Simple-Auth caches the attempted transition, so we end up right
+    // where we wanted to be after authentication
+    assert.equal(currentURL(), `/home/group/${group.id}`);
+  });
 });

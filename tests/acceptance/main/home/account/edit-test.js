@@ -1,29 +1,32 @@
-import { test } from 'qunit';
-import moduleForAcceptance from 'finance-app/tests/helpers/module-for-acceptance';
-import createUser from 'finance-app/tests/helpers/create-user';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+import { visit, fillIn, click, currentURL } from '@ember/test-helpers';
 
-moduleForAcceptance('Acceptance | main/home/account/edit');
 
-test('cannot visit /home/account/edit without authentication', async (assert) => {
-  await visit('/home/account/edit');
+module('Acceptance | main/home/account/edit', function(hooks) {
+  setupApplicationTest(hooks);
 
-  assert.equal(currentURL(), '/login');
-});
+  test('cannot visit /home/account/edit without authentication', async (assert) => {
+    await visit('/home/account/edit');
 
-test('can visit /home/account/edit if authenticated', async (assert) => {
-  const account = server.create('account', { name: 'test account' });
-  createUser();
+    assert.equal(currentURL(), '/login');
+  });
 
-  await visit(`/home/account/${account.id}`);
+  test('can visit /home/account/edit if authenticated', async (assert) => {
+    const account = server.create('account', { name: 'test account' });
+    
 
-  assert.equal(currentURL(), '/login');
+    await visit(`/home/account/${account.id}`);
 
-  await fillIn('input[type="text"][placeholder="Username"]', 'justin@test.com');
-  await fillIn('input[type="password"][placeholder="Password"]', 'test');
+    assert.equal(currentURL(), '/login');
 
-  await click('#login-modal-ok');
+    await fillIn('input[type="text"][placeholder="Username"]', 'justin@test.com');
+    await fillIn('input[type="password"][placeholder="Password"]', 'test');
 
-  // Ember-Simple-Auth caches the attempted transition, so we end up right
-  // where we wanted to be after authentication
-  assert.equal(currentURL(), `/home/account/${account.id}`);
+    await click('#login-modal-ok');
+
+    // Ember-Simple-Auth caches the attempted transition, so we end up right
+    // where we wanted to be after authentication
+    assert.equal(currentURL(), `/home/account/${account.id}`);
+  });
 });

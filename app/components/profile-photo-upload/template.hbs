@@ -1,0 +1,15 @@
+<div class="overlay">
+  <div>
+    <button class="ui button primary" {{action "showPicker"}}>
+      Update Profile Picture
+    </button>
+  </div>
+</div>
+{{#if model.profilePicture}}
+  <img
+    src={{model.profilePicture.url}}
+    alt={{if model.profilePicture.description model.profilePicture.description model.profilePicture.fileName}}
+  />
+{{else}}
+  <i class="ui user circle outline icon blow-up"></i>
+{{/if}}

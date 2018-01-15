@@ -8,7 +8,8 @@ export default function() {
     Note: these only affect routes defined *after* them!
   */
 
-  this.urlPrefix = 'http://localhost:3000';    // make this `http://localhost:8080`, for example, if your API is on a different server
+  this.urlPrefix = 'http://localhost:3000';
+  // this.urlPrefix = 'https://finance-app-api.herokuapp.com';
 
   this.post('login', function() {
     return new Response(200, { auth_token: 'aju50fj9' });

@@ -15,10 +15,6 @@ module('Unit | Model | account', function(hooks) {
   });
 
   // attribute tests
-  test('accountNumber is a string attribute', function(assert) {
-    runAttrTest.call(this, assert, 'account', 'accountNumber', 'string', false, 'test');
-  });
-
   test('balance is a number attribute', function(assert) {
     runAttrTest.call(this, assert, 'account', 'balance', 'number', true, 5);
   });
@@ -33,10 +29,6 @@ module('Unit | Model | account', function(hooks) {
 
   test('name is a string attribute', function(assert) {
     runAttrTest.call(this, assert, 'account', 'name', 'string', false, 'test');
-  });
-
-  test('routingNumber is a string attribute', function(assert) {
-    runAttrTest.call(this, assert, 'account', 'routingNumber', 'string', false, 'test');
   });
 
   test('updatedAt is a date attribute', function(assert) {

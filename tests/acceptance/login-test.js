@@ -1,77 +1,77 @@
-import { test } from 'qunit';
-import moduleForAcceptance from 'finance-app/tests/helpers/module-for-acceptance';
-import createUser from 'finance-app/tests/helpers/create-user';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+import { visit, fillIn, click, currentURL } from '@ember/test-helpers';
 
-moduleForAcceptance('Acceptance | login');
+module('Acceptance | login', function(hooks) {
+  setupApplicationTest(hooks);
 
-test('visit login', async (assert) => {
-  assert.expect(2);
+  test('visit login', async (assert) => {
+    assert.expect(2);
 
-  await visit('/');
+    await visit('/');
 
-  assert.equal(currentURL(), '/', `expected /, got ${currentURL()}`);
+    assert.equal(currentURL(), '/', `expected /, got ${currentURL()}`);
 
-  await click('#log-in');
+    await click('#log-in');
 
-  assert.equal(currentURL(), '/login', `expected /login, got ${currentURL()}`);
-});
+    assert.equal(currentURL(), '/login', `expected /login, got ${currentURL()}`);
+  });
 
-test('can login', async (assert) => {
-  assert.expect(3);
+  test('can login', async (assert) => {
+    assert.expect(3);
 
-  createUser();
+    await visit('/');
 
-  await visit('/');
+    assert.equal(currentURL(), '/', `expected /, got ${currentURL()}`);
 
-  assert.equal(currentURL(), '/', `expected /, got ${currentURL()}`);
+    await click('#log-in');
 
-  await click('#log-in');
+    assert.equal(currentURL(), '/login', `expected /login, got ${currentURL()}`);
 
-  assert.equal(currentURL(), '/login', `expected /login, got ${currentURL()}`);
+    await fillIn('input[type="text"][placeholder="Username"]', 'justin@test.com');
+    await fillIn('input[type="password"][placeholder="Password"]', 'test');
 
-  await fillIn('input[type="text"][placeholder="Username"]', 'justin@test.com');
-  await fillIn('input[type="password"][placeholder="Password"]', 'test');
+    await click('#login-modal-ok');
 
-  await click('#login-modal-ok');
+    assert.equal(currentURL(), '/home/dashboard', `expected /home/dashboard, got ${currentURL()}`);
+  });
 
-  assert.equal(currentURL(), '/home/dashboard', `expected /home/dashboard, got ${currentURL()}`);
-});
+  test('can cancel', async (assert) => {
+    assert.expect(3);
 
-test('can cancel', async (assert) => {
-  assert.expect(3);
+    await visit('/');
 
-  await visit('/');
+    assert.equal(currentURL(), '/', `expected /, got ${currentURL()}`);
 
-  assert.equal(currentURL(), '/', `expected /, got ${currentURL()}`);
+    await click('#log-in');
 
-  await click('#log-in');
+    assert.equal(currentURL(), '/login', `expected /login, got ${currentURL()}`);
 
-  assert.equal(currentURL(), '/login', `expected /login, got ${currentURL()}`);
+    await click('#login-modal-cancel');
 
-  await click('#login-modal-cancel');
+    assert.equal(currentURL(), '/', `expected /, got ${currentURL()}`);
+  });
 
-  assert.equal(currentURL(), '/', `expected /, got ${currentURL()}`);
-});
+  test('redirect to main/home/dashboard if already authenticated', async (assert) => {
+    assert.expect(4);
 
-test('redirect to main/home if already authenticated', async (assert) => {
-  assert.expect(4);
+    await visit('/');
 
-  await visit('/');
+    assert.equal(currentURL(), '/');
 
-  assert.equal(currentURL(), '/');
+    await click('#log-in');
 
-  await click('#log-in');
+    assert.equal(currentURL(), '/login');
 
-  assert.equal(currentURL(), '/login');
+    await fillIn('input[type="text"][placeholder="Username"]', 'justin@test.com');
+    await fillIn('input[type="password"][placeholder="Password"]', 'test');
 
-  await fillIn('input[type="text"][placeholder="Username"]', 'justin@test.com');
-  await fillIn('input[type="password"][placeholder="Password"]', 'test');
+    await click('#login-modal-ok');
 
-  await click('#login-modal-ok');
+    assert.equal(currentURL(), '/home/dashboard', `expected /home/dashboard, got ${currentURL()}`);
 
-  assert.equal(currentURL(), '/home/dashboard', `expected /home/dashboard, got ${currentURL()}`);
+    await visit('/login');
 
-  await visit('/login');
-
-  assert.equal(currentURL(), '/home/dashboard');
+    assert.equal(currentURL(), '/home/dashboard');
+  });
 });

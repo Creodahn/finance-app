@@ -1,30 +1,33 @@
-import { test } from 'qunit';
-import moduleForAcceptance from 'finance-app/tests/helpers/module-for-acceptance';
-import createUser from 'finance-app/tests/helpers/create-user';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+import { visit, fillIn, click, currentURL } from '@ember/test-helpers';
 
-moduleForAcceptance('Acceptance | main/home/profile');
 
-test('cannot visit /home/profile without authentication', async (assert) => {
-  assert.expect(1);
+module('Acceptance | main/home/profile', function(hooks) {
+  setupApplicationTest(hooks);
 
-  await visit('/home/profile');
+  test('cannot visit /home/profile without authentication', async (assert) => {
+    assert.expect(1);
 
-  assert.equal(currentURL(), '/login');
-});
+    await visit('/home/profile');
 
-test('can visit /home/profile if authenticated', async (assert) => {
-  createUser();
+    assert.equal(currentURL(), '/login');
+  });
 
-  await visit('/home/profile');
+  test('can visit /home/profile if authenticated', async (assert) => {
 
-  assert.equal(currentURL(), '/login');
 
-  await fillIn('input[type="text"][placeholder="Username"]', 'justin@test.com');
-  await fillIn('input[type="password"][placeholder="Password"]', 'test');
+    await visit('/home/profile');
 
-  await click('#login-modal-ok');
+    assert.equal(currentURL(), '/login');
 
-  // Ember-Simple-Auth caches the attempted transition, so we end up right
-  // where we wanted to be after authentication
-  assert.equal(currentURL(), '/home/profile/edit');
+    await fillIn('input[type="text"][placeholder="Username"]', 'justin@test.com');
+    await fillIn('input[type="password"][placeholder="Password"]', 'test');
+
+    await click('#login-modal-ok');
+
+    // Ember-Simple-Auth caches the attempted transition, so we end up right
+    // where we wanted to be after authentication
+    assert.equal(currentURL(), '/home/profile/edit');
+  });
 });
