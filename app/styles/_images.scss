@@ -1,6 +1,7 @@
 .image {
   &:hover {
-    & > img {
+    & > img,
+    & > i {
       @include filter(blur(4px));
       opacity: .3;
     }

@@ -1,10 +1,6 @@
 <article class="ui card">
   <div class="image">
-    {{#if model.profilePicture}}
-      {{profile-photo-upload model=model}}
-    {{else}}
-      <i class="ui user circle outline icon blow-up"></i>
-    {{/if}}
+    {{profile-photo-upload model=model}}
   </div>
   <div class="content">
     <div class="header">
