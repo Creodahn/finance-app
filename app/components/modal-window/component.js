@@ -1,25 +1,18 @@
 import $ from 'jquery';
-import UiModal from 'semantic-ui-ember/components/ui-modal';
-import RunMixin from 'ember-lifeline/mixins/run';
+import Component from '@ember/component';
+// import UiModal from 'semantic-ui-ember/components/ui-modal';
 
-export default UiModal.extend(RunMixin, {
+export default Component.extend({
   // attributes
   closable: false,
   detachable: false,
-  // methods
-  onApprove() {
-    // prevent close on modal button
-    return false;
-  },
-  onHidden() {
-    this.cancelAction();
-  },
+  tagName: '',
   // lifecycle
   didRender() {
     this._super(...arguments);
 
     if(this.get('showOnTransition')) {
-      $(this.element).modal('show');
+      $(`#${this.get('id')}`).modal('show');
     }
   },
   // actions

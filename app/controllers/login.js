@@ -11,6 +11,8 @@ export default Controller.extend({
       if($('button.length > 0')) {
         $('button').blur();
       }
+
+      return false;
     },
     authenticateWithOAuth2() {
       const session = this.get('session'),
@@ -19,7 +21,9 @@ export default Controller.extend({
       if(session) {
         session.set('data.login', username);
 
-        session.authenticate('authenticator:oauth2', username, password).catch((reason) => {
+        session.authenticate('authenticator:oauth2', username, password).then(() => {
+          $('#login-modal').modal('hide');
+        }).catch((reason) => {
           error(reason);
 
           this.send('setMessage', this.get('formatMessage').process('error', JSON.parse(reason).errors[0].detail));

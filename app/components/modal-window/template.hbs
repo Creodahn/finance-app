@@ -1,19 +1,26 @@
-{{#if closable}}
-  <i class="close icon"></i>
-{{/if}}
-<header class="header">
-  {{if title title}}
-</header>
-<div class="content" onkeydown={{action "keyDown"}}>
-  {{yield}}
-</div>
-{{#if hasActions}}
-  <div class="actions">
-    <button id="{{id}}-cancel" class="ui deny button" {{action cancelAction}} type="button">
-      {{if cancel-caption cancel-caption "Cancel"}}
-    </button>
-    <button id="{{id}}-ok" class="ui positive button" {{action okAction}} type="button">
-      {{if ok-caption ok-caption "Ok"}}
-    </button>
+{{#ui-modal
+  detachable=detachable
+  id=id
+  onApprove=(action okAction)
+  onDeny=(action cancelAction)
+}}
+  {{#if closable}}
+    <i class="close icon"></i>
+  {{/if}}
+  <header class="header">
+    {{if title title}}
+  </header>
+  <div class="content" onkeydown={{action "keyDown"}}>
+    {{yield}}
   </div>
-{{/if}}
+  {{#if hasActions}}
+    <div class="actions">
+      <button id="{{id}}-cancel" class="ui deny button" type="button">
+        {{if cancel-caption cancel-caption "Cancel"}}
+      </button>
+      <button id="{{id}}-ok" class="ui positive button" type="button">
+        {{if ok-caption ok-caption "Ok"}}
+      </button>
+    </div>
+  {{/if}}
+{{/ui-modal}}

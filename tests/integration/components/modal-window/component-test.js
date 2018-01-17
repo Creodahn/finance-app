@@ -7,17 +7,19 @@ module('Integration | Component | modal window', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
+    this.set('cancelAction', function() {
+      return true;
+    });
 
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
+    this.set('okAction', function() {
+      return true;
+    });
 
-    await render(hbs`{{modal-window}}`);
-
-    assert.equal(this.$().text().trim(), '');
-
-    // Template block usage:
     await render(hbs`
-      {{#modal-window}}
+      {{#modal-window
+        cancelAction=(action cancelAction)
+        okAction=(action okAction)
+      }}
         template block text
       {{/modal-window}}
     `);

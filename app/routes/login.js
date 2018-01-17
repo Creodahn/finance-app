@@ -1,14 +1,7 @@
-import $ from 'jquery';
+// import $ from 'jquery';
 import Route from '@ember/routing/route';
 import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
 
 export default Route.extend(UnauthenticatedRouteMixin, {
-  routeIfAlreadyAuthenticated: 'main.home.dashboard',
-  actions: {
-    willTransition() {
-      $('#login-modal').modal('hide');
-
-      this._super(...arguments);
-    }
-  }
+  routeIfAlreadyAuthenticated: 'main.home.dashboard'
 });

@@ -68,7 +68,9 @@ export default Controller.extend({
 
                 this.get('session').set('data.login', email);
 
-                this.get('session').authenticate('authenticator:oauth2', email, password).catch((reason) => {
+                this.get('session').authenticate('authenticator:oauth2', email, password).then(() => {
+                  $('#signup-modal').modal('hide');
+                }).catch((reason) => {
                   error(reason);
                 });
               }).catch((reason) => {
@@ -81,6 +83,8 @@ export default Controller.extend({
         if(message) {
           this.send('setMessage', message);
         }
+
+        return false;
       });
     }
   }
