@@ -2,6 +2,7 @@ import $ from 'jquery';
 import Ember from 'ember';
 import verifyEmail from 'finance-app/utils/verify-email';
 import Controller from '@ember/controller';
+import ENV from 'finance-app/config/environment';
 const { error } = Ember.Logger;
 
 export default Controller.extend({
@@ -21,13 +22,9 @@ export default Controller.extend({
             password = this.get('password');
       let message = null;
 
-      this.store.query('user', {
-        filter: {
-          username: email
-        }
-      }).then((records) => {
+      $.get(`${ENV.APP.apiURL}/api/confirmemail?email=${email}`).then((records) => {
         switch(true) {
-          case records.toArray().length > 0:
+          case records.data.toArray()[0]:
             message = this.get('formatMessage').process('error', 'The provided email cannot be used to create an account. Please try another email');
             error('email in use');
             break;
