@@ -388,12 +388,27 @@ main {
         &.profile-link {
           padding: 0;
 
+          &,
+          & > .ember-view {
+            @extend .flex-column;
+          }
+
           & a {
+            @extend .flex-row;
+
             &.ui {
               &.label {
                 border-radius: 0;
               }
             }
+          }
+
+          &,
+          & > .ember-view,
+          & a {
+            @extend .flex-display;
+            @extend .flex-center;
+            @extend .flex-spacer;
           }
         }
       }
