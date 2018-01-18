@@ -1,8 +1,7 @@
 {{#link-to "main.home.profile.edit" class="ui label"}}
-  {{#if model.profilePicture}}
-    <img class="ui right spaced avatar image" src={{model.profilePicture.url}}>
-  {{else}}
-    <i class="user circle outline icon"></i>
-  {{/if}}
+  {{profile-photo
+    img-classes="ui right spaced avatar image"
+    model=model.profilePicture
+  }}
   {{model.firstName}}
 {{/link-to}}

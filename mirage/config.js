@@ -44,6 +44,8 @@ export default function() {
 
   this.resource('contact-info-types');
 
+  this.get('/confirmemail', { data: [false] });
+
   this.resource('groups');
 
   this.resource('images');

@@ -1,0 +1,42 @@
+{{#if showHeader}}
+  <div class="content">
+    <div class="header">
+      Members
+      {{#if invite}}
+        <button {{action invite}} class="ui button float-right positive">
+          Invite Someone!
+        </button>
+      {{/if}}
+    </div>
+  </div>
+{{/if}}
+<div class="content">
+  <ul class="user-list">
+    {{#if model.length}}
+      {{#each model as |membership|}}
+        <li>
+          <div class="img-wrapper">
+            {{profile-photo
+              i-classes="blow-up smaller"
+              model=membership.profile.profilePicture
+            }}
+          </div>
+          <div class="detail">
+            <header>
+              {{membership.profile.name}}
+            </header>
+            <label>
+              Joined group on {{moment-format membership.createdAt "M/D/YYYY"}}
+            </label>
+          </div>
+        </li>
+      {{/each}}
+    {{else}}
+      <li class="footer-row">
+        <h4 class="center full-width">
+          No members to display
+        </h4>
+      </li>
+    {{/if}}
+  </ul>
+</div>

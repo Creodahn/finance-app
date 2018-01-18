@@ -1,4 +1,30 @@
-<h3>Associated Accounts</h3>
-{{#each model.accounts as |account|}}
-  {{account.name}}
-{{/each}}
+<h2>{{model.name}}</h2>
+{{user-list
+  model=model.memberships
+  invite=(action invite)
+}}
+{{account-list
+  model=model.accounts
+}}
+
+{{#modal-window
+  closable=true
+  hasActions=true
+  id="user-search-modal"
+  title="Search for Users to Invite!"
+  cancelAction=(action cancel)
+  okAction=(action addUsers)
+}}
+  <div class="search-wrapper">
+    {{text-input
+      container-styles="full-width"
+      label="Search"
+    }}
+  </div>
+  <div>
+    {{user-list
+      model=searchResults
+      showHeader=false
+    }}
+  </div>
+{{/modal-window}}

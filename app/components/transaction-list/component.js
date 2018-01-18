@@ -15,6 +15,8 @@ export default Component.extend({
   }),
   // hooks
   didInsertElement() {
+    this._super(...arguments);
+
     this.set('now', new Date());
   }
 });

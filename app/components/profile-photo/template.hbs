@@ -1,0 +1,9 @@
+{{#if model}}
+  <img
+    class={{img-classes}}
+    src={{model.url}}
+    alt={{if model.description model.description model.fileName}}
+  />
+{{else}}
+  <i class="ui user circle outline icon {{i-classes}}"></i>
+{{/if}}

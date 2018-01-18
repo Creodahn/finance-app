@@ -111,6 +111,10 @@ main {
       &::before {
         font-size: 5em;
       }
+
+      &.smaller {
+        min-height: 100px;
+      }
     }
   }
 

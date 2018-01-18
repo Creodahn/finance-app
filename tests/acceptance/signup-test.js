@@ -43,7 +43,7 @@ module('Acceptance | signup', function(hooks) {
     assert.equal(currentURL(), '/signup');
 
     await fillIn('input[type="text"][name="name"]', 'Justin Drew');
-    await fillIn('input[type="text"][name="email"]', 'justin@test.com');
+    await fillIn('input[type="text"][name="email"]', 'justin2@test.com');
     await fillIn('input[type="password"][name="password"]', 'test');
     await fillIn('input[type="password"][name="password-confirm"]', 'test');
 

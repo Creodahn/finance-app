@@ -14,5 +14,6 @@ export default BaseModel.extend(Imageable, {
   }),
   // relationships
   accounts: DS.hasMany('account'),
+  memberships: DS.hasMany('membership'),
   profiles: DS.hasMany('profile')
 });

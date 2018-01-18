@@ -3,6 +3,7 @@ import Ember from 'ember';
 import verifyEmail from 'finance-app/utils/verify-email';
 import Controller from '@ember/controller';
 import ENV from 'finance-app/config/environment';
+import { run } from '@ember/runloop';
 const { error } = Ember.Logger;
 
 export default Controller.extend({
@@ -22,59 +23,54 @@ export default Controller.extend({
             password = this.get('password');
       let message = null;
 
-      $.get(`${ENV.APP.apiURL}/api/confirmemail?email=${email}`).then((records) => {
+      $.ajax({
+        type: 'GET',
+        url: `${ENV.APP.apiURL}/api/confirmemail?email=${email}`
+      }).done((response) => {
         switch(true) {
-          case records.data.toArray()[0]:
+          case response.data.toArray()[0]:
             message = this.get('formatMessage').process('error', 'The provided email cannot be used to create an account. Please try another email');
-            error('email in use');
             break;
           case !this.get('model.name'):
             message = this.get('formatMessage').process('error', 'You must provide a name');
-            error('name is not present');
             break;
           case !email:
             message = this.get('formatMessage').process('error', 'You must provide an email');
-            error('email is not present');
             break;
           case !verifyEmail(email):
             message = this.get('formatMessage').process('error', 'The email you provided is not valid');
-            error('email is not valid');
             break;
           case !password:
             message = this.get('formatMessage').process('error', 'You must provide a password');
-            error('password is not present');
             break;
           case !this.get('passwordConfirm'):
             message = this.get('formatMessage').process('error', 'You must confirm your password');
-            error('password confirmation is not present');
             break;
           case password !== this.get('passwordConfirm'):
             message = this.get('formatMessage').process('error', 'The password and confirmation you provided do not match');
-            error('password does not match confirmation');
             break;
-          default: {
-            const user = this.store.createRecord('user', { password });
+          default:
+            run(() => {
+              this.store.createRecord('user', { password }).save().then((user) => {
+                this.get('model').set('user', user);
 
-            user.save().then((user) => {
-              this.get('model').set('user', user);
+                this.get('model').save().then((profile) => {
+                  const email = profile.get('email');
 
-              this.get('model').save().then((profile) => {
-                const email = profile.get('email');
+                  this.send('setMessage', this.get('formatMessage').process('success', 'Your account was created successfully. Logging you in...'));
 
-                this.send('setMessage', this.get('formatMessage').process('success', 'Your account was created successfully. Logging you in...'));
+                  this.get('session').set('data.login', email);
 
-                this.get('session').set('data.login', email);
-
-                this.get('session').authenticate('authenticator:oauth2', email, password).then(() => {
-                  $('#signup-modal').modal('hide');
+                  this.get('session').authenticate('authenticator:oauth2', email, password).then(() => {
+                    $('#signup-modal').modal('hide');
+                  }).catch((reason) => {
+                    error(reason);
+                  });
                 }).catch((reason) => {
                   error(reason);
                 });
-              }).catch((reason) => {
-                error(reason);
               });
             });
-          }
         }
 
         if(message) {

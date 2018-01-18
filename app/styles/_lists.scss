@@ -9,3 +9,50 @@
 .transaction-list {
   @include list;
 }
+
+.user-list {
+  @include list;
+  @extend .flex-row;
+
+  li {
+    &:not(.footer-row) {
+      @include border-radius(4px);
+      @include box-shadow($shadow);
+
+      @extend .flex-align-center;
+      @extend .flex-display;
+      @extend .flex-row;
+      @extend .flex-spacer;
+      @extend .sm-padding;
+      @extend .sm-spacer;
+
+      border: 1px solid $black;
+
+      & > .detail {
+        & > header {
+          @include font-size(18px);
+
+          @extend .text-bold;
+        }
+
+        & > label {
+          @include font-size(14px);
+        }
+      }
+
+      & > .img-wrapper {
+        @extend .right-lg-spacer;
+        max-width: 100px;
+
+        &,
+        & > img {
+          position: relative;
+        }
+
+        & > img {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}
