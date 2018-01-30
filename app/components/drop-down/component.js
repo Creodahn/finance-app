@@ -1,20 +1,26 @@
 import Component from '@ember/component';
 import RunMixin from 'ember-lifeline/mixins/run';
+import $ from 'jquery';
 
 export default Component.extend(RunMixin, {
   // attributes
   description: null,
   tagName: '',
+  // methods
   actions: {
     displayDescription(item) {
       this.runTask(() => {
-        this.set('descriptiveItem', item);
-      });
+        if($('.menu.hidden').length === 0) {
+          this.set('descriptiveItem', item);
+        }
+      }, 150);
     },
-    update() {
+    updateValue(value) {
       this.runTask(() => {
         this.set('descriptiveItem', null);
       });
-    }
+
+      this.get('update')(value);
+    },
   }
 });

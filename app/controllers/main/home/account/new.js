@@ -14,6 +14,7 @@ export default Controller.extend({
               account,
               amount: Math.abs(this.get('balance')),
               profile,
+              transactionDate: new Date(),
               transactionType
             }).save().then(() => {
               this.transitionToRoute('main.home.account.edit', account.get('id'));

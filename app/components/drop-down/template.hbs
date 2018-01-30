@@ -2,29 +2,40 @@
   id=id
   class=(concat "selection " container-styles)
 }}
-  <input type="hidden" name={{id}} value={{value}} onchange={{action update value="target.value"}}/>
-  <div class="default text">{{placeholder}}</div>
+  <input
+   type="hidden"
+   name={{id}}
+   value={{value}}
+   onchange={{action "updateValue" value="target.value"}}
+  />
+  <div class="default text">
+    {{placeholder}}
+  </div>
   <i class="dropdown icon"></i>
   <div class="menu {{menu-styles}}">
     {{#if model}}
       {{#each model as |item|}}
         <div
-          class="item {{item-styles}}"
-          data-value={{item.id}}
-          data-description={{item.description}}
-          {{action "displayDescription" item on="mouseEnter"}}
+         class="item {{item-styles}}"
+         data-value={{item.id}}
+         data-description={{item.description}}
+         {{action "displayDescription" item on="mouseEnter"}}
         >
           {{item.name}}
         </div>
       {{/each}}
     {{else}}
-      <div class="item" data-value="0">No items</div>
+      <div class="item" data-value="0">
+        No items
+      </div>
     {{/if}}
   </div>
 {{/ui-dropdown}}
 {{#if describeItems}}
   <div class="descriptive-item">
-    <h4>{{descriptiveItem.name}}</h4>
+    <h4>
+      {{descriptiveItem.name}}
+    </h4>
     {{descriptiveItem.description}}
   </div>
 {{/if}}

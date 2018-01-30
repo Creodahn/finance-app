@@ -1,13 +1,19 @@
 <section class="ui grid">
   <div class="row">
     <div class="fourteen wide column">
-      <h2>{{model.name}}</h2>
-      <p>{{model.description}}</p>
+      <h2>
+        {{model.name}}
+      </h2>
+      <p>
+        {{model.description}}
+      </p>
     </div>
   </div>
   <div class="row">
     <div class="fourteen wide column">
-      {{transaction-list model=model}}
+      {{transaction-list
+        model=model
+      }}
     </div>
     <div class="two wide column">
       <button class="ui button positive" {{action "addTransaction"}}>
@@ -49,16 +55,11 @@
           {{calendar.days}}
         {{/power-calendar}}
       </div>
-      <div class="ui labeled input">
-        <label class="ui label" for="amount">
-          Amount
-        </label>
-        {{one-way-currency-mask
-          id="amount"
-          value=newTransaction.amount
-          update=(action (mut newTransaction.amount))
-        }}
-      </div>
+      {{money-input
+        id="amount"
+        label="Amount"
+        value=newTransaction.amount
+      }}
     {{/if}}
   </form>
 {{/modal-window}}

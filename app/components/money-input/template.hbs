@@ -1,0 +1,11 @@
+<div class="ui labeled input {{container-styles}}">
+  <label class="ui label" for="amount">
+    {{label}}
+  </label>
+  {{one-way-currency-mask
+    class=input-styles
+    id=id
+    value=value
+    update=(action (mut value))
+  }}
+</div>

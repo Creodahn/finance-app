@@ -1,7 +1,9 @@
 <section class="flex-display flex-center">
-  <form {{action "save" on="submit"}} class="ui raised card auto-width">
+  <form {{action "save" on="submit"}} class="ui raised card half-width">
     <div class="content flex-column">
-      <header class="header">New Account</header>
+      <header class="header">
+        New Account
+      </header>
       <div class="meta">
         Create a new account for tracking finances
       </div>
@@ -26,29 +28,10 @@
             update=(action "updateType")
           }}
         </div>
-        <div class="flex-display flex-row flex-space-between">
-          {{text-input
-            container-styles="bottom-spacer"
-            id="rtg-number"
-            label="Routing Number"
-            required=true
-            type="text"
-            value=model.routingNumber
-          }}
-          {{text-input
-            container-styles="bottom-spacer"
-            id="acct-number"
-            label="Account Number"
-            required=true
-            type="text"
-            value=model.accountNumber
-          }}
-        </div>
-        {{text-input
+        {{money-input
           container-styles="bottom-spacer"
           id="balance"
           label="Balance"
-          type="text"
           value=balance
         }}
         {{text-box
