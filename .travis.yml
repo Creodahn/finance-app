@@ -27,5 +27,4 @@ install:
   - bower install
 
 script:
-  - yarn lint:js
-  - yarn test
+  - ember test --server
