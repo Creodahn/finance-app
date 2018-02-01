@@ -2178,9 +2178,9 @@ ember-assign-helper@0.1.2:
   dependencies:
     ember-cli-babel "^6.0.0-beta.9"
 
-ember-chrome-devtools@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/ember-chrome-devtools/-/ember-chrome-devtools-0.1.3.tgz#ae9ce774860f0ff0d905c5897b21a80438ca5f89"
+ember-chrome-devtools@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/ember-chrome-devtools/-/ember-chrome-devtools-0.2.0.tgz#f3287ddf60d0ea9127c93292de86fff2f1c36df8"
   dependencies:
     ember-cli-babel "^6.0.0"
 
@@ -2870,7 +2870,7 @@ ember-runtime-enumerable-includes-polyfill@^2.0.0:
     ember-cli-babel "^6.9.0"
     ember-cli-version-checker "^2.1.0"
 
-ember-simple-auth@~1.4.2:
+ember-simple-auth@^1.4.0:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/ember-simple-auth/-/ember-simple-auth-1.4.2.tgz#d8de79f4bcfb5830f43e61e43464885801544e94"
   dependencies:

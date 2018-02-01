@@ -23,3 +23,7 @@ install:
 - bower install
 script:
 - ember build --prod
+deploy:
+  provider: surge
+  project: ./dist
+  domain: trackourfinances.com
