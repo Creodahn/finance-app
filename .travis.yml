@@ -1,30 +1,25 @@
----
 language: node_js
 node_js:
-  - "6"
-
+- '6'
 sudo: false
 dist: trusty
-
 addons:
   chrome: stable
-
 cache:
   yarn: true
-
 env:
   global:
-    # See https://git.io/vdao3 for details.
-    - JOBS=1
-
+  - JOBS=1
+  - secure: hc3hZVsD2WALJQdINNWx/mv5CT/xc8wohEHOsvYcYhmWtFfmNcyAEYCWLrWP1Yj62ua4rJcIBAGR/tGev5ndTa2V2Vc0prkzfgFWpS0dfG3O136JPLDWbIXsosMVMK3vv1G67QfFDbZuhVB5KhPGCbDU8dUQs6TUp6r+owvNo+WNeFlv1JkF+pl4xLbwoLUQ3qotVqzaEj2rOAREtRZACzBo5wc4BJHJIprYejEckA15N5ff4r44TAlV++1+FKV1FWmW4cqTLUjhB1BKjfgfX++w5ZrXPZsAS5uieug3+ltsL8Yvf+JQNVFicxX89dVBwZ7jTiitky1Yh9NTNIHalrKyjc/5qu9rKmI/4HTMU6r20CoOtOPSMA1eiiky/KVVlPAvQnT1n0oyr6L4WRvWH9eLnwcNrArGRvBMwaoa54XxUI3Svcs+QfcFpwXu4DYlomVuzwTFvsZulqbdGAb0s1YaWefrr5ezjMA9VlZeNXphyKvSJV53/eq48fvjB1lJUWsxvcTYD9GlEZAa11dm2iHG73axEq9sjb7QGPMPQ5dKSYt1Ks+mptMlJWRggCWmPmHosVN0KcmEUNwApBSRR4YOe0KBZYSsqjub9dTBHWVYGzAlwPcH8ZmlsjJ4pFe3JQBr6wr2seX3C2OTvGKQHQ8G2SDYmAK5hp1TbXStOso=
 before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash
-  - export PATH=$HOME/.yarn/bin:$PATH
-
+- curl -o- -L https://yarnpkg.com/install.sh | bash
+- export PATH=$HOME/.yarn/bin:$PATH
+- yarn global add greenkeeper-lockfile@1
+- greenkeeper-lockfile-update
+- greenkeeper-lockfile-upload
 install:
-  - yarn install --non-interactive
-  - yarn add bower
-  - bower install
-
+- yarn install --non-interactive
+- yarn add bower
+- bower install
 script:
-  - ember build --prod
+- ember build --prod
