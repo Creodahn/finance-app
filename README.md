@@ -1,8 +1,8 @@
 # finance-app
 
-Greenkeeper [![Greenkeeper badge](https://badges.greenkeeper.io/Creodahn/finance-app.svg)](https://greenkeeper.io/)
+[![Greenkeeper badge](https://badges.greenkeeper.io/Creodahn/finance-app.svg)](https://greenkeeper.io/)
 
-Travis CI [![Build Status](https://travis-ci.org/Creodahn/finance-app.svg?branch=master)](https://travis-ci.org/Creodahn/finance-app)
+[![Build Status](https://travis-ci.org/Creodahn/finance-app.svg?branch=master)](https://travis-ci.org/Creodahn/finance-app)
 
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
