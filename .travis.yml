@@ -27,3 +27,4 @@ deploy:
   provider: surge
   project: ./dist
   domain: trackourfinances.com
+  on: master
