@@ -2735,11 +2735,12 @@ ember-invoke-action@^1.5.0:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-lifeline@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ember-lifeline/-/ember-lifeline-2.0.0.tgz#ab2dadd3eed585605d1c4137c64aacec4d241c8e"
+ember-lifeline@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/ember-lifeline/-/ember-lifeline-3.0.1.tgz#f1fb123ad277576a342bdbd09ea823c4a10b7e97"
   dependencies:
     ember-cli-babel "^6.8.2"
+    ember-weakmap "^3.1.1"
 
 ember-load-initializers@^1.0.0:
   version "1.0.0"
@@ -2936,7 +2937,7 @@ ember-try@^0.2.15:
     rsvp "^3.0.17"
     semver "^5.1.0"
 
-ember-weakmap@^3.0.0:
+ember-weakmap@^3.0.0, ember-weakmap@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/ember-weakmap/-/ember-weakmap-3.1.1.tgz#2ae6e0080b5b80cf0d108f7752dc69ea9603dbd7"
   dependencies:
