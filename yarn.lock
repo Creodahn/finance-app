@@ -2635,6 +2635,15 @@ ember-concurrency@^0.8.12:
     ember-getowner-polyfill "^2.0.0"
     ember-maybe-import-regenerator "^0.1.5"
 
+ember-concurrency@^0.8.24:
+  version "0.8.24"
+  resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-0.8.24.tgz#cc93d3e99185337f8257736f08793dc3e72c6a49"
+  integrity sha512-P31JhbWP/oiedQ8a8an12kVkZFEP/MtC6MWcb4FYTGMtnFUg8D8bYCVWK68Q9MBilcTQ+PYdrlD5/9jjYlspBg==
+  dependencies:
+    babel-core "^6.24.1"
+    ember-cli-babel "^6.8.2"
+    ember-maybe-import-regenerator "^0.1.5"
+
 ember-cookies@^0.1.0:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/ember-cookies/-/ember-cookies-0.1.2.tgz#f652efcb289534cdc1425832ed3c77aeb432ef72"
