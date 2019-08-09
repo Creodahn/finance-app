@@ -46,7 +46,7 @@
     "ember-lifeline": "^2.0.0",
     "ember-load-initializers": "^1.0.0",
     "ember-moment": "^7.4.1",
-    "ember-power-calendar": "^0.7.1",
+    "ember-power-calendar": "^0.14.2",
     "ember-resolver": "^4.0.0",
     "ember-simple-auth": "^1.4.0",
     "ember-source": "~2.18.0",
