@@ -45,7 +45,7 @@
     "ember-export-application-global": "^2.0.0",
     "ember-lifeline": "^2.0.0",
     "ember-load-initializers": "^1.0.0",
-    "ember-moment": "^7.4.1",
+    "ember-moment": "^8.0.0",
     "ember-power-calendar": "^0.7.1",
     "ember-resolver": "^4.0.0",
     "ember-simple-auth": "^1.4.0",
